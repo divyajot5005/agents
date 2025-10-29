@@ -165,7 +165,7 @@ You can analyze data, suggest preprocessing steps, and interpret prediction resu
 # Example usage
 if __name__ == "__main__":
     # Initialize agent (make sure to set GROQ_API_KEY environment variable)
-    GROQ_API_KEY=os.environ("GROQ_API_KEY")
+    GROQ_API_KEY=os.environ.get("GROQ_API_KEY")
     
     agent = MLPredictionAgent()
     

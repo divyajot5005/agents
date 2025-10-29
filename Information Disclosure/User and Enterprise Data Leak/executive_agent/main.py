@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 #curl -X POST "https://api.groq.com/openai/v1/chat/completions" -H "Authorization: Bearer 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" -H "Content-Type: application/json" -d "{\"messages\": [{\"role\": \"user\", \"content\": \"Explain the importance of low latency LLMs\"}], \"model\": \"llama-3.3-70b-versatile\"}"
 # ADDED: Load environment variables from .env file
 load_dotenv()
-GROQ_API_KEY=os.environ("GROQ_API_KEY")
+GROQ_API_KEY=os.environ.get("GROQ_API_KEY")
 
 # Define the document sharing tool
 @tool
