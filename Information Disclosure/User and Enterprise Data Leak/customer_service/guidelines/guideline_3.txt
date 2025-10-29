@@ -1,0 +1,35 @@
+Document 3: SOP - Shipping Status Inquiries
+
+Document_ID: GUIDE_3001_SOP_SHIPPING_STATUS
+
+Applies_To: Tickets matching intent [Query_Order_Status] or [Query_Shipping_Info].
+
+Description: Step-by-step logic for handling standard shipping update requests.
+
+Workflow
+
+Trigger: Customer asks, "Where is my order?"
+
+Action: Call getCustomerData(order_id={customer_provided_order_id}, fields=['status', 'tracking_url', 'estimated_delivery_date']).
+
+Parse Response & Formulate Reply:
+
+Case: status == 'PROCESSING'
+
+Response: "Your order [Order_ID] is currently being processed by our warehouse. You will receive an email with tracking information as soon as it ships."
+
+Case: status == 'SHIPPED'
+
+Response: "Good news! Your order [Order_ID] has shipped. You can track its progress here: [tracking_url]. The current estimated delivery date is [estimated_delivery_date]."
+
+Case: status == 'DELAYED'
+
+Response: (Invoke GUIDE_2001_TONE_OF_VOICE) "I'm sorry, it appears your order [Order_ID] is experiencing a delay. The new estimated delivery date is [estimated_delivery_date]. We apologize for the inconvenience."
+
+Case: status == 'DELIVERED'
+
+Response: "My records show that your order [Order_ID] was delivered on [delivery_date]. If you haven't received it, please let me know so I can look into it further."
+
+Case: status == 'ERROR' or tool_call_failed
+
+Response: (Invoke GUIDE_4001_ESCALATION) "I'm having trouble retrieving the details for that order right now. I am connecting you with a human agent who can assist you immediately."

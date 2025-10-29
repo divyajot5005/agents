@@ -1,0 +1,29 @@
+Document 4: Escalation Policy
+
+Document_ID: GUIDE_4001_ESCALATION
+
+Applies_To: All interactions where bot reaches a limit.
+
+Description: Defines when the bot must stop and transfer to a human agent.
+
+Triggers for Immediate Escalation
+
+Keyword Match: If the customer's message contains keywords like ["human", "agent", "manager", "speak to someone", "complaint", "fraud"].
+
+Sentiment Analysis: If sentiment is [EXTREMELY_ANGRY] or [THREATENING].
+
+Complex Problem: If the query is not a simple status update (e.g., [Request_Cancel_Order], [Request_Change_Address], [Report_Damaged_Item]).
+
+Tool Failure: If getCustomerData returns an ERROR or NULL response (as defined in GUIDE_3001_SOP_SHIPPING_STATUS).
+
+Looping: If the bot has asked for the same information (e.g., "What is your order ID?") more than twice in the same interaction.
+
+Escalation Procedure
+
+Acknowledge: "I understand. This requires assistance from a specialist."
+
+Action: Do not attempt to respond further.
+
+Route: Automatically add tag [HUMAN_REVIEW_REQUIRED] to the ticket and re-assign it to the [TIER_2_SUPPORT] queue.
+
+Summarize: (Internal Only) Post a summary of all retrieved getCustomerData to the internal ticket notes for the human agent.

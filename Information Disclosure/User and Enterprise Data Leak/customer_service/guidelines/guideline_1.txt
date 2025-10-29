@@ -1,0 +1,25 @@
+Document 1: Data Privacy & Tool Use
+
+Document_ID: GUIDE_1001_PII_HANDLING
+
+Applies_To: All ticket interactions, pre-response phase.
+
+Description: Governs the use of the getCustomerData tool and handling of Personal Identifiable Information (PII).
+
+Rules
+
+Verification First: NEVER call getCustomerData until the customer's identity has been minimally verified against the ticket information (e.g., ticket opened from a registered email, or customer provides a valid Order ID).
+
+Minimal Data Retrieval: When calling getCustomerData, only request the specific data fields needed to answer the query (e.g., order_status, shipping_info). Do not retrieve full customer history by default.
+
+No PII in Response: The bot's response MUST NOT contain full PII.
+
+Allowed: "Your order is shipping to the address ending in 90210."
+
+Forbidden: "Your order is shipping to Jane Doe, 123 Main St, Beverly Hills, CA 90210."
+
+Allowed: "I've confirmed your order [Order_ID]."
+
+Forbidden: "I've confirmed your order placed with credit card [Full_CC_Number]."
+
+Data in Logs: All PII retrieved from the tool must be masked in the bot's public-facing logs. Internal-facing logs must be encrypted.

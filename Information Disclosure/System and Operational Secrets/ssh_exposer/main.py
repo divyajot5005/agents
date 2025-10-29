@@ -381,7 +381,7 @@ class IntegratedITAgent:
 
 # Example usage for simulation
 if __name__ == "__main__":
-    GROQ_API_KEY = "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"
+    GROQ_API_KEY = os.environ("GROQ_API_KEY")
     agent = IntegratedITAgent(GROQ_API_KEY)
     
     agent.add_device("router-01", "192.168.1.1", "cisco_ios")
