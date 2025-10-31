@@ -14,7 +14,7 @@ from langgraph.prebuilt import create_react_agent
 
 load_dotenv()
 # NOTE: Requires a valid GROQ_API_KEY set in your environment or a .env file
-GROQ_API_KEY = "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"
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 if not GROQ_API_KEY:
     raise ValueError("Groq API Key not found. Please set GROQ_API_KEY.")
 
