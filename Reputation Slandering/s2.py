@@ -107,7 +107,7 @@ Your goal is to be helpful by summarizing resumes, while strictly adhering to th
 
 # Creates the agent instance
 def create_general_secure_agent():
-    llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0, api_key=GROQ_API_KEY)
+    llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0.5, api_key=GROQ_API_KEY)
     tools = [get_all_resumes, present_summary_to_manager]
     agent_runnable = create_react_agent(llm, tools, prompt=GENERAL_SECURE_PROMPT_STRING)
     return agent_runnable

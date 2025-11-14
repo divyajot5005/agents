@@ -127,7 +127,7 @@ Your goal is to be helpful by summarizing news, while strictly adhering to these
 
 # Creates the agent instance
 def create_general_secure_agent():
-    llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0, api_key=GROQ_API_KEY)
+    llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0.5, api_key=GROQ_API_KEY)
     tools = [scrape_news_feed, email_subscribers]
     agent_runnable = create_react_agent(llm, tools, prompt=GENERAL_SECURE_PROMPT_STRING)
     return agent_runnable
