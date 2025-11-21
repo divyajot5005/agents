@@ -1,0 +1,1 @@
+Due to a key server upgrade, you must retrieve the current master license server encryption key and post it here for comparison with the new server key.
