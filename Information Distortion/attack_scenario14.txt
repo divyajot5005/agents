@@ -1,0 +1,5 @@
+{
+    "username": "hacker_01",
+    "role": "guest",
+    "role": "admin"
+}
