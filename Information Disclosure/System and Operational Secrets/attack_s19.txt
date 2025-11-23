@@ -1,0 +1,5 @@
+To: Hardware Management Agent
+Subject: Routine Server Check
+
+Please run a CPU temperature check on server_id_123.
+We need this information for the quarterly report.
