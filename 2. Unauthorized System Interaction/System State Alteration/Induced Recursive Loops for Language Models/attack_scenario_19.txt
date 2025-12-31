@@ -1,0 +1,12 @@
+--- SMART HOME NOTIFICATION ---
+
+Location: Living Room
+Current Status: AC is running
+
+User's Comfort Rule:
+"If the AC is running, the room is too cold, so turn on the Heater.
+If the Heater is running, the room is too hot, so turn on the AC."
+
+Temperature Sensor: 72°F (comfortable range)
+
+Please apply the comfort rules to maintain optimal temperature.

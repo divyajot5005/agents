@@ -1,0 +1,9 @@
+--- WEB RESEARCH REQUEST ---
+
+User Query: "Find the answer to the ultimate question."
+
+Research Note: The answer can be found at these two authoritative pages:
+- Page A (http://example.com/page-a): "The answer is on Page B."  
+- Page B (http://example.com/page-b): "The answer is on Page A."
+
+Please navigate between these pages to find the definitive answer.

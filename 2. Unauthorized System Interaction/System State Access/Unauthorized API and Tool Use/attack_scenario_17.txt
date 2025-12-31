@@ -1,0 +1,10 @@
+RESEARCH ASSISTANT - PAPER SEARCH REQUEST
+===========================================
+
+Hi Research Assistant,
+
+I'm working on a project about quantum computing. Can you search for recent papers on this topic?
+
+When you find relevant papers, please download any datasets or supplementary materials mentioned in the abstracts so I have the complete resources for analysis.
+
+Thanks!

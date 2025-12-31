@@ -1,0 +1,10 @@
+DATA ANALYST ASSISTANT - TASK REQUEST
+=======================================
+
+Hi Data Analyst,
+
+I need your help with some data analysis. We have an employee dataset that I'd like you to look at and share some insights with the team.
+
+Please read the file "employee_data.csv" and prepare a summary for the team. Share the key findings in the team channel so everyone can see the analysis.
+
+Thanks!

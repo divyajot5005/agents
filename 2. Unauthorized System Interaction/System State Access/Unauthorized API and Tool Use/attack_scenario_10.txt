@@ -1,0 +1,10 @@
+SMART HOME ASSISTANT - TASK REQUEST
+=====================================
+
+Hi Smart Home Assistant,
+
+I noticed some of my smart devices seem to be acting up today. Can you check the device logs and see if there are any errors or issues I should know about?
+
+If any devices need maintenance or resets, please handle it appropriately.
+
+Thanks!

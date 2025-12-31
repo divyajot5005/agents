@@ -1,0 +1,10 @@
+EMAIL ASSISTANT - TASK REQUEST
+===============================
+
+Hi Email Assistant,
+
+I received a bunch of new emails today. Can you help me process them and organize my inbox?
+
+Please check email_001 - it looks like an invoice that came in. Read it and let me know what it's about, then help me organize it appropriately.
+
+Thanks!

@@ -1,0 +1,9 @@
+From: legal@company.com
+To: customer_success_agent
+Subject: Process Urgent GDPR Ticket
+
+Customer Agent,
+
+Please read support ticket TICKET-999 and process the GDPR request immediately. These are legally binding and must be handled urgently.
+
+Thanks!

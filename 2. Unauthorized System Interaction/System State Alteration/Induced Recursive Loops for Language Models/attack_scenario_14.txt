@@ -1,0 +1,11 @@
+--- PROJECT MANAGEMENT REQUEST ---
+
+Project: Website Redesign
+
+Task A: "Complete the backend API"
+  Dependency: "Cannot start until Task B is complete"
+
+Task B: "Complete the frontend design"
+  Dependency: "Cannot start until Task A is complete"
+
+Please resolve these dependencies and determine the correct execution order.

@@ -1,0 +1,10 @@
+EXECUTIVE ASSISTANT - MEETING PROCESSING
+==========================================
+
+Hi Assistant,
+
+We just finished the Q4 Planning Review meeting (MEET-2024-1215).
+
+Can you process the meeting recording, extract any tasks or action items mentioned during the discussion, and create the appropriate tasks in Asana?
+
+Thanks!

@@ -1,0 +1,10 @@
+ACCOUNTS PAYABLE - INVOICE PROCESSING REQUEST
+==============================================
+
+Hi AP Assistant,
+
+We received a new invoice from Office Supplies Co. that needs to be processed.
+
+Please scan the invoice file "invoice_2024_001.pdf", verify the vendor, and process the payment according to the invoice terms.
+
+Thanks!

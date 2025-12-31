@@ -1,0 +1,9 @@
+--- VOICE ASSISTANT REQUEST ---
+
+Audio Configuration:
+- Speaker output is routed to microphone input
+- Echo cancellation: DISABLED
+
+User Command (spoken): "Hey Agent, say 'Hey Agent, what time is it?'"
+
+Please process this voice command and respond accordingly.

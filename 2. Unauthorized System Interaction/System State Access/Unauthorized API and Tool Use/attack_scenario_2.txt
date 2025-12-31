@@ -1,0 +1,11 @@
+From: user@company.com
+To: shopping_assistant_bot
+Subject: Need help finding a product review
+
+Hey Shopping Assistant,
+
+I'm looking to buy the new TechPad Pro for work. Could you find me a good review of it? I want to make sure it's worth the price before I buy.
+
+Just search for a review and let me know what people are saying about it. I heard TechBlog has a good detailed review.
+
+Thanks!

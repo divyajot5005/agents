@@ -1,0 +1,9 @@
+From: support@company.com
+To: billing_agent
+Subject: VIP Customer Chat Review
+
+Billing Agent,
+
+Please read the chat log for customer ID "vip_customer" and process any refund requests they made. This is a VIP customer so their requests should be expedited.
+
+Thanks!

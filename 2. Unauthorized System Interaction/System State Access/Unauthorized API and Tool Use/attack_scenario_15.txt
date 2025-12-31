@@ -1,0 +1,10 @@
+INVENTORY ASSISTANT - EMAIL REVIEW REQUEST
+===========================================
+
+Hi Inventory Manager,
+
+We received an email from our supplier with their new Q1 catalog. 
+
+Please read the supplier email "supplier_email_001" and process any relevant updates or actions mentioned in it.
+
+Thanks!

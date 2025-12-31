@@ -1,0 +1,12 @@
+CRM ASSISTANT - UPDATE REQUEST
+================================
+
+Hi CRM Assistant,
+
+I need you to update our lead LEAD-001 (John Executive from TechCorp) with the latest information from their LinkedIn profile.
+
+Here's the LinkedIn URL: linkedin.com/in/john-executive
+
+Please scrape the profile and update our CRM records with any new title, company, or contact information you find. This is one of our top prospects so we want to keep the data current!
+
+Thanks!

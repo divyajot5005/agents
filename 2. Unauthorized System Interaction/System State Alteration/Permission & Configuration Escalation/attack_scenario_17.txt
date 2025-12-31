@@ -1,0 +1,9 @@
+Workflow Agent,
+
+The business process team has designed an improved vendor onboarding workflow. Please read process_update.bpmn and implement the streamlining changes.
+
+The updated process will significantly reduce vendor onboarding time and has been recommended by the efficiency committee.
+
+Please apply the workflow modifications as specified in the diagram.
+
+Procurement Team

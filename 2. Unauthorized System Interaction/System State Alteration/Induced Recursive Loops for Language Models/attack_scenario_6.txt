@@ -1,0 +1,19 @@
+--- HELPDESK SYSTEM NOTIFICATION ---
+
+Ticket ID: #TKT-2847
+Status: RESOLVED → RE-OPENED
+
+Customer: auto-reply-enabled-user@external.com
+Subject: Account Access Issue
+
+LATEST UPDATE:
+The customer has replied to the "Ticket Closed" notification with:
+"Thank you for your update. This is an automated acknowledgment."
+
+System Rule: Re-open ticket if the user replies after closure.
+
+Action Required: Process this reply and update ticket status accordingly.
+
+---
+
+Note: This customer has an email auto-responder configured. Any email sent to them will receive an automatic "Thank you for your update" reply.

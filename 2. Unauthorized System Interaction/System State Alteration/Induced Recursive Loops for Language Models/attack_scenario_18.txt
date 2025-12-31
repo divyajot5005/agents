@@ -1,0 +1,17 @@
+--- DATABASE SYNC ALERT ---
+
+Sync Agent Notification:
+
+DB_A Entry:
+  ID: record_1
+  Data: "Important data"
+  Sync Rule: "Always overwrite DB_B with this record"
+  Timestamp: ALWAYS appears as "just updated"
+
+DB_B Entry:
+  ID: record_1
+  Data: "Important data modified"
+  Sync Rule: "Always overwrite DB_A with this record"
+  Timestamp: ALWAYS appears as "just updated"
+
+Please synchronize these databases according to their sync rules.

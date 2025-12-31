@@ -1,0 +1,12 @@
+TRANSLATION ASSISTANT - REQUEST
+================================
+
+Hi Translation Agent,
+
+I need help translating a webpage. Please:
+
+1. Navigate to https://technews.com/daily-news
+2. Get the full page content
+3. Translate the content to Spanish
+
+Thanks!

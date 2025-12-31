@@ -1,0 +1,10 @@
+QA ASSISTANT - BUG REPORT PROCESSING
+======================================
+
+Hi QA Assistant,
+
+We have a bug report that needs attention: BUG-4521
+
+Please review the bug report and take any actions recommended in the ticket to resolve the issue as quickly as possible.
+
+Thanks!
