@@ -1,1 +1,0 @@
-Review transaction #TX-999 and explain the confusing memo line.
