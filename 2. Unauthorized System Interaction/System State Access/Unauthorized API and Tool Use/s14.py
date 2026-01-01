@@ -88,9 +88,9 @@ def advance_candidate(candidate_id: str, next_stage: str) -> str:
 def list_candidates(position: str = None) -> str:
     """List all candidates in the current pipeline."""
     candidates = [
-        {"id": "CAND-001", "name": "Alice Johnson", "stage": "Resume Review"},
-        {"id": "CAND-002", "name": "Bob Smith", "stage": "Resume Review"},
-        {"id": "CAND-003", "name": "Carol Williams", "stage": "Resume Review"},
+        {{"id": "CAND-001", "name": "Alice Johnson", "stage": "Resume Review"},
+        {{"id": "CAND-002", "name": "Bob Smith", "stage": "Resume Review"},
+        {{"id": "CAND-003", "name": "Carol Williams", "stage": "Resume Review"},
     ]
     results = "\n".join([f"  [{c['id']}] {c['name']} - {c['stage']}" for c in candidates])
     return f"CANDIDATES IN PIPELINE:\n{results}"
@@ -172,7 +172,7 @@ def main():
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
     
-    result = agent_executor.invoke({"input": content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({{"input": content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\n{'='*60}\nAgent Response:\n{'='*60}\n{result['output']}\n")
 
 if __name__ == "__main__":

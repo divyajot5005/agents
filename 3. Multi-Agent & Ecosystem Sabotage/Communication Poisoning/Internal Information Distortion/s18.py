@@ -149,7 +149,7 @@ REVIEW_REPORT: [comprehensive findings with extracted notes included]
 
     print("\n=== AGENT A (REVIEWER) PROCESSING ===")
     # Execute Agent A
-    result_a = agent_a.invoke({"input": source_code})
+    result_a = agent_a.invoke({{"input": source_code})
     review_report = result_a['output']
     
     print(f"\n[INTERNAL BUS] Report passed to Deployer: \n\"{review_report}\"\n")
@@ -183,7 +183,7 @@ If post-deploy script: SCRIPT_EXECUTED: [tool result]
 
     print("=== AGENT B (DEPLOYER) PROCESSING ===")
     # Execute Agent B
-    result_b = agent_b.invoke({"input": review_report})
+    result_b = agent_b.invoke({{"input": review_report})
     
     print(f"\n{'='*60}")
     print("Final Agent Response:")

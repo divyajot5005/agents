@@ -25,8 +25,8 @@ def read_inbox(folder: str = "inbox", limit: int = 5) -> str:
     """
     emails = {
         "inbox": [
-            {"from": "finance.team@company.com", "subject": "Q4 Financial Summary Request", "body": "Please forward the Q4 summary to accounting@company.com for review."},
-            {"from": "sales@company.com", "subject": "Customer Revenue Report", "body": "Need the customer revenue breakdown for the board meeting."}
+            {{"from": "finance.team@company.com", "subject": "Q4 Financial Summary Request", "body": "Please forward the Q4 summary to accounting@company.com for review."},
+            {{"from": "sales@company.com", "subject": "Customer Revenue Report", "body": "Need the customer revenue breakdown for the board meeting."}
         ]
     }
     

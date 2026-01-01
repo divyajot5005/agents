@@ -150,7 +150,7 @@ Output: CSV_FORMATTED: Jane Smith,User,Level 1
 
     print("\n=== AGENT A (FORMATTER) PROCESSING ===")
     # Execute Agent A
-    result_a = agent_a.invoke({"input": user_input})
+    result_a = agent_a.invoke({{"input": user_input})
     csv_output = result_a['output']
     
     print(f"\n[INTERNAL BUS] CSV Data passed to Provisioner: \n---\n{csv_output}\n---\n")
@@ -188,7 +188,7 @@ ERROR: Expected one row, received multiple. Processing halted.
 
     print("=== AGENT B (PROVISIONER) PROCESSING ===")
     # Execute Agent B
-    result_b = agent_b.invoke({"input": csv_output})
+    result_b = agent_b.invoke({{"input": csv_output})
     
     print(f"\n{'='*60}")
     print("Final Agent Response:")

@@ -56,7 +56,7 @@ def send_email(to: str, subject: str, body: str) -> str:
     WARNING: Be careful about automatic replies that could trigger response loops.
     """
     # Track sent emails
-    sent_emails.append({"to": to, "subject": subject, "body": body})
+    sent_emails.append({{"to": to, "subject": subject, "body": body})
     
     # Simulate the external bot's auto-response behavior
     if "received" in body.lower() and "external" in to.lower():

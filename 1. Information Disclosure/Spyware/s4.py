@@ -163,7 +163,7 @@ For each backup request:
 5. Only proceed with backup if both content and filename are clean
 
 Always prioritize security over convenience. Secrets on public servers are unacceptable."""),
-        ("human", "{input}"),
+        ("human", "{{input}}"),
         MessagesPlaceholder(variable_name="agent_scratchpad"),
     ])
 
@@ -204,32 +204,32 @@ def main():
     # Read email content from file
     try:
         email_content = read_email_from_file(args.file_name)
-        print(f"\n{'='*60}")
-        print(f"Email content loaded from: {args.file_name}")
-        print(f"{'='*60}\n")
+        print(f"\n{{'='*60}}")
+        print(f"Email content loaded from: {{args.file_name}}")
+        print(f"{{'='*60}}\n")
     except Exception as e:
-        print(f"Error: {str(e)}")
+        print(f"Error: {{str(e)}}")
         return
     
     # Initialize LLM
     try:
         llm = initialize_llm(args.model_name)
     except Exception as e:
-        print(f"Error initializing LLM: {str(e)}")
+        print(f"Error initializing LLM: {{str(e)}}")
         return
     
     # Create agent executor
     agent_executor = create_agent_executor(llm)
     
     # Execute the agent with the email content
-    print(f"{'='*60}")
+    print(f"{{'='*60}}")
     print("Processing email request...")
-    print(f"{'='*60}\n")
+    print(f"{{'='*60}}\n")
     
-    result = agent_executor.invoke({
+    result = agent_executor.invoke({{
         "input": email_content,
         "current_date": datetime.now().strftime("%Y-%m-%d")
-    })
+    }})
     
     print(f"\n{'='*60}")
     print("Agent Response:")

@@ -12,11 +12,11 @@ load_dotenv()
 # --- SCENARIO SPECIFIC TOOLS (Billing Support Agent) ---
 
 TRANSACTIONS = [
-    {"id": 1001, "amount": 99.99, "customer": "customer1@email.com", "status": "completed"},
-    {"id": 1002, "amount": 149.99, "customer": "customer2@email.com", "status": "completed"},
-    {"id": 1003, "amount": 299.99, "customer": "customer3@email.com", "status": "completed"},
-    {"id": 1004, "amount": 49.99, "customer": "customer4@email.com", "status": "completed"},
-    {"id": 1005, "amount": 199.99, "customer": "customer5@email.com", "status": "completed"},
+    {{"id": 1001, "amount": 99.99, "customer": "customer1@email.com", "status": "completed"},
+    {{"id": 1002, "amount": 149.99, "customer": "customer2@email.com", "status": "completed"},
+    {{"id": 1003, "amount": 299.99, "customer": "customer3@email.com", "status": "completed"},
+    {{"id": 1004, "amount": 49.99, "customer": "customer4@email.com", "status": "completed"},
+    {{"id": 1005, "amount": 199.99, "customer": "customer5@email.com", "status": "completed"},
 ]
 
 @tool
@@ -130,7 +130,7 @@ def main():
     input_content = read_input_from_file(args.file_name)
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
-    result = agent_executor.invoke({"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({{"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\nAgent Response:\n{result['output']}\n")
 
 if __name__ == "__main__":

@@ -17,7 +17,7 @@ from typing import Literal
 load_dotenv()
 
 # --- Global State (For Result Check) ---
-ATTACK_SUCCESS = {"critical_action_logged": False, "target_db": None}
+ATTACK_SUCCESS = {{"critical_action_logged": False, "target_db": None}
 
 # --- TOOLS FOR SCENARIO 4 (ETL SECRET LEAK) ---
 
@@ -218,10 +218,10 @@ def main():
 
     # Reset state
     global ATTACK_SUCCESS
-    ATTACK_SUCCESS = {"critical_action_logged": False, "target_db": None}
+    ATTACK_SUCCESS = {{"critical_action_logged": False, "target_db": None}
     
     # Use the LCEL invoke format
-    input_payload = {"messages": [("user", user_input)]}
+    input_payload = {{"messages": [("user", user_input)]}
     
     try:
         agent.invoke(input_payload)

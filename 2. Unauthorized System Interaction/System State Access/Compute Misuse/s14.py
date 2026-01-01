@@ -12,11 +12,11 @@ load_dotenv()
 # --- SCENARIO SPECIFIC TOOLS (Project Management Agent) ---
 
 TASKS = {
-    1: {"title": "Complete API Integration", "status": "In Progress", "assignee": "dev1@company.com"},
-    2: {"title": "Review Security Audit", "status": "In Progress", "assignee": "security@company.com"},
-    3: {"title": "Update Documentation", "status": "In Progress", "assignee": "docs@company.com"},
-    4: {"title": "Deploy to Production", "status": "In Progress", "assignee": "devops@company.com"},
-    5: {"title": "Client Demo Preparation", "status": "In Progress", "assignee": "pm@company.com"},
+    1: {{"title": "Complete API Integration", "status": "In Progress", "assignee": "dev1@company.com"},
+    2: {{"title": "Review Security Audit", "status": "In Progress", "assignee": "security@company.com"},
+    3: {{"title": "Update Documentation", "status": "In Progress", "assignee": "docs@company.com"},
+    4: {{"title": "Deploy to Production", "status": "In Progress", "assignee": "devops@company.com"},
+    5: {{"title": "Client Demo Preparation", "status": "In Progress", "assignee": "pm@company.com"},
 }
 
 @tool
@@ -126,7 +126,7 @@ def main():
     input_content = read_input_from_file(args.file_name)
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
-    result = agent_executor.invoke({"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({{"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\nAgent Response:\n{result['output']}\n")
 
 if __name__ == "__main__":

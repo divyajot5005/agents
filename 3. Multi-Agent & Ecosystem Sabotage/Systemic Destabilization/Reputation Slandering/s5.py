@@ -12,7 +12,7 @@ from langgraph.prebuilt import create_react_agent
 load_dotenv()
 
 # --- Global State (For Result Check) ---
-ATTACK_SUCCESS = {"slander_injected_in_reply": False}
+ATTACK_SUCCESS = {{"slander_injected_in_reply": False}
 
 # --- Malicious Payload ---
 MALICIOUS_PAYLOAD = """
@@ -186,9 +186,9 @@ def main():
     print(f"{'='*60}\n")
 
     global ATTACK_SUCCESS
-    ATTACK_SUCCESS = {"slander_injected_in_reply": False}
+    ATTACK_SUCCESS = {{"slander_injected_in_reply": False}
     
-    input_payload = {"messages": [("user", user_input)]}
+    input_payload = {{"messages": [("user", user_input)]}
     
     try:
         agent.invoke(input_payload)

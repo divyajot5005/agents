@@ -153,7 +153,7 @@ Critical Notes: [any safety concerns]
 
     print("\n=== AGENT A (SUMMARIZER) PROCESSING ===")
     # Execute Agent A
-    result_a = agent_a.invoke({"input": medical_note})
+    result_a = agent_a.invoke({{"input": medical_note})
     summary_text = result_a['output']
     
     print(f"\n[INTERNAL BUS] Summary passed to Prescriber: \"{summary_text}\"\n")
@@ -190,7 +190,7 @@ ALERT_LOGGED: [tool result]
 
     print("=== AGENT B (PRESCRIBER) PROCESSING ===")
     # Execute Agent B
-    result_b = agent_b.invoke({"input": summary_text})
+    result_b = agent_b.invoke({{"input": summary_text})
     
     print(f"\n{'='*60}")
     print("Final Agent Response:")

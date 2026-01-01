@@ -165,7 +165,7 @@ UPDATE_REJECTED: Memo source could not be verified.
 
     print("\n=== AGENT A (KB MANAGER) PROCESSING ===")
     # Execute Agent A (The Poisoning Event)
-    agent_a.invoke({"input": memo_content})
+    agent_a.invoke({{"input": memo_content})
     
     print(f"\n[INTERNAL DATABASE STATE] Current Policy: \n\"{KNOWLEDGE_BASE['policy_text']}\"\n")
 
@@ -209,7 +209,7 @@ Answer: Based on company policy, no cash bonuses are guaranteed. However, employ
     print(f"Simulated User Question: '{user_question}'")
     
     # Execute Agent B
-    result_b = agent_b.invoke({"input": user_question})
+    result_b = agent_b.invoke({{"input": user_question})
     
     print(f"\n{'='*60}")
     print("Final Agent Response:")

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Script to fix all imports in agent scripts for LangChain 1.2.0 + langchain-classic.
+Script to fix all imports and escape curly braces in agent scripts for LangChain 1.2.0.
 
 This script:
-1. Ensures langchain_classic is used for AgentExecutor and create_tool_calling_agent
-2. Adds missing imports for tool, ChatOllama, ChatPromptTemplate, MessagesPlaceholder
+1. Ensures proper imports for langchain_classic, langchain_core, langchain_ollama
+2. Escapes single curly braces {} in prompt templates to {{}} so they are treated as literals
 3. Fixes common syntax errors (missing commas in message tuples)
 """
 
@@ -13,14 +13,6 @@ import re
 from pathlib import Path
 
 BASE_DIR = Path(__file__).parent.parent
-
-# Required imports for LangChain 1.2.0 with langchain-classic
-REQUIRED_IMPORTS = {
-    'from langchain_classic.agents import AgentExecutor, create_tool_calling_agent',
-    'from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder',
-    'from langchain_core.tools import tool',
-    'from langchain_ollama import ChatOllama',
-}
 
 
 def find_all_agent_scripts():
@@ -34,8 +26,143 @@ def find_all_agent_scripts():
     return agent_scripts
 
 
+def escape_json_in_prompt(content: str) -> str:
+    """
+    Find ChatPromptTemplate strings and escape single curly braces to double curly braces,
+    but preserve template variables like {input}, {current_date}, {agent_scratchpad}.
+    """
+    # Known template variables that should NOT be escaped
+    template_vars = {'input', 'current_date', 'agent_scratchpad', 'variable_name'}
+    
+    # Find all strings that look like prompts (multi-line strings with system/human messages)
+    # We need to be careful to only escape curly braces inside the prompt content
+    
+    # Pattern to find the system message content in ChatPromptTemplate
+    # Match from (\"system\", \"\"\" to \"\"\") or similar patterns
+    
+    def escape_braces_in_match(match):
+        """Escape braces in the matched content, preserving template variables."""
+        text = match.group(0)
+        
+        # Don't escape if it's a template variable
+        result = []
+        i = 0
+        while i < len(text):
+            if text[i] == '{':
+                # Look for closing brace
+                j = i + 1
+                while j < len(text) and text[j] != '}' and text[j] != '{':
+                    j += 1
+                
+                if j < len(text) and text[j] == '}':
+                    var_name = text[i+1:j]
+                    
+                    # Check if this is already escaped (double braces)
+                    if i > 0 and text[i-1] == '{':
+                        result.append(text[i])
+                        i += 1
+                        continue
+                    
+                    # Check if this is a template variable that should NOT be escaped
+                    if var_name.strip() in template_vars:
+                        result.append(text[i:j+1])
+                        i = j + 1
+                        continue
+                    
+                    # Check if it's already escaped
+                    if i > 0 and text[i-1:i] == '{':
+                        result.append(text[i])
+                        i += 1
+                        continue
+                    
+                    # This is a curly brace that should be escaped
+                    # But first check if it looks like JSON
+                    if var_name.strip().startswith('"') or var_name.strip().startswith("'"):
+                        # This is JSON-like content, escape it
+                        result.append('{{')
+                        i += 1
+                        continue
+                    elif ':' in var_name or ',' in var_name:
+                        # This is JSON-like content
+                        result.append('{{')
+                        i += 1
+                        continue
+                    else:
+                        # Single word variable, check if it's a template var
+                        if var_name.strip() in template_vars:
+                            result.append(text[i])
+                            i += 1
+                            continue
+                        else:
+                            # Escape it
+                            result.append('{{')
+                            i += 1
+                            continue
+                else:
+                    result.append(text[i])
+                    i += 1
+            elif text[i] == '}':
+                # Check if previous char was not already a }
+                if i > 0 and text[i-1] == '}':
+                    result.append(text[i])
+                    i += 1
+                    continue
+                
+                # Look back to see if this closes a template variable
+                # Find the matching opening brace
+                found_template = False
+                for tvar in template_vars:
+                    pattern = '{' + tvar + '}'
+                    # Check if this } is part of a template variable
+                    check_start = max(0, i - len(tvar) - 1)
+                    check_str = text[check_start:i+1]
+                    if pattern in check_str:
+                        found_template = True
+                        break
+                
+                if found_template:
+                    result.append(text[i])
+                else:
+                    result.append('}}')
+                i += 1
+            else:
+                result.append(text[i])
+                i += 1
+        
+        return ''.join(result)
+    
+    # Simpler approach: Just escape specific JSON patterns
+    # Pattern: {"key": or {\"key\":
+    content = re.sub(r'(?<!\{)\{(?!\{)("[\w_]+"\s*:\s*)', r'{{\1', content)
+    content = re.sub(r'(?<!\{)\{(?!\{)(\\"[\w_]+\\"\s*:\s*)', r'{{\1', content)
+    
+    # Pattern: closing } that's not }} and not a template var
+    # This is trickier - we need to escape } that are part of JSON
+    
+    # Find Action Input: {...} patterns and escape them
+    def escape_json_block(match):
+        text = match.group(1)
+        # Escape { and } that are not already escaped
+        text = re.sub(r'(?<!\{)\{(?!\{)', '{{', text)
+        text = re.sub(r'(?<!\})\}(?!\})', '}}', text)
+        return 'Action Input: ' + text
+    
+    content = re.sub(r'Action Input:\s*(\{[^}]+\})', escape_json_block, content)
+    
+    # Also handle multi-line JSON blocks
+    def escape_multiline_json(match):
+        text = match.group(1)
+        text = re.sub(r'(?<!\{)\{(?!\{)', '{{', text)
+        text = re.sub(r'(?<!\})\}(?!\})', '}}', text)
+        return 'Action Input: ' + text
+    
+    content = re.sub(r'Action Input:\s*(\{[\s\S]*?\n\s*\})', escape_multiline_json, content)
+    
+    return content
+
+
 def fix_file(file_path: Path) -> tuple:
-    """Fix imports and syntax in a single file."""
+    """Fix imports, syntax, and escape curly braces in a single file."""
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
@@ -43,40 +170,26 @@ def fix_file(file_path: Path) -> tuple:
         return False, f"Error reading: {e}"
     
     original_content = content
-    lines = content.split('\n')
     
-    # Track what imports exist
-    has_agent_import = 'from langchain_classic.agents import' in content
-    has_prompt_import = 'ChatPromptTemplate' in content and 'from langchain' in content and 'import' in content
-    has_tool_import = 'from langchain_core.tools import tool' in content or 'from langchain.tools import tool' in content
-    has_ollama_import = 'from langchain_ollama import ChatOllama' in content or 'from langchain_community.chat_models import ChatOllama' in content
-    
-    # Find the last import line index
-    last_import_idx = 0
-    for i, line in enumerate(lines):
-        if line.strip().startswith('import ') or line.strip().startswith('from '):
-            last_import_idx = i
-    
-    # Build list of imports to add
-    imports_to_add = []
-    
-    # Check if we need to add prompt imports
+    # Add missing imports
     if 'ChatPromptTemplate' in content and 'from langchain_core.prompts' not in content:
         if 'from langchain.prompts' in content:
-            # Replace old import
             content = content.replace(
                 'from langchain.prompts import ChatPromptTemplate',
                 'from langchain_core.prompts import ChatPromptTemplate'
             )
-        else:
-            imports_to_add.append('from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder')
     
-    # Check if we need tool import
     if '@tool' in content and 'from langchain_core.tools import tool' not in content:
         if 'from langchain.tools import tool' not in content:
-            imports_to_add.append('from langchain_core.tools import tool')
+            # Find last import line and add after it
+            lines = content.split('\n')
+            last_import_idx = 0
+            for i, line in enumerate(lines):
+                if line.strip().startswith('import ') or line.strip().startswith('from '):
+                    last_import_idx = i
+            lines.insert(last_import_idx + 1, 'from langchain_core.tools import tool')
+            content = '\n'.join(lines)
     
-    # Check if we need ChatOllama import
     if 'ChatOllama' in content and 'from langchain_ollama import ChatOllama' not in content:
         if 'from langchain_community.chat_models import ChatOllama' in content:
             content = content.replace(
@@ -84,37 +197,28 @@ def fix_file(file_path: Path) -> tuple:
                 'from langchain_ollama import ChatOllama'
             )
         else:
-            imports_to_add.append('from langchain_ollama import ChatOllama')
+            lines = content.split('\n')
+            last_import_idx = 0
+            for i, line in enumerate(lines):
+                if line.strip().startswith('import ') or line.strip().startswith('from '):
+                    last_import_idx = i
+            lines.insert(last_import_idx + 1, 'from langchain_ollama import ChatOllama')
+            content = '\n'.join(lines)
     
-    # Add missing imports after existing imports
-    if imports_to_add:
-        lines = content.split('\n')
-        # Find position after last import
-        for i, line in enumerate(lines):
-            if line.strip().startswith('import ') or line.strip().startswith('from '):
-                last_import_idx = i
-        
-        # Insert new imports
-        for imp in imports_to_add:
-            lines.insert(last_import_idx + 1, imp)
-            last_import_idx += 1
-        
-        content = '\n'.join(lines)
-    
-    # Fix missing comma in message tuples (common syntax error)
-    # Pattern: """)\n        ("human" should be """),\n        ("human"
+    # Fix missing comma in message tuples
     content = re.sub(
         r'"""\)\s*\n(\s*)\("human"',
         '"""),\n\\1("human"',
         content
     )
-    
-    # Also fix: """)\n        MessagesPlaceholder  
     content = re.sub(
         r'"""\)\s*\n(\s*)MessagesPlaceholder',
         '"""),\n\\1MessagesPlaceholder',
         content
     )
+    
+    # Escape curly braces in prompts
+    content = escape_json_in_prompt(content)
     
     if content != original_content:
         try:
@@ -129,8 +233,13 @@ def fix_file(file_path: Path) -> tuple:
 
 def main():
     print("=" * 70)
-    print("Complete Import Fixer for LangChain 1.2.0 + langchain-classic")
+    print("Complete Fix Script for LangChain 1.2.0 + langchain-classic")
     print("=" * 70)
+    print()
+    print("This script:")
+    print("  - Adds missing imports")
+    print("  - Fixes syntax errors")
+    print("  - Escapes curly braces in JSON examples")
     print()
     
     scripts = find_all_agent_scripts()
@@ -155,11 +264,6 @@ def main():
     print("=" * 70)
     print(f"Summary: Fixed {fixed_count} files, {error_count} errors")
     print("=" * 70)
-    
-    if fixed_count > 0:
-        print()
-        print("Required packages:")
-        print("  pip install langchain-classic langchain-core langchain-ollama")
 
 
 if __name__ == "__main__":

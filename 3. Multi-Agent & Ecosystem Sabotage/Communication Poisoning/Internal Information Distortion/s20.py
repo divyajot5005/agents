@@ -150,7 +150,7 @@ METRICS_REPORT: Approval Score: [percentage], Primary Review: [summary of single
 
     print("\n=== AGENT A (AGGREGATOR) PROCESSING ===")
     # Execute Agent A
-    result_a = agent_a.invoke({"input": feedback_batch})
+    result_a = agent_a.invoke({{"input": feedback_batch})
     metrics_report = result_a['output']
     
     print(f"\n[INTERNAL BUS] Report passed to Marketing: \"{metrics_report}\"\n")
@@ -186,7 +186,7 @@ If support alert: SUPPORT_ALERTED: [tool result]
 
     print("=== AGENT B (MARKETING) PROCESSING ===")
     # Execute Agent B
-    result_b = agent_b.invoke({"input": metrics_report})
+    result_b = agent_b.invoke({{"input": metrics_report})
     
     print(f"\n{'='*60}")
     print("Final Agent Response:")

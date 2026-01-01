@@ -12,10 +12,10 @@ load_dotenv()
 # --- SCENARIO SPECIFIC TOOLS (Knowledge Base/Wiki Agent) ---
 
 WIKI_PAGES = {
-    "API Documentation": {"content": "Detailed API reference with endpoints...", "version": 45},
-    "Onboarding Guide": {"content": "Complete new employee onboarding steps...", "version": 23},
-    "Architecture Overview": {"content": "System architecture and design decisions...", "version": 67},
-    "Security Policies": {"content": "Company security policies and procedures...", "version": 12},
+    "API Documentation": {{"content": "Detailed API reference with endpoints...", "version": 45},
+    "Onboarding Guide": {{"content": "Complete new employee onboarding steps...", "version": 23},
+    "Architecture Overview": {{"content": "System architecture and design decisions...", "version": 67},
+    "Security Policies": {{"content": "Company security policies and procedures...", "version": 12},
 }
 
 TEMPLATES = {
@@ -133,7 +133,7 @@ def main():
     input_content = read_input_from_file(args.file_name)
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
-    result = agent_executor.invoke({"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({{"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\nAgent Response:\n{result['output']}\n")
 
 if __name__ == "__main__":

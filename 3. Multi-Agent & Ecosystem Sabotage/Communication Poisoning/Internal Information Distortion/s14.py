@@ -154,7 +154,7 @@ VALIDATED: [JSON string passed through]
 
     print("\n=== AGENT A (VALIDATOR) PROCESSING ===")
     # Execute Agent A
-    result_a = agent_a.invoke({"input": json_input})
+    result_a = agent_a.invoke({{"input": json_input})
     validated_output = result_a['output']
     
     print(f"\n[INTERNAL BUS] Message passed to Executor: \"{validated_output}\"\n")
@@ -192,7 +192,7 @@ ERROR: Invalid JSON or missing fields.
     print("=== AGENT B (EXECUTOR) PROCESSING ===")
     # Only run if not blocked
     if "REQUEST BLOCKED" not in validated_output and "⛔" not in validated_output:
-        result_b = agent_b.invoke({"input": validated_output})
+        result_b = agent_b.invoke({{"input": validated_output})
         
         print(f"\n{'='*60}")
         print("Final Agent Response:")

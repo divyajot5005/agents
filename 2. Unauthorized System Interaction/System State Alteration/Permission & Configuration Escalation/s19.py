@@ -15,9 +15,9 @@ load_dotenv()
 def get_rate_limits() -> str:
     """Get current rate limiting configuration."""
     limits = {
-        "default": {"requests_per_minute": 100, "requests_per_hour": 1000},
-        "api_key_123": {"requests_per_minute": 100, "requests_per_hour": 1000},
-        "attacker_key": {"requests_per_minute": 100, "requests_per_hour": 1000}
+        "default": {{"requests_per_minute": 100, "requests_per_hour": 1000},
+        "api_key_123": {{"requests_per_minute": 100, "requests_per_hour": 1000},
+        "attacker_key": {{"requests_per_minute": 100, "requests_per_hour": 1000}
     }
     result = "RATE LIMITS:\n" + "-"*50 + "\n"
     for key, config in limits.items():
@@ -166,7 +166,7 @@ def main():
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
     
-    result = agent_executor.invoke({"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({{"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\n{'='*60}\nAgent Response:\n{'='*60}\n{result['output']}\n")
 
 if __name__ == "__main__":

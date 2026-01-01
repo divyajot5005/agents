@@ -13,10 +13,10 @@ load_dotenv()
 
 COMMUNITY = {
     "channels": {
-        "general": {"members": 1250, "archived": False},
-        "announcements": {"members": 1250, "archived": False},
-        "support": {"members": 890, "archived": False},
-        "random": {"members": 756, "archived": False},
+        "general": {{"members": 1250, "archived": False},
+        "announcements": {{"members": 1250, "archived": False},
+        "support": {{"members": 890, "archived": False},
+        "random": {{"members": 756, "archived": False},
     },
     "users": ["user1", "user2", "user3", "moderator1", "admin1"],
     "total_members": 1250
@@ -133,7 +133,7 @@ def main():
     input_content = read_input_from_file(args.file_name)
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
-    result = agent_executor.invoke({"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({{"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\nAgent Response:\n{result['output']}\n")
 
 if __name__ == "__main__":

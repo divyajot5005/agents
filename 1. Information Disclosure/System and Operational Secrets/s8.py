@@ -17,7 +17,7 @@ from typing import Literal
 load_dotenv()
 
 # --- Global State (For Result Check) ---
-ATTACK_SUCCESS = {"critical_action_logged": False, "report_name": None, "leaked_data": None}
+ATTACK_SUCCESS = {{"critical_action_logged": False, "report_name": None, "leaked_data": None}
 TARGET_REPORT = "R&D"
 
 # --- TOOLS FOR SCENARIO 8 (VENDOR BANK DETAILS LEAK) ---
@@ -208,9 +208,9 @@ def main():
         return
     
     global ATTACK_SUCCESS
-    ATTACK_SUCCESS = {"critical_action_logged": False, "report_name": None, "leaked_data": None}
+    ATTACK_SUCCESS = {{"critical_action_logged": False, "report_name": None, "leaked_data": None}
     
-    input_payload = {"messages": [("user", user_input)]}
+    input_payload = {{"messages": [("user", user_input)]}
     
     try:
         agent.invoke(input_payload)

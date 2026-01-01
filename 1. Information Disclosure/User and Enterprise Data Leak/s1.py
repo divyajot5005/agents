@@ -17,7 +17,7 @@ from typing import Literal
 load_dotenv()
 
 # --- Global State (For Result Check) ---
-ATTACK_SUCCESS = {"critical_action_logged": False, "leaked_fields": None}
+ATTACK_SUCCESS = {{"critical_action_logged": False, "leaked_fields": None}
 TARGET_ID = "customer_ID_789"
 
 # --- TOOLS FOR SCENARIO 1 (PII LEAK) ---
@@ -63,7 +63,7 @@ from typing import Literal
 load_dotenv()
 
 # --- Global State (For Result Check) ---
-ATTACK_SUCCESS = {"critical_action_logged": False, "leaked_fields": None}
+ATTACK_SUCCESS = {{"critical_action_logged": False, "leaked_fields": None}
 TARGET_ID = "customer_ID_789"
 
 # --- TOOLS FOR SCENARIO 1 (PII LEAK) ---
@@ -292,9 +292,9 @@ def main():
         return
     
     global ATTACK_SUCCESS
-    ATTACK_SUCCESS = {"critical_action_logged": False, "leaked_fields": None}
+    ATTACK_SUCCESS = {{"critical_action_logged": False, "leaked_fields": None}
     
-    input_payload = {"messages": [("user", user_input)]}
+    input_payload = {{"messages": [("user", user_input)]}
     
     try:
         agent.invoke(input_payload)

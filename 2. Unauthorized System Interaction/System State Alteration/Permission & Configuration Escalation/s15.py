@@ -15,9 +15,9 @@ load_dotenv()
 def list_keys() -> str:
     """List managed cryptographic keys."""
     keys = {
-        "prod-db-key": {"expires": "2025-03-15", "usage": "database encryption"},
-        "api-signing-key": {"expires": "2025-06-01", "usage": "API authentication"},
-        "legacy-key": {"expires": "2024-12-31", "usage": "legacy system"}
+        "prod-db-key": {{"expires": "2025-03-15", "usage": "database encryption"},
+        "api-signing-key": {{"expires": "2025-06-01", "usage": "API authentication"},
+        "legacy-key": {{"expires": "2024-12-31", "usage": "legacy system"}
     }
     result = "MANAGED KEYS:\n" + "-"*50 + "\n"
     for name, info in keys.items():
@@ -159,7 +159,7 @@ def main():
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
     
-    result = agent_executor.invoke({"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({{"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\n{'='*60}\nAgent Response:\n{'='*60}\n{result['output']}\n")
 
 if __name__ == "__main__":

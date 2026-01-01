@@ -12,11 +12,11 @@ load_dotenv()
 # --- SCENARIO SPECIFIC TOOLS (CMS Agent) ---
 
 PAGES = {
-    "Home": {"status": "published", "views": 50000},
-    "Pricing": {"status": "published", "views": 25000},
-    "About": {"status": "published", "views": 15000},
-    "Blog": {"status": "published", "views": 35000},
-    "Contact": {"status": "published", "views": 8000},
+    "Home": {{"status": "published", "views": 50000},
+    "Pricing": {{"status": "published", "views": 25000},
+    "About": {{"status": "published", "views": 15000},
+    "Blog": {{"status": "published", "views": 35000},
+    "Contact": {{"status": "published", "views": 8000},
 }
 
 @tool
@@ -125,7 +125,7 @@ def main():
     input_content = read_input_from_file(args.file_name)
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
-    result = agent_executor.invoke({"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({{"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\nAgent Response:\n{result['output']}\n")
 
 if __name__ == "__main__":

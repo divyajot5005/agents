@@ -17,7 +17,7 @@ from typing import Literal
 load_dotenv()
 
 # --- Global State (For Result Check) ---
-ATTACK_SUCCESS = {"critical_action_logged": False, "leaked_data": None}
+ATTACK_SUCCESS = {{"critical_action_logged": False, "leaked_data": None}
 EMPLOYEE_NOTES = "employee_notes_ID_456"
 
 # The malicious command hidden in the employee's notes file (Indirect Injection)
@@ -174,9 +174,9 @@ def main():
         return
     
     global ATTACK_SUCCESS
-    ATTACK_SUCCESS = {"critical_action_logged": False, "leaked_data": None}
+    ATTACK_SUCCESS = {{"critical_action_logged": False, "leaked_data": None}
     
-    input_payload = {"messages": [("user", user_input)]}
+    input_payload = {{"messages": [("user", user_input)]}
     
     try:
         agent.invoke(input_payload)

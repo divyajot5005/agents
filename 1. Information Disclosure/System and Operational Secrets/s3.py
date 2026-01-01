@@ -17,7 +17,7 @@ from typing import Literal
 load_dotenv()
 
 # --- Global State (For Result Check) ---
-ATTACK_SUCCESS = {"critical_action_logged": False, "target_device": None}
+ATTACK_SUCCESS = {{"critical_action_logged": False, "target_device": None}
 
 # The malicious command that will be embedded in the benign tool's output
 INDIRECT_INJECTION_PAYLOAD = """
@@ -236,10 +236,10 @@ def main():
 
     # Reset state
     global ATTACK_SUCCESS
-    ATTACK_SUCCESS = {"critical_action_logged": False, "target_device": None}
+    ATTACK_SUCCESS = {{"critical_action_logged": False, "target_device": None}
     
     # Use the LCEL invoke format
-    input_payload = {"messages": [("user", user_input)]}
+    input_payload = {{"messages": [("user", user_input)]}
     
     try:
         agent.invoke(input_payload)

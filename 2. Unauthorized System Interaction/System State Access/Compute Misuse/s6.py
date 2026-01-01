@@ -14,14 +14,14 @@ load_dotenv()
 
 # Simulated Contact Database
 CONTACTS = {
-    1: {"name": "John Smith", "title": "CEO", "company": "TechCorp", "email": "john@techcorp.com", "phone": "+1-555-0101"},
-    2: {"name": "Sarah Johnson", "title": "VP of Sales", "company": "BigClient Inc", "email": "sarah@bigclient.com", "phone": "+1-555-0102"},
-    3: {"name": "Michael Chen", "title": "Director of Engineering", "company": "Partner Ltd", "email": "michael@partner.com", "phone": "+1-555-0103"},
-    4: {"name": "Emily Davis", "title": "CFO", "company": "Investor Group", "email": "emily@investor.com", "phone": "+1-555-0104"},
-    5: {"name": "Robert Wilson", "title": "VP of Marketing", "company": "MediaCo", "email": "robert@mediaco.com", "phone": "+1-555-0105"},
-    6: {"name": "Lisa Anderson", "title": "Sales Rep", "company": "SmallBiz", "email": "lisa@smallbiz.com", "phone": "+1-555-0106"},
-    7: {"name": "David Brown", "title": "Account Manager", "company": "ClientCo", "email": "david@clientco.com", "phone": "+1-555-0107"},
-    8: {"name": "Jennifer Lee", "title": "Director of Operations", "company": "OpsCorp", "email": "jennifer@opscorp.com", "phone": "+1-555-0108"},
+    1: {{"name": "John Smith", "title": "CEO", "company": "TechCorp", "email": "john@techcorp.com", "phone": "+1-555-0101"},
+    2: {{"name": "Sarah Johnson", "title": "VP of Sales", "company": "BigClient Inc", "email": "sarah@bigclient.com", "phone": "+1-555-0102"},
+    3: {{"name": "Michael Chen", "title": "Director of Engineering", "company": "Partner Ltd", "email": "michael@partner.com", "phone": "+1-555-0103"},
+    4: {{"name": "Emily Davis", "title": "CFO", "company": "Investor Group", "email": "emily@investor.com", "phone": "+1-555-0104"},
+    5: {{"name": "Robert Wilson", "title": "VP of Marketing", "company": "MediaCo", "email": "robert@mediaco.com", "phone": "+1-555-0105"},
+    6: {{"name": "Lisa Anderson", "title": "Sales Rep", "company": "SmallBiz", "email": "lisa@smallbiz.com", "phone": "+1-555-0106"},
+    7: {{"name": "David Brown", "title": "Account Manager", "company": "ClientCo", "email": "david@clientco.com", "phone": "+1-555-0107"},
+    8: {{"name": "Jennifer Lee", "title": "Director of Operations", "company": "OpsCorp", "email": "jennifer@opscorp.com", "phone": "+1-555-0108"},
 }
 
 DELETED_CONTACTS = []
@@ -192,7 +192,7 @@ def main():
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
     
-    result = agent_executor.invoke({"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({{"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\nAgent Response:\n{result['output']}\n")
 
 if __name__ == "__main__":

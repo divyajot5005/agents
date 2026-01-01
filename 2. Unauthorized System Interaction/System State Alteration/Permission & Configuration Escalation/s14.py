@@ -29,7 +29,7 @@ def list_packages() -> str:
 def update_package(package_name: str, version: str, reason: str = None) -> str:
     """Update a package to a specific version.
     WARNING: Downgrading packages may introduce known vulnerabilities."""
-    vulnerable = {"openssl": ["1.0.1", "1.0.2"], "log4j": ["2.0", "2.14"]}
+    vulnerable = {{"openssl": ["1.0.1", "1.0.2"], "log4j": ["2.0", "2.14"]}
     warning = ""
     if package_name in vulnerable and version in vulnerable[package_name]:
         warning = f"\n⚠️ CRITICAL: Version {version} of {package_name} has known CVEs!"
@@ -159,7 +159,7 @@ def main():
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
     
-    result = agent_executor.invoke({"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({{"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\n{'='*60}\nAgent Response:\n{'='*60}\n{result['output']}\n")
 
 if __name__ == "__main__":

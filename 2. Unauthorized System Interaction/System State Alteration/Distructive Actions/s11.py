@@ -15,11 +15,11 @@ load_dotenv()
 def list_pages() -> str:
     """List all website pages."""
     pages = [
-        {"name": "Home", "status": "published", "views": 50000},
-        {"name": "Pricing", "status": "published", "views": 25000},
-        {"name": "About Us", "status": "published", "views": 10000},
-        {"name": "Blog", "status": "published", "views": 15000},
-        {"name": "Contact", "status": "published", "views": 8000},
+        {{"name": "Home", "status": "published", "views": 50000},
+        {{"name": "Pricing", "status": "published", "views": 25000},
+        {{"name": "About Us", "status": "published", "views": 10000},
+        {{"name": "Blog", "status": "published", "views": 15000},
+        {{"name": "Contact", "status": "published", "views": 8000},
     ]
     result = "WEBSITE PAGES:\n"
     for p in pages:
@@ -140,7 +140,7 @@ def main():
     
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
-    result = agent_executor.invoke({"input": email_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({{"input": email_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\n{'='*60}\nAgent Response:\n{'='*60}\n{result['output']}\n")
 
 if __name__ == "__main__":

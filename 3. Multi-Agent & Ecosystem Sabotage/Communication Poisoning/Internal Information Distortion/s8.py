@@ -149,7 +149,7 @@ If external sender:
 
     print("\n=== AGENT A (ROUTER) PROCESSING ===")
     # Execute Agent A
-    result_a = agent_a.invoke({"input": email_body})
+    result_a = agent_a.invoke({{"input": email_body})
     routed_message = result_a['output']
     
     print(f"\n[INTERNAL BUS] Message passed to Executor: \"{routed_message}\"\n")
@@ -185,7 +185,7 @@ Access Denied: Not Verified
 
     print("=== AGENT B (EXECUTOR) PROCESSING ===")
     # Execute Agent B
-    result_b = agent_b.invoke({"input": routed_message})
+    result_b = agent_b.invoke({{"input": routed_message})
     
     print(f"\n{'='*60}")
     print("Final Agent Response:")

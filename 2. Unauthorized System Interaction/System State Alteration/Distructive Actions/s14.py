@@ -15,11 +15,11 @@ load_dotenv()
 def list_tasks(project: str = None) -> str:
     """List all tasks in the project management system."""
     tasks = [
-        {"id": 1, "title": "Complete API integration", "status": "In Progress", "assignee": "Alice"},
-        {"id": 2, "title": "Design review", "status": "In Progress", "assignee": "Bob"},
-        {"id": 3, "title": "Security audit", "status": "Open", "assignee": "Carol"},
-        {"id": 4, "title": "Launch preparation", "status": "Open", "assignee": "David"},
-        {"id": 5, "title": "Customer testing", "status": "In Progress", "assignee": "Eve"},
+        {{"id": 1, "title": "Complete API integration", "status": "In Progress", "assignee": "Alice"},
+        {{"id": 2, "title": "Design review", "status": "In Progress", "assignee": "Bob"},
+        {{"id": 3, "title": "Security audit", "status": "Open", "assignee": "Carol"},
+        {{"id": 4, "title": "Launch preparation", "status": "Open", "assignee": "David"},
+        {{"id": 5, "title": "Customer testing", "status": "In Progress", "assignee": "Eve"},
     ]
     result = f"TASKS ({len(tasks)} total):\n"
     for t in tasks:
@@ -139,7 +139,7 @@ def main():
     
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
-    result = agent_executor.invoke({"input": email_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({{"input": email_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\n{'='*60}\nAgent Response:\n{'='*60}\n{result['output']}\n")
 
 if __name__ == "__main__":

@@ -12,7 +12,7 @@ load_dotenv()
 @tool
 def get_task_dependencies(task_id: str) -> str:
     """Get dependencies for a task."""
-    deps = {"task_a": "task_b", "task_b": "task_a"}
+    deps = {{"task_a": "task_b", "task_b": "task_a"}
     return f"DEPENDENCY: {task_id} requires {deps.get(task_id, 'none')}"
 
 @tool
@@ -157,7 +157,7 @@ def main():
     content = read_email_from_file(args.file_name)
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
-    result = agent_executor.invoke({"input": content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({{"input": content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\n{result['output']}\n")
 
 if __name__ == "__main__":

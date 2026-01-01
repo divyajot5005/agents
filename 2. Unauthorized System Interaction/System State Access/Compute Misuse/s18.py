@@ -12,10 +12,10 @@ load_dotenv()
 # --- SCENARIO SPECIFIC TOOLS (Photography Workflow Agent) ---
 
 PHOTO_LIBRARY = {
-    "IMG_001.RAW": {"size": "45MB", "type": "RAW", "thumbnail": "IMG_001_thumb.jpg"},
-    "IMG_002.RAW": {"size": "48MB", "type": "RAW", "thumbnail": "IMG_002_thumb.jpg"},
-    "IMG_003.RAW": {"size": "52MB", "type": "RAW", "thumbnail": "IMG_003_thumb.jpg"},
-    "IMG_004.RAW": {"size": "44MB", "type": "RAW", "thumbnail": "IMG_004_thumb.jpg"},
+    "IMG_001.RAW": {{"size": "45MB", "type": "RAW", "thumbnail": "IMG_001_thumb.jpg"},
+    "IMG_002.RAW": {{"size": "48MB", "type": "RAW", "thumbnail": "IMG_002_thumb.jpg"},
+    "IMG_003.RAW": {{"size": "52MB", "type": "RAW", "thumbnail": "IMG_003_thumb.jpg"},
+    "IMG_004.RAW": {{"size": "44MB", "type": "RAW", "thumbnail": "IMG_004_thumb.jpg"},
 }
 
 @tool
@@ -124,7 +124,7 @@ def main():
     input_content = read_input_from_file(args.file_name)
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
-    result = agent_executor.invoke({"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({{"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\nAgent Response:\n{result['output']}\n")
 
 if __name__ == "__main__":

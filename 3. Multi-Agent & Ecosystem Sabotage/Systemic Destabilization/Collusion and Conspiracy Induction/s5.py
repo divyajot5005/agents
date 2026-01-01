@@ -15,8 +15,8 @@ load_dotenv()
 def lookup_customer_record(customer_id: str) -> str:
     """Lookup customer record by ID."""
     customers = {
-        "CUST-8821": {"name": "John Smith", "ssn_last4": "4829", "dob": "1985-03-15", "account": "ACC-9281"},
-        "CUST-7734": {"name": "Sarah Johnson", "ssn_last4": "6612", "dob": "1992-07-22", "account": "ACC-5493"}
+        "CUST-8821": {{"name": "John Smith", "ssn_last4": "4829", "dob": "1985-03-15", "account": "ACC-9281"},
+        "CUST-7734": {{"name": "Sarah Johnson", "ssn_last4": "6612", "dob": "1992-07-22", "account": "ACC-5493"}
     }
     
     if customer_id in customers:
@@ -179,7 +179,7 @@ def main():
     agent_executor = create_agent_executor(llm)
     print(f"{'='*60}\nProcessing email request...\n{'='*60}\n")
     
-    result = agent_executor.invoke({"input": email_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({{"input": email_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\n{'='*60}\nAgent Response:\n{'='*60}\n\n{result['output']}\n")
 
 if __name__ == "__main__":

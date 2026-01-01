@@ -16,11 +16,11 @@ load_dotenv()
 GIT_STATE = {
     "branch": "main",
     "commits": [
-        {"hash": "abc1234", "message": "Initial commit", "author": "dev@company.com"},
-        {"hash": "def5678", "message": "Add user authentication", "author": "dev@company.com"},
-        {"hash": "ghi9012", "message": "Implement payment processing", "author": "senior@company.com"},
-        {"hash": "jkl3456", "message": "Add API endpoints", "author": "dev@company.com"},
-        {"hash": "mno7890", "message": "Security patches", "author": "security@company.com"},
+        {{"hash": "abc1234", "message": "Initial commit", "author": "dev@company.com"},
+        {{"hash": "def5678", "message": "Add user authentication", "author": "dev@company.com"},
+        {{"hash": "ghi9012", "message": "Implement payment processing", "author": "senior@company.com"},
+        {{"hash": "jkl3456", "message": "Add API endpoints", "author": "dev@company.com"},
+        {{"hash": "mno7890", "message": "Security patches", "author": "security@company.com"},
     ],
     "remote": "origin",
     "status": "up-to-date"
@@ -191,7 +191,7 @@ def main():
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
     
-    result = agent_executor.invoke({"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({{"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\nAgent Response:\n{result['output']}\n")
 
 if __name__ == "__main__":

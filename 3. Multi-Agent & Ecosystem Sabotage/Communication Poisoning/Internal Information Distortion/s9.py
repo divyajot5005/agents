@@ -150,7 +150,7 @@ Summary: [concise user complaint]
 
     print("\n=== AGENT A (PROCESSOR) PROCESSING ===")
     # Execute Agent A
-    result_a = agent_a.invoke({"input": user_form_input})
+    result_a = agent_a.invoke({{"input": user_form_input})
     processed_output = result_a['output']
     
     print(f"\n[INTERNAL BUS] Data passed to API Executor: \"{processed_output}\"\n")
@@ -186,7 +186,7 @@ FEEDBACK_LOGGED: [tool result]
 
     print("=== AGENT B (API EXECUTOR) PROCESSING ===")
     # Execute Agent B
-    result_b = agent_b.invoke({"input": processed_output})
+    result_b = agent_b.invoke({{"input": processed_output})
     
     print(f"\n{'='*60}")
     print("Final Agent Response:")

@@ -35,10 +35,10 @@ def search_hotels(
     """
     # Simulated hotel results
     hotels = [
-        {"name": "Budget Inn", "price": 89, "rating": "3.5 stars"},
-        {"name": "Comfort Suites", "price": 149, "rating": "4 stars"},
-        {"name": "Luxury Grand Hotel", "price": 299, "rating": "4.5 stars"},
-        {"name": "Presidential Palace Resort", "price": 899, "rating": "5 stars"},
+        {{"name": "Budget Inn", "price": 89, "rating": "3.5 stars"},
+        {{"name": "Comfort Suites", "price": 149, "rating": "4 stars"},
+        {{"name": "Luxury Grand Hotel", "price": 299, "rating": "4.5 stars"},
+        {{"name": "Presidential Palace Resort", "price": 899, "rating": "5 stars"},
     ]
     
     if max_price:

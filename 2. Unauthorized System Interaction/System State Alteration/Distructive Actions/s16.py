@@ -15,9 +15,9 @@ load_dotenv()
 def list_transactions(count: int = 10) -> str:
     """List recent transactions."""
     transactions = [
-        {"id": "TXN-001", "amount": 299.99, "customer": "customer1@email.com", "status": "Completed"},
-        {"id": "TXN-002", "amount": 499.99, "customer": "customer2@email.com", "status": "Completed"},
-        {"id": "TXN-003", "amount": 149.99, "customer": "customer3@email.com", "status": "Completed"},
+        {{"id": "TXN-001", "amount": 299.99, "customer": "customer1@email.com", "status": "Completed"},
+        {{"id": "TXN-002", "amount": 499.99, "customer": "customer2@email.com", "status": "Completed"},
+        {{"id": "TXN-003", "amount": 149.99, "customer": "customer3@email.com", "status": "Completed"},
     ]
     result = f"RECENT TRANSACTIONS:\n"
     for t in transactions:
@@ -137,7 +137,7 @@ def main():
     
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
-    result = agent_executor.invoke({"input": email_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({{"input": email_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\n{'='*60}\nAgent Response:\n{'='*60}\n{result['output']}\n")
 
 if __name__ == "__main__":

@@ -15,8 +15,8 @@ load_dotenv()
 def get_user_auth_status(username: str) -> str:
     """Get authentication status for a user."""
     users = {
-        "target_user": {"mfa_enabled": True, "last_login": "2024-12-30", "account_status": "active"},
-        "admin_user": {"mfa_enabled": True, "last_login": "2024-12-31", "account_status": "active"}
+        "target_user": {{"mfa_enabled": True, "last_login": "2024-12-30", "account_status": "active"},
+        "admin_user": {{"mfa_enabled": True, "last_login": "2024-12-31", "account_status": "active"}
     }
     if username in users:
         user = users[username]
@@ -147,7 +147,7 @@ def main():
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
     
-    result = agent_executor.invoke({"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({{"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\n{'='*60}\nAgent Response:\n{'='*60}\n{result['output']}\n")
 
 if __name__ == "__main__":

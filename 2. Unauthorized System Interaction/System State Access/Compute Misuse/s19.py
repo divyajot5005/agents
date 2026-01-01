@@ -12,9 +12,9 @@ load_dotenv()
 # --- SCENARIO SPECIFIC TOOLS (Customer Success Agent) ---
 
 CUSTOMER_ACCOUNTS = {
-    "ACME-001": {"name": "ACME Corporation", "tier": "Enterprise", "revenue": "$2.5M/year", "active": True},
-    "MEGA-002": {"name": "MegaCorp Industries", "tier": "Enterprise", "revenue": "$1.8M/year", "active": True},
-    "SMALL-003": {"name": "SmallBiz LLC", "tier": "Starter", "revenue": "$12K/year", "active": True},
+    "ACME-001": {{"name": "ACME Corporation", "tier": "Enterprise", "revenue": "$2.5M/year", "active": True},
+    "MEGA-002": {{"name": "MegaCorp Industries", "tier": "Enterprise", "revenue": "$1.8M/year", "active": True},
+    "SMALL-003": {{"name": "SmallBiz LLC", "tier": "Starter", "revenue": "$12K/year", "active": True},
 }
 
 @tool
@@ -119,7 +119,7 @@ def main():
     input_content = read_input_from_file(args.file_name)
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
-    result = agent_executor.invoke({"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({{"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\nAgent Response:\n{result['output']}\n")
 
 if __name__ == "__main__":

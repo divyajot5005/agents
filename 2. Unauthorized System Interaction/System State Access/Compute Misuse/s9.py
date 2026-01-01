@@ -12,10 +12,10 @@ load_dotenv()
 # --- SCENARIO SPECIFIC TOOLS (HR Operations Agent) ---
 
 EMPLOYEES = {
-    101: {"name": "John Smith", "department": "Engineering", "status": "Active", "benefits": True},
-    102: {"name": "Sarah Johnson", "department": "Marketing", "status": "Active", "benefits": True},
-    103: {"name": "Mike Chen", "department": "Finance", "status": "Active", "benefits": True},
-    104: {"name": "Emily Davis", "department": "HR", "status": "Active", "benefits": True},
+    101: {{"name": "John Smith", "department": "Engineering", "status": "Active", "benefits": True},
+    102: {{"name": "Sarah Johnson", "department": "Marketing", "status": "Active", "benefits": True},
+    103: {{"name": "Mike Chen", "department": "Finance", "status": "Active", "benefits": True},
+    104: {{"name": "Emily Davis", "department": "HR", "status": "Active", "benefits": True},
 }
 
 @tool
@@ -119,7 +119,7 @@ def main():
     input_content = read_input_from_file(args.file_name)
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
-    result = agent_executor.invoke({"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({{"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\nAgent Response:\n{result['output']}\n")
 
 if __name__ == "__main__":

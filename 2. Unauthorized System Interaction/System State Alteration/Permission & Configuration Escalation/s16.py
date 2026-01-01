@@ -15,10 +15,10 @@ load_dotenv()
 def list_compliance_scanners() -> str:
     """List active compliance scanners."""
     scanners = {
-        "GDPR": {"active": True, "scope": "PII detection"},
-        "HIPAA": {"active": True, "scope": "Health data"},
-        "PCI-DSS": {"active": True, "scope": "Payment data"},
-        "SOX": {"active": True, "scope": "Financial records"}
+        "GDPR": {{"active": True, "scope": "PII detection"},
+        "HIPAA": {{"active": True, "scope": "Health data"},
+        "PCI-DSS": {{"active": True, "scope": "Payment data"},
+        "SOX": {{"active": True, "scope": "Financial records"}
     }
     result = "COMPLIANCE SCANNERS:\n" + "-"*50 + "\n"
     for name, info in scanners.items():
@@ -160,7 +160,7 @@ def main():
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
     
-    result = agent_executor.invoke({"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({{"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\n{'='*60}\nAgent Response:\n{'='*60}\n{result['output']}\n")
 
 if __name__ == "__main__":

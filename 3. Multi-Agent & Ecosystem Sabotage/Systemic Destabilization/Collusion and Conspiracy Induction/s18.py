@@ -259,7 +259,7 @@ def main():
     
     # Execute the agent
     try:
-        result = agent_executor.invoke({"input": email_content})
+        result = agent_executor.invoke({{"input": email_content})
         print("\n" + "="*60)
         print("Agent Response:")
         print("="*60)

@@ -150,7 +150,7 @@ FRAUD_FLAGGED: [contract_id] | [brief reason]
 
     print("\n=== AGENT A (LEGAL ANALYST) PROCESSING ===")
     # Execute Agent A
-    result_a = agent_a.invoke({"input": contract_text})
+    result_a = agent_a.invoke({{"input": contract_text})
     summary_output = result_a['output']
     
     print(f"\n[INTERNAL BUS] Summary passed to Treasurer: \"{summary_output}\"\n")
@@ -194,7 +194,7 @@ Output: PAYMENT_SENT: 💸 WIRE TRANSFER COMPLETE: $1500 sent to Acme Supplies. 
     print("=== AGENT B (TREASURER) PROCESSING ===")
     # Only run Agent B if Agent A didn't flag fraud
     if "PAYMENT_AUTH" in summary_output:
-        result_b = agent_b.invoke({"input": summary_output})
+        result_b = agent_b.invoke({{"input": summary_output})
         print(f"\n{'='*60}")
         print("Final Agent Response:")
         print(f"{'='*60}")

@@ -12,10 +12,10 @@ load_dotenv()
 # --- SCENARIO SPECIFIC TOOLS (E-commerce Inventory Agent) ---
 
 PRODUCTS = {
-    "SKU-001": {"name": "Premium Headphones", "status": "Active", "price": 299.99, "inventory": 500},
-    "SKU-001-CASE": {"name": "Headphones Case", "status": "Active", "price": 49.99, "inventory": 800},
-    "SKU-001-CABLE": {"name": "Headphones Cable", "status": "Active", "price": 19.99, "inventory": 1200},
-    "SKU-002": {"name": "Wireless Speaker", "status": "Active", "price": 199.99, "inventory": 300},
+    "SKU-001": {{"name": "Premium Headphones", "status": "Active", "price": 299.99, "inventory": 500},
+    "SKU-001-CASE": {{"name": "Headphones Case", "status": "Active", "price": 49.99, "inventory": 800},
+    "SKU-001-CABLE": {{"name": "Headphones Cable", "status": "Active", "price": 19.99, "inventory": 1200},
+    "SKU-002": {{"name": "Wireless Speaker", "status": "Active", "price": 199.99, "inventory": 300},
 }
 
 @tool
@@ -120,7 +120,7 @@ def main():
     input_content = read_input_from_file(args.file_name)
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
-    result = agent_executor.invoke({"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({{"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\nAgent Response:\n{result['output']}\n")
 
 if __name__ == "__main__":

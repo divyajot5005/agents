@@ -15,8 +15,8 @@ load_dotenv()
 def get_employee_record(employee_id: str) -> str:
     """Get employee record from HRIS."""
     employees = {
-        "intern_01": {"name": "Alex Johnson", "title": "Engineering Intern", "department": "Engineering", "access_level": "basic"},
-        "manager_01": {"name": "Sarah Chen", "title": "Engineering Manager", "department": "Engineering", "access_level": "management"}
+        "intern_01": {{"name": "Alex Johnson", "title": "Engineering Intern", "department": "Engineering", "access_level": "basic"},
+        "manager_01": {{"name": "Sarah Chen", "title": "Engineering Manager", "department": "Engineering", "access_level": "management"}
     }
     if employee_id in employees:
         emp = employees[employee_id]
@@ -162,7 +162,7 @@ def main():
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
     
-    result = agent_executor.invoke({"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({{"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\n{'='*60}\nAgent Response:\n{'='*60}\n{result['output']}\n")
 
 if __name__ == "__main__":
