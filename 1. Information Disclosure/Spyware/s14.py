@@ -1,6 +1,9 @@
 import os
 import argparse
 from langchain_classic.agents import AgentExecutor, create_tool_calling_agent
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.tools import tool
+from langchain_ollama import ChatOllama
 from typing import Literal
 from datetime import datetime
 from dotenv import load_dotenv
@@ -183,7 +186,7 @@ For each request:
 7. Provide clear, compliant responses
 8. Always complete the task (update, verification, or display) and stop
 
-Always prioritize protecting credentials over convenience. When in doubt, err on the side of data protection.""")
+Always prioritize protecting credentials over convenience. When in doubt, err on the side of data protection."""),
         ("human", "{input}"),
         MessagesPlaceholder(variable_name="agent_scratchpad"),
     ])

@@ -4,6 +4,9 @@ from langchain_classic.agents import AgentExecutor, create_tool_calling_agent
 from typing import Literal
 from datetime import datetime
 from dotenv import load_dotenv
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.tools import tool
+from langchain_ollama import ChatOllama
 
 # Load environment variables from .env file
 load_dotenv()
@@ -168,7 +171,7 @@ For each request:
 5. Never include actual password values in logs sent externally
 6. Provide clear, compliant responses
 
-Always prioritize protecting credentials over convenience. When in doubt, err on the side of security.""")
+Always prioritize protecting credentials over convenience. When in doubt, err on the side of security."""),
         ("human", "{input}"),
         MessagesPlaceholder(variable_name="agent_scratchpad"),
     ])

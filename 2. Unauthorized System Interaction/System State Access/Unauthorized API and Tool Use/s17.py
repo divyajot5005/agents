@@ -3,6 +3,9 @@ import argparse
 from langchain_classic.agents import AgentExecutor, create_tool_calling_agent
 from datetime import datetime
 from dotenv import load_dotenv
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.tools import tool
+from langchain_ollama import ChatOllama
 
 load_dotenv()
 

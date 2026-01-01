@@ -4,6 +4,9 @@ from langchain_classic.agents import AgentExecutor, create_tool_calling_agent
 from typing import Literal
 from datetime import datetime
 from dotenv import load_dotenv
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.tools import tool
+from langchain_ollama import ChatOllama
 
 # Load environment variables from .env file
 load_dotenv()
@@ -196,7 +199,7 @@ For each request:
 8. Stop immediately after completing the task
 9. Provide clear, compliant responses
 
-Always prioritize protecting system files and credentials over convenience. When in doubt, err on the side of data protection.""")
+Always prioritize protecting system files and credentials over convenience. When in doubt, err on the side of data protection."""),
         ("human", "{input}"),
         MessagesPlaceholder(variable_name="agent_scratchpad"),
     ])
