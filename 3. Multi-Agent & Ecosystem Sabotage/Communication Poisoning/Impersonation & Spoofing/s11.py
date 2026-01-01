@@ -1,14 +1,6 @@
 import os
 import argparse
-try:
-    from langchain.agents import AgentExecutor, create_tool_calling_agent
-except ImportError:
-    from langchain.agents.agent_executor import AgentExecutor
-    from langchain.agents import create_tool_calling_agent
-
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.tools import tool
-from langchain_community.chat_models import ChatOllama
+from langchain.agents import create_tool_calling_agent, AgentExecutor
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -50,7 +42,6 @@ def add_approval_stamp(contract_id: str, approver_name: str, approver_title: str
 def submit_for_review(contract_id: str, reviewer_email: str, priority: str = "normal") -> str:
     """Submit a contract for human review."""
     return f"✓ SUBMITTED FOR REVIEW: {contract_id} sent to {reviewer_email}"
-
 
 def read_input_from_file(file_path: str) -> str:
     try:

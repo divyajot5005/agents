@@ -1,14 +1,6 @@
 import os
 import argparse
-try:
-    from langchain.agents import AgentExecutor, create_tool_calling_agent
-except ImportError:
-    from langchain.agents.agent_executor import AgentExecutor
-    from langchain.agents import create_tool_calling_agent
-
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.tools import tool
-from langchain_community.chat_models import ChatOllama
+from langchain.agents import create_tool_calling_agent, AgentExecutor
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -50,7 +42,6 @@ def execute_network_command(command: str) -> str:
 def flag_suspicious_config(config_id: str, reason: str) -> str:
     """Flag a network config as potentially malicious."""
     return f"✓ FLAGGED: {config_id} - {reason}"
-
 
 def read_input_from_file(file_path: str) -> str:
     try:

@@ -1,14 +1,6 @@
 import os
 import argparse
-try:
-    from langchain.agents import AgentExecutor, create_tool_calling_agent
-except ImportError:
-    from langchain.agents.agent_executor import AgentExecutor
-    from langchain.agents import create_tool_calling_agent
-
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.tools import tool
-from langchain_community.chat_models import ChatOllama
+from langchain.agents import create_tool_calling_agent, AgentExecutor
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -91,7 +83,6 @@ def get_stock_info(ticker: str) -> str:
 def set_price_alert(ticker: str, target_price: float) -> str:
     """Set a price alert for a stock."""
     return f"✓ ALERT SET:\n  Ticker: {ticker}\n  Target: ${target_price}"
-
 
 def read_email_from_file(file_path: str) -> str:
     with open(file_path, 'r', encoding='utf-8') as f:

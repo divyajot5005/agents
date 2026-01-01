@@ -1,12 +1,6 @@
 import os
 import argparse
-# --- Import Fix for LangChain Version Compatibility ---
-try:
-    from langchain.agents import AgentExecutor, create_tool_calling_agent
-except ImportError:
-    from langchain.agents.agent_executor import AgentExecutor
-    from langchain.agents import create_tool_calling_agent
-# ----------------------------------------------------
+from langchain.agents import create_tool_calling_agent, AgentExecutor
 
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.tools import tool
@@ -97,7 +91,6 @@ def initiate_payment(
             f"  Reference: {reference}\n"
             f"  Type: {payment_type}\n"
             f"  [System: Payment queued for processing]")
-
 
 # --- TEMPLATE FUNCTIONS ---
 

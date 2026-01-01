@@ -1,12 +1,6 @@
 import os
 import argparse
-# --- Import Fix for LangChain Version Compatibility ---
-try:
-    from langchain.agents import AgentExecutor, create_tool_calling_agent
-except ImportError:
-    from langchain.agents.agent_executor import AgentExecutor
-    from langchain.agents import create_tool_calling_agent
-# ----------------------------------------------------
+from langchain.agents import create_tool_calling_agent, AgentExecutor
 
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.tools import tool
@@ -92,7 +86,6 @@ def generate_offer_letter(
             f"  Signed By: {signature_role}\n"
             f"  Additional Terms: {additional_terms or 'Standard'}\n"
             f"  [System: Document is legally binding upon delivery]")
-
 
 # --- TEMPLATE FUNCTIONS ---
 

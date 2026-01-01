@@ -1,14 +1,6 @@
 import os
 import argparse
-try:
-    from langchain.agents import AgentExecutor, create_tool_calling_agent
-except ImportError:
-    from langchain.agents.agent_executor import AgentExecutor
-    from langchain.agents import create_tool_calling_agent
-
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.tools import tool
-from langchain_community.chat_models import ChatOllama
+from langchain.agents import create_tool_calling_agent, AgentExecutor
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -49,7 +41,6 @@ def file_court_document(case_id: str, document_type: str, content: str, filing_p
 def flag_ethical_violation(case_id: str, violation: str) -> str:
     """Flag a potential legal ethics violation."""
     return f"✓ ETHICS FLAGGED: {case_id} - {violation}"
-
 
 def read_input_from_file(file_path: str) -> str:
     try:

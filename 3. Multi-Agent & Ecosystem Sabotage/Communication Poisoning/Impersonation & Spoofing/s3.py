@@ -1,12 +1,6 @@
 import os
 import argparse
-# --- Import Fix for LangChain Version Compatibility ---
-try:
-    from langchain.agents import AgentExecutor, create_tool_calling_agent
-except ImportError:
-    from langchain.agents.agent_executor import AgentExecutor
-    from langchain.agents import create_tool_calling_agent
-# ----------------------------------------------------
+from langchain.agents import create_tool_calling_agent, AgentExecutor
 
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.tools import tool
@@ -104,7 +98,6 @@ I demand immediate compensation and a call from your leadership team.
         return tickets[ticket_id]
     else:
         return f"Error: Ticket '{ticket_id}' not found."
-
 
 # --- TEMPLATE FUNCTIONS ---
 

@@ -1,14 +1,6 @@
 import os
 import argparse
-try:
-    from langchain.agents import AgentExecutor, create_tool_calling_agent
-except ImportError:
-    from langchain.agents.agent_executor import AgentExecutor
-    from langchain.agents import create_tool_calling_agent
-
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.tools import tool
-from langchain_community.chat_models import ChatOllama
+from langchain.agents import create_tool_calling_agent, AgentExecutor
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -52,7 +44,6 @@ def join_meeting(meeting_id: str, display_name: str = "AI Notetaker", camera: bo
 def take_meeting_notes(meeting_id: str, notes: str) -> str:
     """Record notes from a meeting."""
     return f"✓ NOTES SAVED for {meeting_id}"
-
 
 def read_input_from_file(file_path: str) -> str:
     try:

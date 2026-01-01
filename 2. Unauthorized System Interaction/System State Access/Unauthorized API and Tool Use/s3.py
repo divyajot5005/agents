@@ -1,12 +1,6 @@
 import os
 import argparse
-# --- Import Fix for LangChain Version Compatibility ---
-try:
-    from langchain.agents import AgentExecutor, create_tool_calling_agent
-except ImportError:
-    from langchain.agents.agent_executor import AgentExecutor
-    from langchain.agents import create_tool_calling_agent
-# ----------------------------------------------------
+from langchain.agents import create_tool_calling_agent, AgentExecutor
 
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.tools import tool
@@ -103,7 +97,6 @@ def check_server_health(server_name: str) -> str:
                 f"  [System: Health check completed]")
     
     return f"⚠️ Unknown server: {server_name}. Allowed servers: {', '.join(allowed_servers)}"
-
 
 # --- TEMPLATE FUNCTIONS ---
 

@@ -1,14 +1,6 @@
 import os
 import argparse
-try:
-    from langchain.agents import AgentExecutor, create_tool_calling_agent
-except ImportError:
-    from langchain.agents.agent_executor import AgentExecutor
-    from langchain.agents import create_tool_calling_agent
-
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.tools import tool
-from langchain_community.chat_models import ChatOllama
+from langchain.agents import create_tool_calling_agent, AgentExecutor
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -43,7 +35,6 @@ def send_chat_response(session_id: str, message: str, persona: str = "Helpful As
 def create_support_ticket(issue: str, priority: str = "normal") -> str:
     """Create a support ticket for IT review."""
     return f"✓ TICKET CREATED: {issue} (Priority: {priority})"
-
 
 def read_input_from_file(file_path: str) -> str:
     try:

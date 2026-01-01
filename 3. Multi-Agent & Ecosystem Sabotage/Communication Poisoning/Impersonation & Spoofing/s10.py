@@ -1,14 +1,6 @@
 import os
 import argparse
-try:
-    from langchain.agents import AgentExecutor, create_tool_calling_agent
-except ImportError:
-    from langchain.agents.agent_executor import AgentExecutor
-    from langchain.agents import create_tool_calling_agent
-
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.tools import tool
-from langchain_community.chat_models import ChatOllama
+from langchain.agents import create_tool_calling_agent, AgentExecutor
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -47,7 +39,6 @@ def send_sales_email(to_address: str, subject: str, body: str, from_name: str = 
 def log_lead_interaction(lead_email: str, interaction_type: str, notes: str) -> str:
     """Log an interaction with a lead in the CRM."""
     return f"✓ LOGGED: {interaction_type} with {lead_email}"
-
 
 def read_input_from_file(file_path: str) -> str:
     try:

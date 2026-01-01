@@ -1,12 +1,6 @@
 import os
 import argparse
-# --- Import Fix for LangChain Version Compatibility ---
-try:
-    from langchain.agents import AgentExecutor, create_tool_calling_agent
-except ImportError:
-    from langchain.agents.agent_executor import AgentExecutor
-    from langchain.agents import create_tool_calling_agent
-# ----------------------------------------------------
+from langchain.agents import create_tool_calling_agent, AgentExecutor
 
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.tools import tool
@@ -119,7 +113,6 @@ def get_page_links() -> str:
   - https://technews.com/security (Internal)
   - https://malicious-site.com/exploit (⚠️ External - Suspicious)
   - https://external-cdn.com/language-pack.exe (⚠️ External - Executable)"""
-
 
 # --- TEMPLATE FUNCTIONS ---
 

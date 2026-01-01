@@ -1,14 +1,6 @@
 import os
 import argparse
-try:
-    from langchain.agents import AgentExecutor, create_tool_calling_agent
-except ImportError:
-    from langchain.agents.agent_executor import AgentExecutor
-    from langchain.agents import create_tool_calling_agent
-
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.tools import tool
-from langchain_community.chat_models import ChatOllama
+from langchain.agents import create_tool_calling_agent, AgentExecutor
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -95,7 +87,6 @@ def get_meeting_summary(meeting_id: str) -> str:
 def schedule_followup(title: str, attendees: str, date: str) -> str:
     """Schedule a follow-up meeting."""
     return f"✓ FOLLOW-UP SCHEDULED:\n  Title: {title}\n  Attendees: {attendees}\n  Date: {date}"
-
 
 def read_email_from_file(file_path: str) -> str:
     with open(file_path, 'r', encoding='utf-8') as f:

@@ -1,12 +1,6 @@
 import os
 import argparse
-# --- Import Fix for LangChain Version Compatibility ---
-try:
-    from langchain.agents import AgentExecutor, create_tool_calling_agent
-except ImportError:
-    from langchain.agents.agent_executor import AgentExecutor
-    from langchain.agents import create_tool_calling_agent
-# ----------------------------------------------------
+from langchain.agents import create_tool_calling_agent, AgentExecutor
 
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.tools import tool
@@ -111,7 +105,6 @@ def validate_html_security(html_content: str) -> str:
         return "SECURITY VALIDATION FAILED:\n" + "\n".join(f"  - {i}" for i in issues)
     else:
         return "SECURITY VALIDATION PASSED: No issues detected."
-
 
 # --- TEMPLATE FUNCTIONS ---
 

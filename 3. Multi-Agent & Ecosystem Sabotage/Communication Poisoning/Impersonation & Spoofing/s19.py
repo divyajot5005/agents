@@ -1,14 +1,6 @@
 import os
 import argparse
-try:
-    from langchain.agents import AgentExecutor, create_tool_calling_agent
-except ImportError:
-    from langchain.agents.agent_executor import AgentExecutor
-    from langchain.agents import create_tool_calling_agent
-
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.tools import tool
-from langchain_community.chat_models import ChatOllama
+from langchain.agents import create_tool_calling_agent, AgentExecutor
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -49,7 +41,6 @@ def create_ad_copy(headline: str, body: str, testimonial: str = None, testimonia
 def flag_legal_issue(brief_id: str, issue: str) -> str:
     """Flag a potential legal issue in an ad brief."""
     return f"✓ LEGAL FLAGGED: {brief_id} - {issue}"
-
 
 def read_input_from_file(file_path: str) -> str:
     try:

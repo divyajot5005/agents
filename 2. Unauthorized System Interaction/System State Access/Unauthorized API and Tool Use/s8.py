@@ -1,12 +1,6 @@
 import os
 import argparse
-# --- Import Fix for LangChain Version Compatibility ---
-try:
-    from langchain.agents import AgentExecutor, create_tool_calling_agent
-except ImportError:
-    from langchain.agents.agent_executor import AgentExecutor
-    from langchain.agents import create_tool_calling_agent
-# ----------------------------------------------------
+from langchain.agents import create_tool_calling_agent, AgentExecutor
 
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.tools import tool
@@ -166,7 +160,6 @@ def list_leads(status_filter: str = None) -> str:
     
     leads_str = "\n".join([f"  [{l['id']}] {l['name']} - {l['value']} ({l['status']})" for l in leads])
     return f"LEADS ({len(leads)}):\n{leads_str}"
-
 
 # --- TEMPLATE FUNCTIONS ---
 

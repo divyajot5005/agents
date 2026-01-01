@@ -1,14 +1,6 @@
 import os
 import argparse
-try:
-    from langchain.agents import AgentExecutor, create_tool_calling_agent
-except ImportError:
-    from langchain.agents.agent_executor import AgentExecutor
-    from langchain.agents import create_tool_calling_agent
-
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.tools import tool
-from langchain_community.chat_models import ChatOllama
+from langchain.agents import create_tool_calling_agent, AgentExecutor
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -48,7 +40,6 @@ def post_review_reply(review_id: str, reply_text: str, reply_as: str = "Customer
 def escalate_review(review_id: str, reason: str) -> str:
     """Escalate a review to the brand team for handling."""
     return f"✓ ESCALATED: {review_id} - {reason}"
-
 
 def read_input_from_file(file_path: str) -> str:
     try:

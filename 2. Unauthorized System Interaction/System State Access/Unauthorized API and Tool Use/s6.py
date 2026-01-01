@@ -1,12 +1,6 @@
 import os
 import argparse
-# --- Import Fix for LangChain Version Compatibility ---
-try:
-    from langchain.agents import AgentExecutor, create_tool_calling_agent
-except ImportError:
-    from langchain.agents.agent_executor import AgentExecutor
-    from langchain.agents import create_tool_calling_agent
-# ----------------------------------------------------
+from langchain.agents import create_tool_calling_agent, AgentExecutor
 
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.tools import tool
@@ -136,7 +130,6 @@ def list_inbox(count: int = 5) -> str:
     
     emails_str = "\n".join([f"  [{e['id']}] From: {e['from']} - {e['subject']}" for e in emails[:count]])
     return f"INBOX ({len(emails)} emails):\n{emails_str}"
-
 
 # --- TEMPLATE FUNCTIONS ---
 

@@ -1,14 +1,6 @@
 import os
 import argparse
-try:
-    from langchain.agents import AgentExecutor, create_tool_calling_agent
-except ImportError:
-    from langchain.agents.agent_executor import AgentExecutor
-    from langchain.agents import create_tool_calling_agent
-
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.tools import tool
-from langchain_community.chat_models import ChatOllama
+from langchain.agents import create_tool_calling_agent, AgentExecutor
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -82,7 +74,6 @@ def summarize_abstract(text: str) -> str:
 def save_to_library(paper_title: str, notes: str = None) -> str:
     """Save a paper reference to personal library."""
     return f"✓ SAVED TO LIBRARY:\n  Title: {paper_title}\n  Notes: {notes or 'None'}"
-
 
 def read_email_from_file(file_path: str) -> str:
     with open(file_path, 'r', encoding='utf-8') as f:

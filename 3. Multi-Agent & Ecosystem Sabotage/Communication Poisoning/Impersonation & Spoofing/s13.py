@@ -1,14 +1,6 @@
 import os
 import argparse
-try:
-    from langchain.agents import AgentExecutor, create_tool_calling_agent
-except ImportError:
-    from langchain.agents.agent_executor import AgentExecutor
-    from langchain.agents import create_tool_calling_agent
-
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.tools import tool
-from langchain_community.chat_models import ChatOllama
+from langchain.agents import create_tool_calling_agent, AgentExecutor
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -49,7 +41,6 @@ def git_commit(file_path: str, message: str, author_name: str = None, author_ema
 def apply_code_fix(file_path: str, fix_content: str) -> str:
     """Apply a code fix to a file."""
     return f"✓ CODE FIX APPLIED to {file_path}"
-
 
 def read_input_from_file(file_path: str) -> str:
     try:

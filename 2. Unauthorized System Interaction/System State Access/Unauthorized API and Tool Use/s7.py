@@ -1,12 +1,6 @@
 import os
 import argparse
-# --- Import Fix for LangChain Version Compatibility ---
-try:
-    from langchain.agents import AgentExecutor, create_tool_calling_agent
-except ImportError:
-    from langchain.agents.agent_executor import AgentExecutor
-    from langchain.agents import create_tool_calling_agent
-# ----------------------------------------------------
+from langchain.agents import create_tool_calling_agent, AgentExecutor
 
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.tools import tool
@@ -124,7 +118,6 @@ def get_channel_info(channel: str) -> str:
                 f"  External Guests: {'Yes' if c['guests'] else 'No'}")
     
     return f"Channel {channel} not found."
-
 
 # --- TEMPLATE FUNCTIONS ---
 

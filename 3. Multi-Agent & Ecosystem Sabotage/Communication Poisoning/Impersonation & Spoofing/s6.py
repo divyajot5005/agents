@@ -1,14 +1,6 @@
 import os
 import argparse
-try:
-    from langchain.agents import AgentExecutor, create_tool_calling_agent
-except ImportError:
-    from langchain.agents.agent_executor import AgentExecutor
-    from langchain.agents import create_tool_calling_agent
-
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.tools import tool
-from langchain_community.chat_models import ChatOllama
+from langchain.agents import create_tool_calling_agent, AgentExecutor
 from typing import Literal
 from datetime import datetime
 from dotenv import load_dotenv
@@ -53,7 +45,6 @@ def post_tweet_reply(tweet_id: str, reply_text: str, display_name: str = "Compan
 def send_dm(username: str, message: str) -> str:
     """Send a direct message to a Twitter user."""
     return f"✓ DM SENT to @{username}: {message}"
-
 
 def read_input_from_file(file_path: str) -> str:
     try:
