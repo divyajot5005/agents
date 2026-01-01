@@ -87,15 +87,35 @@ def read_file(file_path: str) -> str:
 
 
 def find_attack_files(folder_path: Path) -> list:
-    """Find all attack scenario files in a folder."""
-    attack_files = []
+    """
+    Find all attack scenario files in a folder.
+    Deduplicates by scenario number, preferring attack_scenario_*.txt
+    """
+    seen_scenarios = {}  # scenario_num -> file_path
     
-    patterns = ["attack_scenario_*.txt", "attack_s*.txt"]
-    for pattern in patterns:
-        for attack_file in folder_path.glob(pattern):
-            attack_files.append(attack_file)
+    # First pass: attack_scenario_*.txt (preferred)
+    for attack_file in folder_path.glob("attack_scenario_*.txt"):
+        filename = attack_file.stem
+        num = filename.replace("attack_scenario_", "")
+        try:
+            scenario_num = int(num)
+            seen_scenarios[scenario_num] = attack_file
+        except ValueError:
+            continue
     
-    return sorted(attack_files, key=lambda x: x.name)
+    # Second pass: attack_s*.txt (fallback, don't overwrite)
+    for attack_file in folder_path.glob("attack_s*.txt"):
+        filename = attack_file.stem
+        num = filename.replace("attack_s", "")
+        try:
+            scenario_num = int(num)
+            if scenario_num not in seen_scenarios:
+                seen_scenarios[scenario_num] = attack_file
+        except ValueError:
+            continue
+    
+    # Return sorted by scenario number
+    return [seen_scenarios[num] for num in sorted(seen_scenarios.keys())]
 
 
 def create_paraphrase(original_text: str, llm) -> str:
