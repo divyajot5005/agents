@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-Script to fix LangChain import statements across all agent scripts.
+Script to fix LangChain imports for LangChain 1.2.0
 
-For LangChain 0.3.x, the correct import is:
-    from langchain.agents import create_tool_calling_agent, AgentExecutor
+In LangChain 1.x, the correct import is simply:
+    from langchain.agents import AgentExecutor, create_tool_calling_agent
 
-This script finds and fixes all agent scripts that have broken imports.
+This script removes any try-except blocks and uses the direct import.
 """
 
 import os
@@ -14,100 +14,59 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).parent.parent
 
+# The simple import for LangChain 1.2.0
+CORRECT_IMPORT = 'from langchain.agents import AgentExecutor, create_tool_calling_agent'
+
 
 def find_all_agent_scripts():
     """Find all s*.py files in the agents folder."""
     agent_scripts = []
     for py_file in BASE_DIR.rglob("s*.py"):
-        # Skip files in evaluation folder
         if "evaluation" in str(py_file):
             continue
-        # Must match pattern s[number].py
         if re.match(r"s\d+\.py$", py_file.name):
             agent_scripts.append(py_file)
     return agent_scripts
 
 
 def fix_imports_in_file(file_path: Path) -> tuple:
-    """
-    Fix the import statements in a single file.
-    Returns tuple of (was_fixed, error_message)
-    """
+    """Fix the import statements in a single file."""
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
-            lines = content.split('\n')
     except Exception as e:
         return False, f"Error reading: {e}"
     
     original_content = content
-    modified = False
     
-    # New lines to build
-    new_lines = []
-    i = 0
-    skip_until = -1
+    # Pattern to match the try-except compatibility block we added
+    # This matches the entire block from "# --- LangChain Version Compatibility ---" to "# ---"
+    compat_block_pattern = r'# --- LangChain Version Compatibility ---\ntry:\n.*?# ---+\n'
     
-    while i < len(lines):
-        line = lines[i]
-        
-        # Skip if we're in a region to skip
-        if i < skip_until:
-            i += 1
-            continue
-        
-        # Check for the problematic try-except import block
-        # Pattern: starts with "try:" and next line has "from langchain.agents import"
-        if line.strip() == "try:" or "# --- Import Fix" in line:
-            # Look ahead to see if this is the import try-except block
-            block_lines = []
-            j = i
-            in_import_block = False
-            
-            while j < len(lines):
-                check_line = lines[j]
-                block_lines.append(check_line)
-                
-                if "from langchain.agents import AgentExecutor" in check_line:
-                    in_import_block = True
-                
-                # End detection: line after except block that's not indented
-                if in_import_block and j > i:
-                    # Check if we hit the end marker or a non-indented line after the import
-                    if "# ----" in check_line:
-                        j += 1
-                        break
-                    if check_line.strip() and not check_line.startswith(' ') and not check_line.startswith('\t'):
-                        if "from langchain" not in check_line and "except" not in check_line and "try" not in check_line:
-                            break
-                j += 1
-            
-            if in_import_block:
-                # Replace the entire block with simple import
-                new_lines.append("from langchain.agents import create_tool_calling_agent, AgentExecutor")
-                skip_until = j
-                i = j
-                modified = True
-                continue
-        
-        # Check for standalone broken import
-        if "from langchain.agents.agent_executor import AgentExecutor" in line:
-            # Skip this line entirely (should be handled by the main import)
-            i += 1
-            modified = True
-            continue
-        
-        new_lines.append(line)
-        i += 1
+    # Check if file has the compatibility block
+    if '# --- LangChain Version Compatibility ---' in content:
+        # Replace the entire block with simple import
+        content = re.sub(
+            compat_block_pattern,
+            CORRECT_IMPORT + '\n',
+            content,
+            flags=re.DOTALL
+        )
     
-    if modified:
-        new_content = '\n'.join(new_lines)
-        # Clean up any double blank lines created
-        new_content = re.sub(r'\n{3,}', '\n\n', new_content)
-        
+    # Also check for older compatibility blocks
+    old_compat_pattern = r'# --- Import Fix for LangChain Version Compatibility ---\ntry:.*?# -+\n'
+    if '# --- Import Fix for LangChain Version Compatibility ---' in content:
+        content = re.sub(
+            old_compat_pattern,
+            CORRECT_IMPORT + '\n',
+            content,
+            flags=re.DOTALL
+        )
+    
+    if content != original_content:
         try:
             with open(file_path, 'w', encoding='utf-8') as f:
-                f.write(new_content)
+                f.write(content)
             return True, None
         except Exception as e:
             return False, f"Error writing: {e}"
@@ -117,8 +76,10 @@ def fix_imports_in_file(file_path: Path) -> tuple:
 
 def main():
     print("=" * 70)
-    print("LangChain Import Fixer for v0.3.x")
+    print("LangChain 1.2.0 Import Fixer")
     print("=" * 70)
+    print()
+    print(f"Setting import to: {CORRECT_IMPORT}")
     print()
     
     scripts = find_all_agent_scripts()
@@ -143,11 +104,6 @@ def main():
     print("=" * 70)
     print(f"Summary: Fixed {fixed_count} files, {error_count} errors")
     print("=" * 70)
-    
-    if fixed_count > 0:
-        print()
-        print("Note: Make sure to install the required packages:")
-        print("  pip install -r requirements.txt")
 
 
 if __name__ == "__main__":
