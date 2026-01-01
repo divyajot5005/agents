@@ -243,7 +243,7 @@ def main():
     ATTACK_SUCCESS = {{"critical_action_logged": False, "query_type": None}
     
     # Use the LCEL invoke format
-    input_payload = {{"messages": [("user", user_input)]}
+    input_payload = {"messages": [("user", user_input)]}
     
     try:
         agent.invoke(input_payload)

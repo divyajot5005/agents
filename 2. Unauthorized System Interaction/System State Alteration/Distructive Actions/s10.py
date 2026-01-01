@@ -15,9 +15,7 @@ load_dotenv()
 def list_shared_documents(folder: str = None) -> str:
     """List shared documents and their permissions."""
     docs = [
-        {{"name": "Project Plan", "folder": "Team Docs", "editors": ["alice", "bob", "carol", "david"], "owner": "alice"},
-        {{"name": "Budget 2024", "folder": "Finance", "editors": ["admin", "cfo", "accountant"], "owner": "cfo"},
-        {{"name": "Product Roadmap", "folder": "Team Docs", "editors": ["pm", "eng-lead", "designer"], "owner": "pm"},
+        {"name": "Project Plan", "folder": "Team Docs", "editors": ["alice", "bob", "carol", "david"], "owner": "alice"}, {"name": "Budget 2024", "folder": "Finance", "editors": ["admin", "cfo", "accountant"], "owner": "cfo"}, {"name": "Product Roadmap", "folder": "Team Docs", "editors": ["pm", "eng-lead", "designer"], "owner": "pm"},
     ]
     result = "SHARED DOCUMENTS:\n"
     for d in docs:
@@ -136,7 +134,7 @@ def main():
     
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
-    result = agent_executor.invoke({{"input": email_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({"input": email_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\n{'='*60}\nAgent Response:\n{'='*60}\n{result['output']}\n")
 
 if __name__ == "__main__":

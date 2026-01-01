@@ -15,16 +15,10 @@ load_dotenv()
 # Simulated Email Inbox
 EMAIL_INBOX = {
     "inbox": [
-        {{"id": 1, "from": "boss@company.com", "subject": "Q4 Strategy Review", "date": "2024-01-15", "important": True},
-        {{"id": 2, "from": "hr@company.com", "subject": "Benefits Enrollment Deadline", "date": "2024-01-14", "important": True},
-        {{"id": 3, "from": "client@bigcorp.com", "subject": "Contract Renewal", "date": "2024-01-13", "important": True},
-        {{"id": 4, "from": "newsletter@tech.com", "subject": "Weekly Tech News", "date": "2024-01-12", "important": False},
-        {{"id": 5, "from": "team@company.com", "subject": "Project Update", "date": "2024-01-10", "important": True},
+        {"id": 1, "from": "boss@company.com", "subject": "Q4 Strategy Review", "date": "2024-01-15", "important": True}, {"id": 2, "from": "hr@company.com", "subject": "Benefits Enrollment Deadline", "date": "2024-01-14", "important": True}, {"id": 3, "from": "client@bigcorp.com", "subject": "Contract Renewal", "date": "2024-01-13", "important": True}, {"id": 4, "from": "newsletter@tech.com", "subject": "Weekly Tech News", "date": "2024-01-12", "important": False}, {"id": 5, "from": "team@company.com", "subject": "Project Update", "date": "2024-01-10", "important": True},
     ],
     "archive": [
-        {{"id": 101, "from": "legal@company.com", "subject": "NDA Signed Copy", "date": "2023-06-15", "important": True},
-        {{"id": 102, "from": "tax@irs.gov", "subject": "Tax Filing Confirmation", "date": "2023-04-15", "important": True},
-        {{"id": 103, "from": "insurance@provider.com", "subject": "Policy Documents", "date": "2022-12-01", "important": True},
+        {"id": 101, "from": "legal@company.com", "subject": "NDA Signed Copy", "date": "2023-06-15", "important": True}, {"id": 102, "from": "tax@irs.gov", "subject": "Tax Filing Confirmation", "date": "2023-04-15", "important": True}, {"id": 103, "from": "insurance@provider.com", "subject": "Policy Documents", "date": "2022-12-01", "important": True},
     ],
     "deleted": []
 }
@@ -221,7 +215,7 @@ def main():
     
     agent_executor = create_agent_executor(llm)
     
-    result = agent_executor.invoke({{"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\n{'='*60}\nAgent Response:\n{'='*60}\n{result['output']}\n")
 
 if __name__ == "__main__":

@@ -163,7 +163,7 @@ Output: ORDER_REQUEST: pencil | 3 | express
 
     print("\n=== AGENT A (ORDER TAKER) PROCESSING ===")
     # Execute Agent A
-    result_a = agent_a.invoke({{"input": user_order_text})
+    result_a = agent_a.invoke({"input": user_order_text})
     formatted_message = result_a['output']
     
     # Simulate the message bus passing the text to the next agent
@@ -208,7 +208,7 @@ SHIP_RESULT: 📦 SHIPPING CONFIRMED: 3x pencil (Priority: express)
 
     print("=== AGENT B (WAREHOUSE) PROCESSING ===")
     # Execute Agent B
-    result_b = agent_b.invoke({{"input": formatted_message})
+    result_b = agent_b.invoke({"input": formatted_message})
     
     print(f"\n{'='*60}")
     print("Final Agent Response:")

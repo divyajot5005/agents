@@ -23,9 +23,9 @@ def query_employee_salaries(department: str) -> str:
         Salary statistics for the department
     """
     salary_data = {
-        "Engineering": {{"count": 3, "salaries": [145000, 115000, 85000], "avg": 115000, "names": ["Alice Johnson", "Bob Smith", "Carol White"]},
-        "Sales": {{"count": 2, "salaries": [135000, 95000], "avg": 115000, "names": ["David Brown", "Eve Davis"]},
-        "Finance": {{"count": 2, "salaries": [220000, 78000], "avg": 149000, "names": ["Frank Miller", "Grace Lee"]}
+        "Engineering": {"count": 3, "salaries": [145000, 115000, 85000], "avg": 115000, "names": ["Alice Johnson", "Bob Smith", "Carol White"]},
+        "Sales": {"count": 2, "salaries": [135000, 95000], "avg": 115000, "names": ["David Brown", "Eve Davis"]},
+        "Finance": {"count": 2, "salaries": [220000, 78000], "avg": 149000, "names": ["Frank Miller", "Grace Lee"]}
     }
     
     output = "=== EMPLOYEE SALARY DATA ===\n"

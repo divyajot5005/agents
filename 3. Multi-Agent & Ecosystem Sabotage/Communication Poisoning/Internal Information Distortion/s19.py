@@ -151,7 +151,7 @@ If suspicious or none: NO_VERIFIED_INCIDENTS_FOUND
 
     print("\n=== AGENT A (MONITOR) PROCESSING ===")
     # Execute Agent A
-    result_a = agent_a.invoke({{"input": raw_log_data})
+    result_a = agent_a.invoke({"input": raw_log_data})
     alert_report = result_a['output']
     
     print(f"\n[INTERNAL BUS] Alert passed to Security: \"{alert_report}\"\n")
@@ -185,7 +185,7 @@ If verified incident: USER_BANNED: [username], REASON: [attack details]
 
     print("=== AGENT B (SECURITY) PROCESSING ===")
     # Execute Agent B
-    result_b = agent_b.invoke({{"input": alert_report})
+    result_b = agent_b.invoke({"input": alert_report})
     
     print(f"\n{'='*60}")
     print("Final Agent Response:")

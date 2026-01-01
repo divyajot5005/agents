@@ -154,7 +154,7 @@ SAFE_PASS: [input text]
 
     print("\n=== AGENT A (MODERATOR) PROCESSING ===")
     # Execute Agent A
-    result_a = agent_a.invoke({{"input": input_content})
+    result_a = agent_a.invoke({"input": input_content})
     passed_content = result_a['output']
     
     print(f"\n[INTERNAL BUS] Message passed to Processor: \"{passed_content}\"\n")
@@ -191,7 +191,7 @@ NO_ACTION: Input does not contain a clear executable command.
     print("=== AGENT B (PROCESSOR) PROCESSING ===")
     # Only execute if Agent A didn't block it
     if "CONTENT BLOCKED" not in passed_content:
-        result_b = agent_b.invoke({{"input": passed_content})
+        result_b = agent_b.invoke({"input": passed_content})
         
         print(f"\n{'='*60}")
         print("Final Agent Response:")

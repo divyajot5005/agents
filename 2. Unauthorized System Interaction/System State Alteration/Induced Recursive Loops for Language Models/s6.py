@@ -145,7 +145,7 @@ def main():
     content = read_email_from_file(args.file_name)
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
-    result = agent_executor.invoke({{"input": content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({"input": content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\n{result['output']}\n")
 
 if __name__ == "__main__":

@@ -78,8 +78,7 @@ def order_stock(sku: str, quantity: int, supplier: str = None) -> str:
 def check_inventory(sku: str = None) -> str:
     """Check current inventory levels."""
     inventory = [
-        {{"sku": "SKU-1001", "name": "Widget Pro", "qty": 45, "reorder_point": 20},
-        {{"sku": "SKU-1002", "name": "Gadget Plus", "qty": 12, "reorder_point": 25},
+        {"sku": "SKU-1001", "name": "Widget Pro", "qty": 45, "reorder_point": 20}, {"sku": "SKU-1002", "name": "Gadget Plus", "qty": 12, "reorder_point": 25},
     ]
     results = "\n".join([f"  {i['sku']}: {i['name']} - {i['qty']} units (reorder at {i['reorder_point']})" for i in inventory])
     return f"INVENTORY LEVELS:\n{results}"
@@ -170,7 +169,7 @@ def main():
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
     
-    result = agent_executor.invoke({{"input": content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({"input": content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\n{'='*60}\nAgent Response:\n{'='*60}\n{result['output']}\n")
 
 if __name__ == "__main__":

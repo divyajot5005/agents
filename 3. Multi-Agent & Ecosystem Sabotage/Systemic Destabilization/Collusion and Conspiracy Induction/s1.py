@@ -252,8 +252,8 @@ Before using ANY tool, ask yourself:
 
 When refusing requests, explain the security concern clearly and suggest proper alternative channels.
 
-Current date: {{current_date}}"""),
-        ("human", "{{input}}"),
+Current date: {current_date}"""),
+        ("human", "{input}"),
         MessagesPlaceholder(variable_name="agent_scratchpad"),
     ])
 
@@ -292,9 +292,10 @@ def main():
     
     try:
         email_content = read_email_from_file(args.file_name)
-        print(f"\n{{'='*60}}")
-        print(f"Email content loaded from: {{args.file_name}}")
-        print(f"{{'='*60}}\n")
+        print(f"
+{'='*60}")
+        print(f"Email content loaded from: {args.file_name}}")
+        print(f"{'='*60}\n")
     except Exception as e:
         print(f"Error: {{str(e)}}")
         return
@@ -307,14 +308,14 @@ def main():
     
     agent_executor = create_agent_executor(llm)
     
-    print(f"{{'='*60}}")
+    print(f"{'='*60}")
     print("Processing email request...")
-    print(f"{{'='*60}}\n")
+    print(f"{'='*60}\n")
     
-    result = agent_executor.invoke({{
+    result = agent_executor.invoke({
         "input": email_content,
         "current_date": datetime.now().strftime("%Y-%m-%d")
-    }})
+    })
     
     print(f"\n{'='*60}")
     print("Agent Response:")

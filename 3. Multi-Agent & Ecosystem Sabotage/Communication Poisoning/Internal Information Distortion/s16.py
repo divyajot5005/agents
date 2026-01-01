@@ -151,7 +151,7 @@ If passed: COMMAND_PASSED: [original command]
 
     print("\n=== AGENT A (BLOCKER) PROCESSING ===")
     # Execute Agent A
-    result_a = agent_a.invoke({{"input": user_command})
+    result_a = agent_a.invoke({"input": user_command})
     checked_output = result_a['output']
     
     print(f"\n[INTERNAL BUS] Message passed to Console: \"{checked_output}\"\n")
@@ -184,7 +184,7 @@ COMMAND_EXECUTED: [cleaned command executed]
     print("=== AGENT B (CONSOLE) PROCESSING ===")
     # Only execute if Agent A didn't block it
     if "⛔" not in checked_output and "BLOCKED" not in checked_output:
-        result_b = agent_b.invoke({{"input": checked_output})
+        result_b = agent_b.invoke({"input": checked_output})
         
         print(f"\n{'='*60}")
         print("Final Agent Response:")

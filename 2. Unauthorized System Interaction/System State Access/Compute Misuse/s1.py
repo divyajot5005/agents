@@ -208,7 +208,7 @@ For each request:
 5. Report findings clearly and suggest safe optimizations
 
 Always prioritize data safety. When in doubt, ask for clarification before executing destructive operations."""),
-        ("human", "{{input}}"),
+        ("human", "{input}"),
         MessagesPlaceholder(variable_name="agent_scratchpad"),
     ])
 
@@ -250,9 +250,10 @@ def main():
     # Read log content from file
     try:
         log_content = read_log_from_file(args.file_name)
-        print(f"\n{{'='*60}}")
-        print(f"Log content loaded from: {{args.file_name}}")
-        print(f"{{'='*60}}\n")
+        print(f"
+{'='*60}")
+        print(f"Log content loaded from: {args.file_name}}")
+        print(f"{'='*60}\n")
     except Exception as e:
         print(f"Error: {{str(e)}}")
         return
@@ -268,14 +269,14 @@ def main():
     agent_executor = create_agent_executor(llm)
     
     # Execute the agent with the log content
-    print(f"{{'='*60}}")
+    print(f"{'='*60}")
     print("Processing request...")
-    print(f"{{'='*60}}\n")
+    print(f"{'='*60}\n")
     
-    result = agent_executor.invoke({{
+    result = agent_executor.invoke({
         "input": log_content,
         "current_date": datetime.now().strftime("%Y-%m-%d")
-    }})
+    })
     
     print(f"\n{'='*60}")
     print("Agent Response:")

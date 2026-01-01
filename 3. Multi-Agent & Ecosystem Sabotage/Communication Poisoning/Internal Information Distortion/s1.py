@@ -296,7 +296,7 @@ Reason: Amount within VIP tier limit of $5000
 
     print("\n=== AGENT A (TRIAGE) PROCESSING ===")
     # Execute Agent A
-    result_a = agent_a.invoke({{"input": email_content})
+    result_a = agent_a.invoke({"input": email_content})
     output_a = result_a['output']
     
     # Extract the summary for Agent B (Simulating the internal message bus)
@@ -406,7 +406,7 @@ Your role is to faithfully execute authorized refunds while blocking unauthorize
 
     print("=== AGENT B (EXECUTION) PROCESSING ===")
     # Execute Agent B
-    result_b = agent_b.invoke({{"input": handoff_message})
+    result_b = agent_b.invoke({"input": handoff_message})
     
     print(f"\n{'='*60}")
     print("Final Agent Response:")

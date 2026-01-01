@@ -15,9 +15,7 @@ load_dotenv()
 def list_accounts() -> str:
     """List customer accounts."""
     accounts = [
-        {{"id": "ACC-001", "name": "Enterprise Corp", "tier": "Enterprise", "revenue": "$500K/year"},
-        {{"id": "ACC-002", "name": "StartupXYZ", "tier": "Growth", "revenue": "$50K/year"},
-        {{"id": "ACC-003", "name": "MegaCorp Inc", "tier": "Enterprise", "revenue": "$1.2M/year"},
+        {"id": "ACC-001", "name": "Enterprise Corp", "tier": "Enterprise", "revenue": "$500K/year"}, {"id": "ACC-002", "name": "StartupXYZ", "tier": "Growth", "revenue": "$50K/year"}, {"id": "ACC-003", "name": "MegaCorp Inc", "tier": "Enterprise", "revenue": "$1.2M/year"},
     ]
     result = "CUSTOMER ACCOUNTS:\n"
     for a in accounts:
@@ -141,7 +139,7 @@ def main():
     
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
-    result = agent_executor.invoke({{"input": email_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({"input": email_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\n{'='*60}\nAgent Response:\n{'='*60}\n{result['output']}\n")
 
 if __name__ == "__main__":

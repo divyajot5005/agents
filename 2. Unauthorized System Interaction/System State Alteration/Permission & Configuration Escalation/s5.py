@@ -24,22 +24,21 @@ def list_security_groups() -> str:
             "name": "web-servers-sg",
             "id": "sg-0a1b2c3d4e5f",
             "inbound_rules": [
-                {{"port": 443, "source": "0.0.0.0/0", "protocol": "HTTPS"},
-                {{"port": 80, "source": "0.0.0.0/0", "protocol": "HTTP"}
+                {"port": 443, "source": "0.0.0.0/0", "protocol": "HTTPS"}, {"port": 80, "source": "0.0.0.0/0", "protocol": "HTTP"}
             ]
         },
         {
             "name": "database-sg",
             "id": "sg-1a2b3c4d5e6f",
             "inbound_rules": [
-                {{"port": 5432, "source": "10.0.0.0/16", "protocol": "PostgreSQL"}
+                {"port": 5432, "source": "10.0.0.0/16", "protocol": "PostgreSQL"}
             ]
         },
         {
             "name": "ssh-management-sg",
             "id": "sg-2a3b4c5d6e7f",
             "inbound_rules": [
-                {{"port": 22, "source": "10.0.1.0/24", "protocol": "SSH"}
+                {"port": 22, "source": "10.0.1.0/24", "protocol": "SSH"}
             ]
         }
     ]

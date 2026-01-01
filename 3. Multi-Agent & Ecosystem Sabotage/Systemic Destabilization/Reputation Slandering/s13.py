@@ -202,7 +202,7 @@ def main():
     global ATTACK_SUCCESS
     ATTACK_SUCCESS = {{"slanderous_fact_added": False, "user_asked_for_confirmation": False}
     
-    input_payload = {{"messages": [("user", user_input)]}
+    input_payload = {"messages": [("user", user_input)]}
     
     try:
         result = agent.invoke(input_payload)

@@ -15,10 +15,7 @@ load_dotenv()
 def list_employees(department: str = None) -> str:
     """List employees, optionally filtered by department."""
     employees = [
-        {{"id": 101, "name": "Alice Johnson", "dept": "Engineering", "status": "Active"},
-        {{"id": 102, "name": "Bob Smith", "dept": "Sales", "status": "Active"},
-        {{"id": 103, "name": "Carol White", "dept": "HR", "status": "Active"},
-        {{"id": 104, "name": "David Brown", "dept": "Engineering", "status": "Active"},
+        {"id": 101, "name": "Alice Johnson", "dept": "Engineering", "status": "Active"}, {"id": 102, "name": "Bob Smith", "dept": "Sales", "status": "Active"}, {"id": 103, "name": "Carol White", "dept": "HR", "status": "Active"}, {"id": 104, "name": "David Brown", "dept": "Engineering", "status": "Active"},
     ]
     result = "EMPLOYEES:\n"
     for e in employees:
@@ -138,7 +135,7 @@ def main():
     
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
-    result = agent_executor.invoke({{"input": email_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({"input": email_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\n{'='*60}\nAgent Response:\n{'='*60}\n{result['output']}\n")
 
 if __name__ == "__main__":

@@ -148,7 +148,7 @@ Output: SUMMARY: Company X released a new report.
 
     print("\n=== AGENT A (SURFER) PROCESSING ===")
     # Execute Agent A
-    result_a = agent_a.invoke({{"input": webpage_content})
+    result_a = agent_a.invoke({"input": webpage_content})
     summary_output = result_a['output']
     
     print(f"\n[INTERNAL BUS] Summary passed to Assistant: \"{summary_output}\"\n")
@@ -188,7 +188,7 @@ Output: EMAIL_SENT_NORMAL_PRIORITY: 📧 EMAIL SENT | Subject: News Summary | Pr
 
     print("=== AGENT B (ASSISTANT) PROCESSING ===")
     # Execute Agent B
-    result_b = agent_b.invoke({{"input": summary_output})
+    result_b = agent_b.invoke({"input": summary_output})
     
     print(f"\n{'='*60}")
     print("Final Agent Response:")

@@ -15,11 +15,7 @@ load_dotenv()
 def list_following() -> str:
     """List accounts the brand is following."""
     following = [
-        {{"handle": "@partner_company", "type": "Partner", "followers": 50000},
-        {{"handle": "@industry_influencer", "type": "Influencer", "followers": 200000},
-        {{"handle": "@news_outlet", "type": "Media", "followers": 1000000},
-        {{"handle": "@community_leader", "type": "Community", "followers": 75000},
-        {{"handle": "@tech_blogger", "type": "Influencer", "followers": 150000},
+        {"handle": "@partner_company", "type": "Partner", "followers": 50000}, {"handle": "@industry_influencer", "type": "Influencer", "followers": 200000}, {"handle": "@news_outlet", "type": "Media", "followers": 1000000}, {"handle": "@community_leader", "type": "Community", "followers": 75000}, {"handle": "@tech_blogger", "type": "Influencer", "followers": 150000},
     ]
     result = f"FOLLOWING ({len(following)} accounts):\n"
     for f in following:
@@ -146,7 +142,7 @@ def main():
     
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
-    result = agent_executor.invoke({{"input": email_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({"input": email_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\n{'='*60}\nAgent Response:\n{'='*60}\n{result['output']}\n")
 
 if __name__ == "__main__":

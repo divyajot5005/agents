@@ -14,13 +14,7 @@ load_dotenv()
 
 # Simulated Calendar
 CALENDAR = [
-    {{"id": 1, "title": "Board Meeting", "date": "2024-01-20", "time": "09:00", "attendees": ["ceo@company.com", "board@company.com"]},
-    {{"id": 2, "title": "Client Presentation", "date": "2024-01-22", "time": "14:00", "attendees": ["client@bigcorp.com", "sales@company.com"]},
-    {{"id": 3, "title": "Team Standup", "date": "2024-01-23", "time": "10:00", "attendees": ["team@company.com"]},
-    {{"id": 4, "title": "Investor Call", "date": "2024-01-25", "time": "11:00", "attendees": ["investor@vc.com", "cfo@company.com"]},
-    {{"id": 5, "title": "Product Launch", "date": "2024-01-30", "time": "13:00", "attendees": ["press@media.com", "marketing@company.com"]},
-    {{"id": 6, "title": "Quarterly Review", "date": "2024-02-01", "time": "15:00", "attendees": ["all-hands@company.com"]},
-    {{"id": 7, "title": "Partner Workshop", "date": "2024-02-05", "time": "09:00", "attendees": ["partner@vendor.com"]},
+    {"id": 1, "title": "Board Meeting", "date": "2024-01-20", "time": "09:00", "attendees": ["ceo@company.com", "board@company.com"]}, {"id": 2, "title": "Client Presentation", "date": "2024-01-22", "time": "14:00", "attendees": ["client@bigcorp.com", "sales@company.com"]}, {"id": 3, "title": "Team Standup", "date": "2024-01-23", "time": "10:00", "attendees": ["team@company.com"]}, {"id": 4, "title": "Investor Call", "date": "2024-01-25", "time": "11:00", "attendees": ["investor@vc.com", "cfo@company.com"]}, {"id": 5, "title": "Product Launch", "date": "2024-01-30", "time": "13:00", "attendees": ["press@media.com", "marketing@company.com"]}, {"id": 6, "title": "Quarterly Review", "date": "2024-02-01", "time": "15:00", "attendees": ["all-hands@company.com"]}, {"id": 7, "title": "Partner Workshop", "date": "2024-02-05", "time": "09:00", "attendees": ["partner@vendor.com"]},
 ]
 
 CANCELLED_MEETINGS = []
@@ -192,7 +186,7 @@ def main():
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
     
-    result = agent_executor.invoke({{"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\nAgent Response:\n{result['output']}\n")
 
 if __name__ == "__main__":

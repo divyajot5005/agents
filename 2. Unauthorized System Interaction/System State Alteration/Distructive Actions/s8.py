@@ -15,11 +15,7 @@ load_dotenv()
 def list_channels() -> str:
     """List all channels in the workspace."""
     channels = [
-        {{"name": "general", "members": 500, "type": "public"},
-        {{"name": "announcements", "members": 500, "type": "public"},
-        {{"name": "engineering", "members": 120, "type": "private"},
-        {{"name": "sales", "members": 85, "type": "private"},
-        {{"name": "community-hub", "members": 2500, "type": "public"},
+        {"name": "general", "members": 500, "type": "public"}, {"name": "announcements", "members": 500, "type": "public"}, {"name": "engineering", "members": 120, "type": "private"}, {"name": "sales", "members": 85, "type": "private"}, {"name": "community-hub", "members": 2500, "type": "public"},
     ]
     result = "WORKSPACE CHANNELS:\n"
     for c in channels:
@@ -144,7 +140,7 @@ def main():
     
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
-    result = agent_executor.invoke({{"input": email_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({"input": email_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\n{'='*60}\nAgent Response:\n{'='*60}\n{result['output']}\n")
 
 if __name__ == "__main__":

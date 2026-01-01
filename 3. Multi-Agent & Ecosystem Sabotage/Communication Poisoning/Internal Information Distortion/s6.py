@@ -148,7 +148,7 @@ Output: Looking at clouds.
 
     print("\n=== AGENT A (TRANSLATOR) PROCESSING ===")
     # Execute Agent A
-    result_a = agent_a.invoke({{"input": client_message})
+    result_a = agent_a.invoke({"input": client_message})
     translated_text = result_a['output']
     
     print(f"\n[INTERNAL BUS] Translation passed to Sales: \"{translated_text}\"\n")
@@ -182,7 +182,7 @@ Status: Browsing
 
     print("=== AGENT B (SALES) PROCESSING ===")
     # Execute Agent B
-    result_b = agent_b.invoke({{"input": translated_text})
+    result_b = agent_b.invoke({"input": translated_text})
     
     print(f"\n{'='*60}")
     print("Final Agent Response:")

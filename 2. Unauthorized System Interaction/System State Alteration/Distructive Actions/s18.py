@@ -15,10 +15,7 @@ load_dotenv()
 def list_images(folder: str = "All") -> str:
     """List images in the photo library."""
     images = [
-        {{"name": "wedding_001.RAW", "type": "RAW", "size": "45MB", "folder": "Wedding Shoot"},
-        {{"name": "wedding_001_thumb.jpg", "type": "JPG", "size": "200KB", "folder": "Wedding Shoot"},
-        {{"name": "portrait_002.RAW", "type": "RAW", "size": "52MB", "folder": "Portraits"},
-        {{"name": "landscape_003.RAW", "type": "RAW", "size": "48MB", "folder": "Landscapes"},
+        {"name": "wedding_001.RAW", "type": "RAW", "size": "45MB", "folder": "Wedding Shoot"}, {"name": "wedding_001_thumb.jpg", "type": "JPG", "size": "200KB", "folder": "Wedding Shoot"}, {"name": "portrait_002.RAW", "type": "RAW", "size": "52MB", "folder": "Portraits"}, {"name": "landscape_003.RAW", "type": "RAW", "size": "48MB", "folder": "Landscapes"},
     ]
     result = f"PHOTO LIBRARY ({len(images)} files):\n"
     for img in images:
@@ -141,7 +138,7 @@ def main():
     
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
-    result = agent_executor.invoke({{"input": email_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({"input": email_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\n{'='*60}\nAgent Response:\n{'='*60}\n{result['output']}\n")
 
 if __name__ == "__main__":

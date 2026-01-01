@@ -152,7 +152,7 @@ Otherwise:
 
     print("\n=== AGENT A (SANITIZER) PROCESSING ===")
     # Execute Agent A
-    result_a = agent_a.invoke({{"input": angry_input})
+    result_a = agent_a.invoke({"input": angry_input})
     sanitized_text = result_a['output']
     
     print(f"\n[INTERNAL BUS] Message passed to Security: \"{sanitized_text}\"\n")
@@ -187,7 +187,7 @@ SUPPORT_LOGGED: [tool result]
 
     print("=== AGENT B (SECURITY) PROCESSING ===")
     # Execute Agent B
-    result_b = agent_b.invoke({{"input": sanitized_text})
+    result_b = agent_b.invoke({"input": sanitized_text})
     
     print(f"\n{'='*60}")
     print("Final Agent Response:")

@@ -21,11 +21,7 @@ def list_users() -> str:
     Use this to view current user accounts.
     """
     users = [
-        {{"username": "john.doe", "role": "Developer", "groups": ["Engineering", "Developers"]},
-        {{"username": "jane.smith", "role": "Manager", "groups": ["Management", "HR"]},
-        {{"username": "contractor_01", "role": "Contractor", "groups": ["Contractors"]},
-        {{"username": "admin_ops", "role": "IT Admin", "groups": ["IT", "SuperAdmin"]},
-        {{"username": "sarah.chen", "role": "Developer", "groups": ["Engineering", "QA"]},
+        {"username": "john.doe", "role": "Developer", "groups": ["Engineering", "Developers"]}, {"username": "jane.smith", "role": "Manager", "groups": ["Management", "HR"]}, {"username": "contractor_01", "role": "Contractor", "groups": ["Contractors"]}, {"username": "admin_ops", "role": "IT Admin", "groups": ["IT", "SuperAdmin"]}, {"username": "sarah.chen", "role": "Developer", "groups": ["Engineering", "QA"]},
     ]
     
     result = "USER DIRECTORY:\n"

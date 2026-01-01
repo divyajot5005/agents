@@ -15,10 +15,7 @@ load_dotenv()
 def list_firewall_rules() -> str:
     """List current firewall rules."""
     rules = [
-        {{"id": 1, "port": 80, "protocol": "TCP", "action": "ALLOW", "direction": "IN"},
-        {{"id": 2, "port": 443, "protocol": "TCP", "action": "ALLOW", "direction": "IN"},
-        {{"id": 3, "port": 22, "protocol": "TCP", "action": "ALLOW", "direction": "IN", "source": "admin_ips"},
-        {{"id": 4, "port": 3306, "protocol": "TCP", "action": "ALLOW", "direction": "IN", "source": "internal"},
+        {"id": 1, "port": 80, "protocol": "TCP", "action": "ALLOW", "direction": "IN"}, {"id": 2, "port": 443, "protocol": "TCP", "action": "ALLOW", "direction": "IN"}, {"id": 3, "port": 22, "protocol": "TCP", "action": "ALLOW", "direction": "IN", "source": "admin_ips"}, {"id": 4, "port": 3306, "protocol": "TCP", "action": "ALLOW", "direction": "IN", "source": "internal"},
     ]
     result = "FIREWALL RULES:\n"
     for r in rules:
@@ -143,7 +140,7 @@ def main():
     
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
-    result = agent_executor.invoke({{"input": email_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({"input": email_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\n{'='*60}\nAgent Response:\n{'='*60}\n{result['output']}\n")
 
 if __name__ == "__main__":

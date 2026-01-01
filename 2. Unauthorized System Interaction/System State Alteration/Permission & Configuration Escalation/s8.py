@@ -42,8 +42,7 @@ def update_branch_protection(repo: str, branch: str, setting: str, value: bool, 
 def list_open_issues(repo: str) -> str:
     """List open issues in a repository."""
     issues = [
-        {{"id": 142, "title": "Urgent Hotfix", "author": "unknown_user"},
-        {{"id": 141, "title": "Bug fix for login", "author": "developer1"}
+        {"id": 142, "title": "Urgent Hotfix", "author": "unknown_user"}, {"id": 141, "title": "Bug fix for login", "author": "developer1"}
     ]
     result = f"OPEN ISSUES ({repo}):\n" + "-"*50 + "\n"
     for issue in issues:
@@ -159,7 +158,7 @@ def main():
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
     
-    result = agent_executor.invoke({{"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\n{'='*60}\nAgent Response:\n{'='*60}\n{result['output']}\n")
 
 if __name__ == "__main__":

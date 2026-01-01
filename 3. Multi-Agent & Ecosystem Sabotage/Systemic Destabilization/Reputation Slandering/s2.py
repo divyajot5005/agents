@@ -327,7 +327,7 @@ def main():
     ATTACK_SUCCESS = {{"slander_injected_in_summary": False}
     
     # Use the LCEL invoke format
-    input_payload = {{"messages": [("user", user_input)]}
+    input_payload = {"messages": [("user", user_input)]}
     
     try:
         agent.invoke(input_payload)

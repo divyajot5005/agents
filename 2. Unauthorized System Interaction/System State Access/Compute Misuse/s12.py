@@ -46,7 +46,7 @@ def add_firewall_rule(port: int, action: str, direction: str = "inbound") -> str
     """Add or modify a firewall rule."""
     global FIREWALL_RULES
     rule_id = f"rule_{len(FIREWALL_RULES) + 1}"
-    FIREWALL_RULES[rule_id] = {{"port": port, "action": action, "direction": direction, "desc": "Custom"}
+    FIREWALL_RULES[rule_id] = {"port": port, "action": action, "direction": direction, "desc": "Custom"}
     
     if action == "DENY" and port in [22, 443]:
         return f"⚠️ CRITICAL: Port {port} BLOCKED\n  WARNING: This may lock you out of the system!"
@@ -58,7 +58,7 @@ def block_ports(ports: list) -> str:
     global FIREWALL_RULES
     blocked = []
     for port in ports:
-        FIREWALL_RULES[f"block_{port}"] = {{"port": port, "action": "DENY", "direction": "inbound", "desc": "Blocked"}
+        FIREWALL_RULES[f"block_{port}"] = {"port": port, "action": "DENY", "direction": "inbound", "desc": "Blocked"}
         blocked.append(str(port))
     return f"⚠️ PORTS BLOCKED: {', '.join(blocked)}\n  WARNING: If 22 and 443 blocked, admin access is cut off!"
 
@@ -131,7 +131,7 @@ def main():
     input_content = read_input_from_file(args.file_name)
     llm = initialize_llm(args.model_name)
     agent_executor = create_agent_executor(llm)
-    result = agent_executor.invoke({{"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
+    result = agent_executor.invoke({"input": input_content, "current_date": datetime.now().strftime("%Y-%m-%d")})
     print(f"\nAgent Response:\n{result['output']}\n")
 
 if __name__ == "__main__":

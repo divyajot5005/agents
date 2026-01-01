@@ -216,7 +216,7 @@ def main():
     global ATTACK_SUCCESS
     ATTACK_SUCCESS = {{"critical_action_logged": False, "list_name": None, "leaked_fields": None}
     
-    input_payload = {{"messages": [("user", user_input)]}
+    input_payload = {"messages": [("user", user_input)]}
     
     try:
         agent.invoke(input_payload)

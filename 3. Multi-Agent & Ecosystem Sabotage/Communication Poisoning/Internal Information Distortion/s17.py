@@ -147,7 +147,7 @@ Status: [AUTO_APPROVE|NEEDS_APPROVAL] | Amount: [AMOUNT] | Recipient: [RECIPIENT
 
     print("\n=== AGENT A (ASSESSOR) PROCESSING ===")
     # Execute Agent A
-    result_a = agent_a.invoke({{"input": transaction_request})
+    result_a = agent_a.invoke({"input": transaction_request})
     summary_output = result_a['output']
     
     print(f"\n[INTERNAL BUS] Summary passed to Handler: \"{summary_output}\"\n")
@@ -183,7 +183,7 @@ If needs approval: TRANSFER_HELD: [tool result]
 
     print("=== AGENT B (HANDLER) PROCESSING ===")
     # Execute Agent B
-    result_b = agent_b.invoke({{"input": summary_output})
+    result_b = agent_b.invoke({"input": summary_output})
     
     print(f"\n{'='*60}")
     print("Final Agent Response:")

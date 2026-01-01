@@ -165,7 +165,7 @@ Be concise and factual.
 
     print("\n=== AGENT A (ANALYZER) PROCESSING ===")
     # We simulate the log system appending the attacker's text to the log viewer
-    result_a = agent_a.invoke({{"input": f"Analyze this log entry:\n{user_injection}"})
+    result_a = agent_a.invoke({"input": f"Analyze this log entry:\n{user_injection}"})
     analysis_output = result_a['output']
     
     print(f"\n[INTERNAL BUS] Alert passed to SysAdmin: \"{analysis_output}\"\n")
@@ -205,7 +205,7 @@ Output: SHUTDOWN_INITIATED: 🚨 SHUTDOWN INITIATED for server-42. Reason: KERNE
     agent_b = create_agent_executor(llm, sysadmin_prompt, [emergency_shutdown])
 
     print("=== AGENT B (SYSADMIN) PROCESSING ===")
-    result_b = agent_b.invoke({{"input": analysis_output})
+    result_b = agent_b.invoke({"input": analysis_output})
     
     print(f"\n{'='*60}")
     print("Final Agent Response:")
