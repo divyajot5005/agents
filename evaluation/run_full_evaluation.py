@@ -18,13 +18,11 @@ import os
 import sys
 import argparse
 import json
-import glob
-import importlib.util
 import tempfile
-import shutil
 from datetime import datetime
 from pathlib import Path
 
+from tqdm import tqdm
 from langchain_ollama import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -282,20 +280,20 @@ def process_folder(folder_path: Path, folder_name: str, model_name: str,
     successful_attacks = 0
     skipped_attacks = 0
     
-    print(f"\n  Found {len(pairs)} attack-agent pairs")
+    print(f"  Found {len(pairs)} scenarios, {num_paraphrases} paraphrases each")
+    
+    # Progress bar for all scenarios
+    total_runs = len(pairs) * num_paraphrases
+    pbar = tqdm(total=total_runs, desc=f"  {folder_name}", unit="run", leave=True)
     
     for attack_file, agent_script, scenario_num in pairs:
         original_attack = read_file(str(attack_file))
         if not original_attack:
-            print(f"    [!] Could not read attack file: {attack_file.name}")
+            pbar.update(num_paraphrases)  # Skip all paraphrases for this scenario
             continue
         
-        print(f"    Processing scenario {scenario_num} ({attack_file.name})...")
-        
-        # Generate and test paraphrases
         scenario_successes = 0
-        scenario_total = 0  # Only count non-skipped runs
-        scenario_skipped = 0
+        scenario_total = 0
         
         for i in range(num_paraphrases):
             # Generate paraphrase (keeping original for first iteration)
@@ -314,36 +312,36 @@ def process_folder(folder_path: Path, folder_name: str, model_name: str,
                 # Run agent on paraphrase
                 response = run_agent_script(agent_script, temp_path, model_name)
                 
-                # Evaluate response (always verbose for first run)
-                result = evaluate_attack_success(paraphrased_attack, response, judge_llm, verbose=(i == 0 or verbose))
+                # Evaluate response
+                result = evaluate_attack_success(paraphrased_attack, response, judge_llm, verbose=False)
                 
                 if result == "SUCCESS":
                     successful_attacks += 1
                     scenario_successes += 1
                     total_attacks += 1
                     scenario_total += 1
-                    print(f"      Paraphrase {i+1}/{num_paraphrases}: SUCCESS")
                 elif result == "FAILURE":
                     total_attacks += 1
                     scenario_total += 1
-                    print(f"      Paraphrase {i+1}/{num_paraphrases}: FAILURE")
                 else:  # SKIP
-                    scenario_skipped += 1
                     skipped_attacks += 1
-                    print(f"      Paraphrase {i+1}/{num_paraphrases}: SKIPPED (error)")
             
             finally:
                 # Clean up temp file
                 if os.path.exists(temp_path):
                     os.remove(temp_path)
+            
+            pbar.update(1)
         
-        if scenario_total > 0:
-            scenario_asr = (scenario_successes / scenario_total * 100)
-        else:
-            scenario_asr = 0
-        print(f"      Scenario {scenario_num} ASR: {scenario_asr:.2f}% ({scenario_successes}/{scenario_total}, {scenario_skipped} skipped)")
+        # Update progress bar description with running ASR
+        if total_attacks > 0:
+            running_asr = (successful_attacks / total_attacks * 100)
+            pbar.set_postfix({"ASR": f"{running_asr:.1f}%", "skip": skipped_attacks})
+    
+    pbar.close()
     
     asr = (successful_attacks / total_attacks * 100) if total_attacks > 0 else 0
+    print(f"  Final ASR: {asr:.2f}% ({successful_attacks}/{total_attacks}, {skipped_attacks} skipped)")
     
     return {
         "folder_name": folder_name,
