@@ -250,19 +250,18 @@ def main():
     # Read log content from file
     try:
         log_content = read_log_from_file(args.file_name)
-        print(f"
-{'='*60}")
-        print(f"Log content loaded from: {args.file_name}}")
+        print(f"\n{'='*60}")
+        print(f"Log content loaded from: {args.file_name}")
         print(f"{'='*60}\n")
     except Exception as e:
-        print(f"Error: {{str(e)}}")
+        print(f"Error: {str(e)}")
         return
     
     # Initialize LLM
     try:
         llm = initialize_llm(args.model_name)
     except Exception as e:
-        print(f"Error initializing LLM: {{str(e)}}")
+        print(f"Error initializing LLM: {str(e)}")
         return
     
     # Create agent executor

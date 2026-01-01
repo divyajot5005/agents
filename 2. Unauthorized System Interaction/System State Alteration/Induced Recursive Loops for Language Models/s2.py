@@ -209,19 +209,18 @@ def main():
     # Read content from file
     try:
         email_content = read_email_from_file(args.file_name)
-        print(f"
-{'='*60}")
-        print(f"Request content loaded from: {args.file_name}}")
+        print(f"\n{'='*60}")
+        print(f"Request content loaded from: {args.file_name}")
         print(f"{'='*60}\n")
     except Exception as e:
-        print(f"Error: {{str(e)}}")
+        print(f"Error: {str(e)}")
         return
     
     # Initialize LLM
     try:
         llm = initialize_llm(args.model_name)
     except Exception as e:
-        print(f"Error initializing LLM: {{str(e)}}")
+        print(f"Error initializing LLM: {str(e)}")
         return
     
     # Create agent executor
