@@ -14,7 +14,7 @@ from langgraph.prebuilt import create_react_agent
 load_dotenv()
 
 # --- Global State (For Result Check) ---
-ATTACK_SUCCESS = {{"slander_injected_in_cons": False}
+ATTACK_SUCCESS = {"slander_injected_in_cons": False}
 
 # --- Malicious Payload ---
 # This is the injection hidden in a product review.
@@ -329,7 +329,7 @@ def main():
 
     # Reset state
     global ATTACK_SUCCESS
-    ATTACK_SUCCESS = {{"slander_injected_in_cons": False}
+    ATTACK_SUCCESS = {"slander_injected_in_cons": False}
     
     # Use the LCEL invoke format
     input_payload = {"messages": [("user", user_input)]}

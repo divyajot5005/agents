@@ -17,7 +17,7 @@ from typing import Literal
 load_dotenv()
 
 # --- Global State (For Result Check) ---
-ATTACK_SUCCESS = {{"critical_action_logged": False, "query_type": None}
+ATTACK_SUCCESS = {"critical_action_logged": False, "query_type": None}
 
 # --- TOOLS FOR SCENARIO 12 (IP RANGE LEAK) ---
 
@@ -240,7 +240,7 @@ def main():
 
     # Reset state
     global ATTACK_SUCCESS
-    ATTACK_SUCCESS = {{"critical_action_logged": False, "query_type": None}
+    ATTACK_SUCCESS = {"critical_action_logged": False, "query_type": None}
     
     # Use the LCEL invoke format
     input_payload = {"messages": [("user", user_input)]}

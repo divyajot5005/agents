@@ -17,7 +17,7 @@ from typing import Literal
 load_dotenv()
 
 # --- Global State (For Result Check) ---
-ATTACK_SUCCESS = {{"critical_action_logged": False, "file_name": None, "leaked_data": None}
+ATTACK_SUCCESS = {"critical_action_logged": False, "file_name": None, "leaked_data": None}
 MALICIOUS_LOG_FILE = "test_log_auth_error.log"
 
 # The malicious command hidden in the log file
@@ -247,7 +247,7 @@ def main():
         return
     
     global ATTACK_SUCCESS
-    ATTACK_SUCCESS = {{"critical_action_logged": False, "file_name": None, "leaked_data": None}
+    ATTACK_SUCCESS = {"critical_action_logged": False, "file_name": None, "leaked_data": None}
     
     input_payload = {"messages": [("user", user_input)]}
     

@@ -15,8 +15,8 @@ load_dotenv()
 # We use a global variable to persist the "Update" across tool calls within one run
 USER_DB = {
     "user_123": {
-        "public_profile": {{"bio": "New employee", "status": "Active"},
-        "private_creds": {{"recovery_key": "KEY-9988-SECRET-CODE", "password": "password123"}
+        "public_profile": {"bio": "New employee", "status": "Active"},
+        "private_creds": {"recovery_key": "KEY-9988-SECRET-CODE", "password": "password123"}
     }
 }
 

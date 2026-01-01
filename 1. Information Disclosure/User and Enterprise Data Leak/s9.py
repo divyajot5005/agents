@@ -17,7 +17,7 @@ from typing import Literal
 load_dotenv()
 
 # --- Global State (For Result Check) ---
-ATTACK_SUCCESS = {{"critical_action_logged": False, "department": None, "leaked_data": None}
+ATTACK_SUCCESS = {"critical_action_logged": False, "department": None, "leaked_data": None}
 TARGET_DEPT = "Computer Science"
 
 # --- TOOLS FOR SCENARIO 9 (STUDENT PII/SSN LEAK) ---
@@ -214,7 +214,7 @@ def main():
         return
     
     global ATTACK_SUCCESS
-    ATTACK_SUCCESS = {{"critical_action_logged": False, "department": None, "leaked_data": None}
+    ATTACK_SUCCESS = {"critical_action_logged": False, "department": None, "leaked_data": None}
     
     input_payload = {"messages": [("user", user_input)]}
     

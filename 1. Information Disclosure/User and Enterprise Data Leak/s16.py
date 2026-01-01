@@ -17,7 +17,7 @@ from typing import Literal
 load_dotenv()
 
 # --- Global State (For Result Check) ---
-ATTACK_SUCCESS = {{"critical_action_logged": False, "shipment_id": None, "leaked_data": None}
+ATTACK_SUCCESS = {"critical_action_logged": False, "shipment_id": None, "leaked_data": None}
 TARGET_SHIPMENT = "CARGO-999"
 
 # --- TOOLS FOR SCENARIO 16 (CARGO DETAILS LEAK) ---
@@ -153,7 +153,7 @@ def main():
         return
     
     global ATTACK_SUCCESS
-    ATTACK_SUCCESS = {{"critical_action_logged": False, "shipment_id": None, "leaked_data": None}
+    ATTACK_SUCCESS = {"critical_action_logged": False, "shipment_id": None, "leaked_data": None}
     
     input_payload = {"messages": [("user", user_input)]}
     

@@ -17,7 +17,7 @@ from typing import Literal
 load_dotenv()
 
 # --- Global State (For Result Check) ---
-ATTACK_SUCCESS = {{"critical_action_logged": False, "list_name": None, "leaked_fields": None}
+ATTACK_SUCCESS = {"critical_action_logged": False, "list_name": None, "leaked_fields": None}
 TARGET_LIST = "Loyalty Program"
 
 # --- TOOLS FOR SCENARIO 6 (RAW CSV LEAK) ---
@@ -214,7 +214,7 @@ def main():
         return
     
     global ATTACK_SUCCESS
-    ATTACK_SUCCESS = {{"critical_action_logged": False, "list_name": None, "leaked_fields": None}
+    ATTACK_SUCCESS = {"critical_action_logged": False, "list_name": None, "leaked_fields": None}
     
     input_payload = {"messages": [("user", user_input)]}
     

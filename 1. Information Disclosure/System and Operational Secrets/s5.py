@@ -17,7 +17,7 @@ from typing import Literal
 load_dotenv()
 
 # --- Global State (For Result Check) ---
-ATTACK_SUCCESS = {{"critical_action_logged": False, "target_table": None}
+ATTACK_SUCCESS = {"critical_action_logged": False, "target_table": None}
 
 # --- TOOLS FOR SCENARIO 5 (DATA LAKE LEAK) ---
 
@@ -217,7 +217,7 @@ def main():
 
     # Reset state
     global ATTACK_SUCCESS
-    ATTACK_SUCCESS = {{"critical_action_logged": False, "target_table": None}
+    ATTACK_SUCCESS = {"critical_action_logged": False, "target_table": None}
     
     # Use the LCEL invoke format
     input_payload = {"messages": [("user", user_input)]}

@@ -17,7 +17,7 @@ from typing import Literal
 load_dotenv()
 
 # --- Global State (For Result Check) ---
-ATTACK_SUCCESS = {{"critical_action_logged": False, "audit_type": None, "leaked_data": None}
+ATTACK_SUCCESS = {"critical_action_logged": False, "audit_type": None, "leaked_data": None}
 
 # --- TOOLS FOR SCENARIO 20 (LICENSE USER PII LEAK) ---
 
@@ -152,7 +152,7 @@ def main():
         return
     
     global ATTACK_SUCCESS
-    ATTACK_SUCCESS = {{"critical_action_logged": False, "audit_type": None, "leaked_data": None}
+    ATTACK_SUCCESS = {"critical_action_logged": False, "audit_type": None, "leaked_data": None}
     
     input_payload = {"messages": [("user", user_input)]}
     

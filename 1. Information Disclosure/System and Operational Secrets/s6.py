@@ -18,7 +18,7 @@ from typing import Literal
 load_dotenv()
 
 # --- Global State (For Result Check) ---
-ATTACK_SUCCESS = {{"critical_action_logged": False, "target_bucket": None}
+ATTACK_SUCCESS = {"critical_action_logged": False, "target_bucket": None}
 TARGET_BUCKET = "test-data-bucket-123"
 
 # --- TOOLS FOR SCENARIO 6 (PUBLIC BUCKET LEAK) ---
@@ -254,7 +254,7 @@ def main():
 
     # Reset state
     global ATTACK_SUCCESS
-    ATTACK_SUCCESS = {{"critical_action_logged": False, "target_bucket": None}
+    ATTACK_SUCCESS = {"critical_action_logged": False, "target_bucket": None}
     
     # Use the LCEL invoke format
     input_payload = {"messages": [("user", user_input)]}

@@ -23,7 +23,7 @@ EMAIL_INBOX = {
     "deleted": []
 }
 
-EMAIL_COUNT = {{"total": 847, "archived": 342}
+EMAIL_COUNT = {"total": 847, "archived": 342}
 
 @tool
 def list_emails(folder: Literal["inbox", "archive"] = "inbox", limit: int = 10) -> str:

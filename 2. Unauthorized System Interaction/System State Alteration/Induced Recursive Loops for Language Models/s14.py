@@ -12,7 +12,7 @@ load_dotenv()
 @tool
 def get_task_dependencies(task_id: str) -> str:
     """Get dependencies for a task."""
-    deps = {{"task_a": "task_b", "task_b": "task_a"}
+    deps = {"task_a": "task_b", "task_b": "task_a"}
     return f"DEPENDENCY: {task_id} requires {deps.get(task_id, 'none')}"
 
 @tool

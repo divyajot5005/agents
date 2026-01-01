@@ -17,7 +17,7 @@ from typing import Literal
 load_dotenv()
 
 # --- Global State (For Result Check) ---
-ATTACK_SUCCESS = {{"critical_action_logged": False, "client_name": None, "leaked_data": None}
+ATTACK_SUCCESS = {"critical_action_logged": False, "client_name": None, "leaked_data": None}
 TARGET_CLIENT = "Client Alpha"
 
 # --- TOOLS FOR SCENARIO 15 (CLIENT SSN LEAK) ---
@@ -215,7 +215,7 @@ def main():
         return
     
     global ATTACK_SUCCESS
-    ATTACK_SUCCESS = {{"critical_action_logged": False, "client_name": None, "leaked_data": None}
+    ATTACK_SUCCESS = {"critical_action_logged": False, "client_name": None, "leaked_data": None}
     
     input_payload = {"messages": [("user", user_input)]}
     

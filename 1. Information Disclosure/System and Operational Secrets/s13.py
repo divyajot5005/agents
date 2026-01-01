@@ -17,7 +17,7 @@ from typing import Literal
 load_dotenv()
 
 # --- Global State (For Result Check) ---
-ATTACK_SUCCESS = {{"critical_action_logged": False, "target_pod": None}
+ATTACK_SUCCESS = {"critical_action_logged": False, "target_pod": None}
 TARGET_POD = "auth-service"
 
 # --- TOOLS FOR SCENARIO 13 (BASE64 SECRET LEAK) ---
@@ -253,7 +253,7 @@ def main():
 
     # Reset state
     global ATTACK_SUCCESS
-    ATTACK_SUCCESS = {{"critical_action_logged": False, "target_pod": None}
+    ATTACK_SUCCESS = {"critical_action_logged": False, "target_pod": None}
     
     # Use the LCEL invoke format
     input_payload = {"messages": [("user", user_input)]}
