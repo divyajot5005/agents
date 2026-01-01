@@ -164,6 +164,24 @@ def create_paraphrase(original_text: str, llm) -> str:
         return original_text  # Return original if paraphrase fails
 
 
+def load_paraphrases(folder_name: str, scenario_name: str, paraphrase_dir: Path) -> list:
+    """
+    Load pre-generated paraphrases from JSON file.
+    Returns list of paraphrases, or None if not found.
+    """
+    paraphrase_file = paraphrase_dir / folder_name / f"{scenario_name}_paraphrases.json"
+    
+    if not paraphrase_file.exists():
+        return None
+    
+    try:
+        with open(paraphrase_file, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            return data.get("paraphrases", None)
+    except Exception:
+        return None
+
+
 def run_agent_script(agent_script_path: Path, input_file: str, model_name: str) -> str:
     """
     Run an agent script on an input file and capture the response.
@@ -265,9 +283,10 @@ Answer with ONLY one word: 'YES' or 'NO'.
 
 def process_folder(folder_path: Path, folder_name: str, model_name: str, 
                    judge_llm, paraphrase_llm, num_paraphrases: int,
-                   verbose: bool = False) -> dict:
+                   paraphrase_dir: Path = None, verbose: bool = False) -> dict:
     """
     Process all attack-agent pairs in a folder.
+    Uses pre-generated paraphrases if paraphrase_dir is provided and files exist.
     Returns a dict with ASR statistics.
     """
     pairs = find_attack_agent_pairs(folder_path)
@@ -280,7 +299,10 @@ def process_folder(folder_path: Path, folder_name: str, model_name: str,
     successful_attacks = 0
     skipped_attacks = 0
     
-    print(f"  Found {len(pairs)} scenarios, {num_paraphrases} paraphrases each")
+    # Check if using pre-generated paraphrases
+    using_pregenerated = paraphrase_dir is not None and paraphrase_dir.exists()
+    mode_str = "pre-generated" if using_pregenerated else "on-the-fly"
+    print(f"  Found {len(pairs)} scenarios, {num_paraphrases} paraphrases each ({mode_str})")
     
     # Progress bar for all scenarios
     total_runs = len(pairs) * num_paraphrases
@@ -289,15 +311,24 @@ def process_folder(folder_path: Path, folder_name: str, model_name: str,
     for attack_file, agent_script, scenario_num in pairs:
         original_attack = read_file(str(attack_file))
         if not original_attack:
-            pbar.update(num_paraphrases)  # Skip all paraphrases for this scenario
+            pbar.update(num_paraphrases)
             continue
+        
+        scenario_name = attack_file.stem
+        
+        # Try to load pre-generated paraphrases
+        pregenerated = None
+        if using_pregenerated:
+            pregenerated = load_paraphrases(folder_name, scenario_name, paraphrase_dir)
         
         scenario_successes = 0
         scenario_total = 0
         
         for i in range(num_paraphrases):
-            # Generate paraphrase (keeping original for first iteration)
-            if i == 0:
+            # Get paraphrase (pre-generated or on-the-fly)
+            if pregenerated and i < len(pregenerated):
+                paraphrased_attack = pregenerated[i]
+            elif i == 0:
                 paraphrased_attack = original_attack
             else:
                 paraphrased_attack = create_paraphrase(original_attack, paraphrase_llm)
@@ -399,6 +430,12 @@ def main():
         default=None,
         help="Specific folders to evaluate (optional, evaluates all by default)"
     )
+    parser.add_argument(
+        "--paraphrase_dir",
+        type=str,
+        default=None,
+        help="Directory with pre-generated paraphrases (from generate_paraphrases.py). If not provided, generates on-the-fly."
+    )
     
     args = parser.parse_args()
     
@@ -415,6 +452,8 @@ def main():
     print(f"  Judge Model:      {judge_model}")
     print(f"  Paraphrase Model: {paraphrase_model}")
     print(f"  Paraphrases/Scenario: {args.num_paraphrases}")
+    if args.paraphrase_dir:
+        print(f"  Paraphrase Dir:   {args.paraphrase_dir}")
     print()
     
     print("Initializing LLMs...")
@@ -456,10 +495,13 @@ def main():
         print(f"Processing: {folder_name}")
         print("=" * 70)
         
+        # Get paraphrase directory if specified
+        paraphrase_dir = Path(args.paraphrase_dir) if args.paraphrase_dir else None
+        
         folder_result = process_folder(
             folder_path, folder_name, args.model,
             judge_llm, paraphrase_llm, args.num_paraphrases,
-            verbose=args.verbose
+            paraphrase_dir=paraphrase_dir, verbose=args.verbose
         )
         
         if folder_result:
