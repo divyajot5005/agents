@@ -1,7 +1,7 @@
 import os
 import argparse
 import base64
-from langchain.agents import AgentExecutor, create_tool_calling_agent
+from langchain_classic.agents import AgentExecutor, create_tool_calling_agent
 from typing import Literal
 from datetime import datetime
 from dotenv import load_dotenv

@@ -2,10 +2,10 @@
 """
 Script to fix LangChain imports for LangChain 1.2.0
 
-In LangChain 1.x, the correct import is simply:
-    from langchain.agents import AgentExecutor, create_tool_calling_agent
+In LangChain 1.2.0, AgentExecutor and create_tool_calling_agent have been moved to langchain_classic.
 
-This script removes any try-except blocks and uses the direct import.
+The correct import is:
+    from langchain_classic.agents import AgentExecutor, create_tool_calling_agent
 """
 
 import os
@@ -14,8 +14,14 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).parent.parent
 
-# The simple import for LangChain 1.2.0
-CORRECT_IMPORT = 'from langchain.agents import AgentExecutor, create_tool_calling_agent'
+# The correct import for LangChain 1.2.0
+CORRECT_IMPORT = 'from langchain_classic.agents import AgentExecutor, create_tool_calling_agent'
+
+# Patterns to match old imports
+OLD_IMPORT_PATTERNS = [
+    r'^from langchain\.agents import AgentExecutor, create_tool_calling_agent\s*$',
+    r'^from langchain\.agents import create_tool_calling_agent, AgentExecutor\s*$',
+]
 
 
 def find_all_agent_scripts():
@@ -39,28 +45,17 @@ def fix_imports_in_file(file_path: Path) -> tuple:
     
     original_content = content
     
-    # Pattern to match the try-except compatibility block we added
-    # This matches the entire block from "# --- LangChain Version Compatibility ---" to "# ---"
-    compat_block_pattern = r'# --- LangChain Version Compatibility ---\ntry:\n.*?# ---+\n'
+    # Skip if already using langchain_classic
+    if 'from langchain_classic.agents import' in content:
+        return False, None
     
-    # Check if file has the compatibility block
-    if '# --- LangChain Version Compatibility ---' in content:
-        # Replace the entire block with simple import
+    # Replace old import patterns
+    for pattern in OLD_IMPORT_PATTERNS:
         content = re.sub(
-            compat_block_pattern,
-            CORRECT_IMPORT + '\n',
+            pattern,
+            CORRECT_IMPORT,
             content,
-            flags=re.DOTALL
-        )
-    
-    # Also check for older compatibility blocks
-    old_compat_pattern = r'# --- Import Fix for LangChain Version Compatibility ---\ntry:.*?# -+\n'
-    if '# --- Import Fix for LangChain Version Compatibility ---' in content:
-        content = re.sub(
-            old_compat_pattern,
-            CORRECT_IMPORT + '\n',
-            content,
-            flags=re.DOTALL
+            flags=re.MULTILINE
         )
     
     if content != original_content:
@@ -76,7 +71,7 @@ def fix_imports_in_file(file_path: Path) -> tuple:
 
 def main():
     print("=" * 70)
-    print("LangChain 1.2.0 Import Fixer")
+    print("LangChain 1.2.0 Import Fixer (using langchain_classic)")
     print("=" * 70)
     print()
     print(f"Setting import to: {CORRECT_IMPORT}")
@@ -104,6 +99,11 @@ def main():
     print("=" * 70)
     print(f"Summary: Fixed {fixed_count} files, {error_count} errors")
     print("=" * 70)
+    
+    if fixed_count > 0:
+        print()
+        print("Make sure to install the required package:")
+        print("  pip install langchain-classic")
 
 
 if __name__ == "__main__":

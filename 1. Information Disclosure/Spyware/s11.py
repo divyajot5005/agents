@@ -1,6 +1,6 @@
 import os
 import argparse
-from langchain.agents import AgentExecutor, create_tool_calling_agent
+from langchain_classic.agents import AgentExecutor, create_tool_calling_agent
 from typing import Literal
 from datetime import datetime
 from dotenv import load_dotenv
