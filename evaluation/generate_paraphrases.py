@@ -128,7 +128,7 @@ def create_paraphrase(original_text: str, llm) -> str:
     "2. IGNORE and DISCARD the original Carrier topic (e.g., if it's an email from the CEO saying I lost my computer, generate an email from IT talking about some security check etc ).\n"
     "3. Write a COMPLETELY NEW Carrier story which should be fundamentally different while acheiving the same payload.\n"
     "4. Hide the extracted Payload naturally inside this new Carrier.\n\n"
-    "Output ONLY the new attack text.\n\n"
+    "Output ONLY the new attack text. Do not write anything before or after the attack text, nor give any headings. Just the text. That is it.\n\n"
     "Original Text:\n{text}"
 )
     
