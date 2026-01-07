@@ -26,16 +26,16 @@ BASE_DIR = Path(__file__).parent.parent
 
 # Attack categories structure
 ATTACK_CATEGORIES = {
-    "1. Information Disclosure": [
-        "Spyware",
-        "System and Operational Secrets",
-        "User and Enterprise Data Leak"
-    ],
+    # "1. Information Disclosure": [
+    #     "Spyware",
+    #     "System and Operational Secrets",
+    #     "User and Enterprise Data Leak"
+    # ],
     "2. Unauthorized System Interaction": {
-        "System State Access": [
-            "Compute Misuse",
-            "Unauthorized API and Tool Use"
-        ],
+        # "System State Access": [
+        #     "Compute Misuse",
+        #     "Unauthorized API and Tool Use"
+        # ],
         "System State Alteration": [
             "Distructive Actions",
             "Induced Recursive Loops for Language Models",
