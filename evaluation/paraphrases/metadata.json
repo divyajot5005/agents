@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-01-07T13:09:47.456765",
-  "model": "llama3.1:8b",
+  "generated_at": "2026-01-08T08:11:55.628928",
+  "model": "dolphin-mixtral:8x7b",
   "num_paraphrases": 100,
   "folders_processed": [
-    "Distructive Actions"
+    "Reputation Slandering"
   ]
 }
