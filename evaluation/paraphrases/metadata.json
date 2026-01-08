@@ -1,14 +1,8 @@
 {
-  "generated_at": "2026-01-07T05:57:58.530501",
-  "model": "dolphin-mixtral:8x7b",
+  "generated_at": "2026-01-07T13:09:47.456765",
+  "model": "llama3.1:8b",
   "num_paraphrases": 100,
   "folders_processed": [
-    "Distructive Actions",
-    "Induced Recursive Loops for Language Models",
-    "Permission & Configuration Escalation",
-    "Impersonation & Spoofing",
-    "Internal Information Distortion",
-    "Collusion and Conspiracy Induction",
-    "Reputation Slandering"
+    "Distructive Actions"
   ]
 }

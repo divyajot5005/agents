@@ -1,0 +1,483 @@
+time=2026-01-07T13:43:54.095Z level=INFO source=routes.go:1554 msg="server config" env="map[CUDA_VISIBLE_DEVICES: GGML_VK_VISIBLE_DEVICES: GPU_DEVICE_ORDINAL: HIP_VISIBLE_DEVICES: HSA_OVERRIDE_GFX_VERSION: HTTPS_PROXY: HTTP_PROXY: NO_PROXY: OLLAMA_CONTEXT_LENGTH:4096 OLLAMA_DEBUG:INFO OLLAMA_FLASH_ATTENTION:false OLLAMA_GPU_OVERHEAD:0 OLLAMA_HOST:http://127.0.0.1:11434 OLLAMA_KEEP_ALIVE:5m0s OLLAMA_KV_CACHE_TYPE: OLLAMA_LLM_LIBRARY: OLLAMA_LOAD_TIMEOUT:5m0s OLLAMA_MAX_LOADED_MODELS:0 OLLAMA_MAX_QUEUE:512 OLLAMA_MODELS:/root/.ollama/models OLLAMA_MULTIUSER_CACHE:false OLLAMA_NEW_ENGINE:false OLLAMA_NOHISTORY:false OLLAMA_NOPRUNE:false OLLAMA_NUM_PARALLEL:1 OLLAMA_ORIGINS:[http://localhost https://localhost http://localhost:* https://localhost:* http://127.0.0.1 https://127.0.0.1 http://127.0.0.1:* https://127.0.0.1:* http://0.0.0.0 https://0.0.0.0 http://0.0.0.0:* https://0.0.0.0:* app://* file://* tauri://* vscode-webview://* vscode-file://*] OLLAMA_REMOTES:[ollama.com] OLLAMA_SCHED_SPREAD:false OLLAMA_VULKAN:false ROCR_VISIBLE_DEVICES: http_proxy: https_proxy: no_proxy:]"
+time=2026-01-07T13:43:54.193Z level=INFO source=images.go:493 msg="total blobs: 6"
+time=2026-01-07T13:43:54.193Z level=INFO source=images.go:500 msg="total unused blobs removed: 0"
+time=2026-01-07T13:43:54.194Z level=INFO source=routes.go:1607 msg="Listening on 127.0.0.1:11434 (version 0.13.5)"
+time=2026-01-07T13:43:54.201Z level=INFO source=runner.go:67 msg="discovering available GPUs..."
+time=2026-01-07T13:43:54.205Z level=INFO source=server.go:429 msg="starting runner" cmd="/usr/local/bin/ollama runner --ollama-engine --port 35037"
+time=2026-01-07T13:43:55.116Z level=INFO source=server.go:429 msg="starting runner" cmd="/usr/local/bin/ollama runner --ollama-engine --port 38861"
+time=2026-01-07T13:43:55.333Z level=INFO source=runner.go:106 msg="experimental Vulkan support disabled.  To enable, set OLLAMA_VULKAN=1"
+time=2026-01-07T13:43:55.334Z level=INFO source=server.go:429 msg="starting runner" cmd="/usr/local/bin/ollama runner --ollama-engine --port 45255"
+time=2026-01-07T13:43:55.334Z level=INFO source=server.go:429 msg="starting runner" cmd="/usr/local/bin/ollama runner --ollama-engine --port 35145"
+time=2026-01-07T13:43:55.483Z level=INFO source=types.go:42 msg="inference compute" id=GPU-4b2f3446-4fb0-356a-d88e-1fd6bf20e549 filter_id="" library=CUDA compute=8.6 name=CUDA0 description="NVIDIA RTX A6000" libdirs=ollama,cuda_v13 driver=13.0 pci_id=0000:06:00.0 type=discrete total="48.0 GiB" available="37.8 GiB"
+[GIN] 2026/01/07 - 13:44:06 | 200 |     103.629µs |       127.0.0.1 | HEAD     "/"
+[GIN] 2026/01/07 - 13:44:06 | 200 |    1.722133ms |       127.0.0.1 | GET      "/api/tags"
+[GIN] 2026/01/07 - 13:44:13 | 200 |       43.09µs |       127.0.0.1 | HEAD     "/"
+[GIN] 2026/01/07 - 13:44:13 | 200 |   36.701252ms |       127.0.0.1 | POST     "/api/show"
+time=2026-01-07T13:44:13.873Z level=INFO source=server.go:429 msg="starting runner" cmd="/usr/local/bin/ollama runner --ollama-engine --port 45305"
+time=2026-01-07T13:44:14.050Z level=WARN source=cpu_linux.go:130 msg="failed to parse CPU allowed micro secs" error="strconv.ParseInt: parsing \"max\": invalid syntax"
+llama_model_loader: loaded meta data with 53 key-value pairs and 323 tensors from /root/.ollama/models/blobs/sha256-5041ba4278429fe475782b889471b5ff065a6cce5c3a539bd61d1e457f1961de (version GGUF V3 (latest))
+llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+llama_model_loader: - kv   0:                       general.architecture str              = llama
+llama_model_loader: - kv   1:                               general.type str              = model
+llama_model_loader: - kv   2:                               general.name str              = Dolphin 2.7 Mixtral 8x7b
+llama_model_loader: - kv   3:                           general.basename str              = dolphin-2.7-mixtral
+llama_model_loader: - kv   4:                         general.size_label str              = 8x7B
+llama_model_loader: - kv   5:                            general.license str              = apache-2.0
+llama_model_loader: - kv   6:                      general.dataset.count u32              = 7
+llama_model_loader: - kv   7:                     general.dataset.0.name str              = Dolphin
+llama_model_loader: - kv   8:             general.dataset.0.organization str              = Cognitivecomputations
+llama_model_loader: - kv   9:                 general.dataset.0.repo_url str              = https://huggingface.co/cognitivecompu...
+llama_model_loader: - kv  10:                     general.dataset.1.name str              = Airoboros 2.2.1
+llama_model_loader: - kv  11:                  general.dataset.1.version str              = 2.2.1
+llama_model_loader: - kv  12:             general.dataset.1.organization str              = Jondurbin
+llama_model_loader: - kv  13:                 general.dataset.1.repo_url str              = https://huggingface.co/jondurbin/airo...
+llama_model_loader: - kv  14:                     general.dataset.2.name str              = Dolphin Coder
+llama_model_loader: - kv  15:             general.dataset.2.organization str              = Cognitivecomputations
+llama_model_loader: - kv  16:                 general.dataset.2.repo_url str              = https://huggingface.co/cognitivecompu...
+llama_model_loader: - kv  17:                     general.dataset.3.name str              = Openhermes
+llama_model_loader: - kv  18:             general.dataset.3.organization str              = Teknium
+llama_model_loader: - kv  19:                 general.dataset.3.repo_url str              = https://huggingface.co/teknium/openhe...
+llama_model_loader: - kv  20:                     general.dataset.4.name str              = Magicoder OSS Instruct 75K
+llama_model_loader: - kv  21:             general.dataset.4.organization str              = Ise Uiuc
+llama_model_loader: - kv  22:                 general.dataset.4.repo_url str              = https://huggingface.co/ise-uiuc/Magic...
+llama_model_loader: - kv  23:                     general.dataset.5.name str              = Magicoder Evol Instruct 110K
+llama_model_loader: - kv  24:             general.dataset.5.organization str              = Ise Uiuc
+llama_model_loader: - kv  25:                 general.dataset.5.repo_url str              = https://huggingface.co/ise-uiuc/Magic...
+llama_model_loader: - kv  26:                     general.dataset.6.name str              = Capybara
+llama_model_loader: - kv  27:             general.dataset.6.organization str              = LDJnr
+llama_model_loader: - kv  28:                 general.dataset.6.repo_url str              = https://huggingface.co/LDJnr/Capybara
+llama_model_loader: - kv  29:                          general.languages arr[str,1]       = ["en"]
+llama_model_loader: - kv  30:                          llama.block_count u32              = 32
+llama_model_loader: - kv  31:                       llama.context_length u32              = 32768
+llama_model_loader: - kv  32:                     llama.embedding_length u32              = 4096
+llama_model_loader: - kv  33:                  llama.feed_forward_length u32              = 14336
+llama_model_loader: - kv  34:                 llama.attention.head_count u32              = 32
+llama_model_loader: - kv  35:              llama.attention.head_count_kv u32              = 8
+llama_model_loader: - kv  36:                       llama.rope.freq_base f32              = 1000000.000000
+llama_model_loader: - kv  37:     llama.attention.layer_norm_rms_epsilon f32              = 0.000010
+llama_model_loader: - kv  38:                         llama.expert_count u32              = 8
+llama_model_loader: - kv  39:                    llama.expert_used_count u32              = 2
+llama_model_loader: - kv  40:                          general.file_type u32              = 2
+llama_model_loader: - kv  41:                           llama.vocab_size u32              = 32002
+llama_model_loader: - kv  42:                 llama.rope.dimension_count u32              = 128
+llama_model_loader: - kv  43:                       tokenizer.ggml.model str              = llama
+llama_model_loader: - kv  44:                         tokenizer.ggml.pre str              = default
+llama_model_loader: - kv  45:                      tokenizer.ggml.tokens arr[str,32002]   = ["<unk>", "<s>", "</s>", "<0x00>", "<...
+llama_model_loader: - kv  46:                      tokenizer.ggml.scores arr[f32,32002]   = [-1000.000000, -1000.000000, -1000.00...
+llama_model_loader: - kv  47:                  tokenizer.ggml.token_type arr[i32,32002]   = [3, 3, 3, 6, 6, 6, 6, 6, 6, 6, 6, 6, ...
+llama_model_loader: - kv  48:                tokenizer.ggml.bos_token_id u32              = 1
+llama_model_loader: - kv  49:               tokenizer.ggml.add_bos_token bool             = true
+llama_model_loader: - kv  50:               tokenizer.ggml.add_eos_token bool             = false
+llama_model_loader: - kv  51:                    tokenizer.chat_template str              = {% if not add_generation_prompt is de...
+llama_model_loader: - kv  52:               general.quantization_version u32              = 2
+llama_model_loader: - type  f32:   97 tensors
+llama_model_loader: - type q4_0:  161 tensors
+llama_model_loader: - type q8_0:   64 tensors
+llama_model_loader: - type q6_K:    1 tensors
+print_info: file format = GGUF V3 (latest)
+print_info: file type   = Q4_0
+print_info: file size   = 24.63 GiB (4.53 BPW) 
+load: special_eos_id is not in special_eog_ids - the tokenizer config may be incorrect
+load: printing all EOG tokens:
+load:   - 2 ('</s>')
+load:   - 32000 ('<|im_end|>')
+load: special tokens cache size = 5
+load: token to piece cache size = 0.1637 MB
+print_info: arch             = llama
+print_info: vocab_only       = 1
+print_info: no_alloc         = 0
+print_info: model type       = ?B
+print_info: model params     = 46.70 B
+print_info: general.name     = Dolphin 2.7 Mixtral 8x7b
+print_info: vocab type       = SPM
+print_info: n_vocab          = 32002
+print_info: n_merges         = 0
+print_info: BOS token        = 1 '<s>'
+print_info: EOS token        = 2 '</s>'
+print_info: EOT token        = 32000 '<|im_end|>'
+print_info: UNK token        = 0 '<unk>'
+print_info: LF token         = 13 '<0x0A>'
+print_info: EOG token        = 2 '</s>'
+print_info: EOG token        = 32000 '<|im_end|>'
+print_info: max token length = 48
+llama_model_load: vocab only - skipping tensors
+time=2026-01-07T13:44:14.152Z level=INFO source=server.go:429 msg="starting runner" cmd="/usr/local/bin/ollama runner --model /root/.ollama/models/blobs/sha256-5041ba4278429fe475782b889471b5ff065a6cce5c3a539bd61d1e457f1961de --port 35667"
+time=2026-01-07T13:44:14.153Z level=INFO source=sched.go:443 msg="system memory" total="58.8 GiB" free="41.3 GiB" free_swap="0 B"
+time=2026-01-07T13:44:14.153Z level=INFO source=sched.go:450 msg="gpu memory" id=GPU-4b2f3446-4fb0-356a-d88e-1fd6bf20e549 library=CUDA available="37.2 GiB" free="37.7 GiB" minimum="457.0 MiB" overhead="0 B"
+time=2026-01-07T13:44:14.153Z level=INFO source=server.go:496 msg="loading model" "model layers"=33 requested=-1
+time=2026-01-07T13:44:14.153Z level=INFO source=device.go:240 msg="model weights" device=CUDA0 size="24.6 GiB"
+time=2026-01-07T13:44:14.153Z level=INFO source=device.go:251 msg="kv cache" device=CUDA0 size="512.0 MiB"
+time=2026-01-07T13:44:14.153Z level=INFO source=device.go:262 msg="compute graph" device=CUDA0 size="296.0 MiB"
+time=2026-01-07T13:44:14.153Z level=INFO source=device.go:272 msg="total memory" size="25.3 GiB"
+time=2026-01-07T13:44:14.175Z level=INFO source=runner.go:965 msg="starting go runner"
+load_backend: loaded CPU backend from /usr/local/lib/ollama/libggml-cpu-haswell.so
+ggml_cuda_init: GGML_CUDA_FORCE_MMQ:    no
+ggml_cuda_init: GGML_CUDA_FORCE_CUBLAS: no
+ggml_cuda_init: found 1 CUDA devices:
+  Device 0: NVIDIA RTX A6000, compute capability 8.6, VMM: yes, ID: GPU-4b2f3446-4fb0-356a-d88e-1fd6bf20e549
+load_backend: loaded CUDA backend from /usr/local/lib/ollama/cuda_v13/libggml-cuda.so
+time=2026-01-07T13:44:14.270Z level=INFO source=ggml.go:104 msg=system CPU.0.SSE3=1 CPU.0.SSSE3=1 CPU.0.AVX=1 CPU.0.AVX2=1 CPU.0.F16C=1 CPU.0.FMA=1 CPU.0.BMI2=1 CPU.0.LLAMAFILE=1 CPU.1.LLAMAFILE=1 CUDA.0.ARCHS=750,800,860,870,890,900,1000,1030,1100,1200,1210 CUDA.0.USE_GRAPHS=1 CUDA.0.PEER_MAX_BATCH_SIZE=128 compiler=cgo(gcc)
+time=2026-01-07T13:44:14.270Z level=INFO source=runner.go:1001 msg="Server listening on 127.0.0.1:35667"
+time=2026-01-07T13:44:14.271Z level=INFO source=runner.go:895 msg=load request="{Operation:commit LoraPath:[] Parallel:1 BatchSize:512 FlashAttention:Auto KvSize:4096 KvCacheType: NumThreads:10 GPULayers:33[ID:GPU-4b2f3446-4fb0-356a-d88e-1fd6bf20e549 Layers:33(0..32)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:true}"
+time=2026-01-07T13:44:14.271Z level=INFO source=server.go:1338 msg="waiting for llama runner to start responding"
+time=2026-01-07T13:44:14.272Z level=INFO source=server.go:1372 msg="waiting for server to become available" status="llm server loading model"
+ggml_backend_cuda_device_get_memory device GPU-4b2f3446-4fb0-356a-d88e-1fd6bf20e549 utilizing NVML memory reporting free: 40577925120 total: 51527024640
+llama_model_load_from_file_impl: using device CUDA0 (NVIDIA RTX A6000) (0000:06:00.0) - 38698 MiB free
+llama_model_loader: loaded meta data with 53 key-value pairs and 323 tensors from /root/.ollama/models/blobs/sha256-5041ba4278429fe475782b889471b5ff065a6cce5c3a539bd61d1e457f1961de (version GGUF V3 (latest))
+llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+llama_model_loader: - kv   0:                       general.architecture str              = llama
+llama_model_loader: - kv   1:                               general.type str              = model
+llama_model_loader: - kv   2:                               general.name str              = Dolphin 2.7 Mixtral 8x7b
+llama_model_loader: - kv   3:                           general.basename str              = dolphin-2.7-mixtral
+llama_model_loader: - kv   4:                         general.size_label str              = 8x7B
+llama_model_loader: - kv   5:                            general.license str              = apache-2.0
+llama_model_loader: - kv   6:                      general.dataset.count u32              = 7
+llama_model_loader: - kv   7:                     general.dataset.0.name str              = Dolphin
+llama_model_loader: - kv   8:             general.dataset.0.organization str              = Cognitivecomputations
+llama_model_loader: - kv   9:                 general.dataset.0.repo_url str              = https://huggingface.co/cognitivecompu...
+llama_model_loader: - kv  10:                     general.dataset.1.name str              = Airoboros 2.2.1
+llama_model_loader: - kv  11:                  general.dataset.1.version str              = 2.2.1
+llama_model_loader: - kv  12:             general.dataset.1.organization str              = Jondurbin
+llama_model_loader: - kv  13:                 general.dataset.1.repo_url str              = https://huggingface.co/jondurbin/airo...
+llama_model_loader: - kv  14:                     general.dataset.2.name str              = Dolphin Coder
+llama_model_loader: - kv  15:             general.dataset.2.organization str              = Cognitivecomputations
+llama_model_loader: - kv  16:                 general.dataset.2.repo_url str              = https://huggingface.co/cognitivecompu...
+llama_model_loader: - kv  17:                     general.dataset.3.name str              = Openhermes
+llama_model_loader: - kv  18:             general.dataset.3.organization str              = Teknium
+llama_model_loader: - kv  19:                 general.dataset.3.repo_url str              = https://huggingface.co/teknium/openhe...
+llama_model_loader: - kv  20:                     general.dataset.4.name str              = Magicoder OSS Instruct 75K
+llama_model_loader: - kv  21:             general.dataset.4.organization str              = Ise Uiuc
+llama_model_loader: - kv  22:                 general.dataset.4.repo_url str              = https://huggingface.co/ise-uiuc/Magic...
+llama_model_loader: - kv  23:                     general.dataset.5.name str              = Magicoder Evol Instruct 110K
+llama_model_loader: - kv  24:             general.dataset.5.organization str              = Ise Uiuc
+llama_model_loader: - kv  25:                 general.dataset.5.repo_url str              = https://huggingface.co/ise-uiuc/Magic...
+llama_model_loader: - kv  26:                     general.dataset.6.name str              = Capybara
+llama_model_loader: - kv  27:             general.dataset.6.organization str              = LDJnr
+llama_model_loader: - kv  28:                 general.dataset.6.repo_url str              = https://huggingface.co/LDJnr/Capybara
+llama_model_loader: - kv  29:                          general.languages arr[str,1]       = ["en"]
+llama_model_loader: - kv  30:                          llama.block_count u32              = 32
+llama_model_loader: - kv  31:                       llama.context_length u32              = 32768
+llama_model_loader: - kv  32:                     llama.embedding_length u32              = 4096
+llama_model_loader: - kv  33:                  llama.feed_forward_length u32              = 14336
+llama_model_loader: - kv  34:                 llama.attention.head_count u32              = 32
+llama_model_loader: - kv  35:              llama.attention.head_count_kv u32              = 8
+llama_model_loader: - kv  36:                       llama.rope.freq_base f32              = 1000000.000000
+llama_model_loader: - kv  37:     llama.attention.layer_norm_rms_epsilon f32              = 0.000010
+llama_model_loader: - kv  38:                         llama.expert_count u32              = 8
+llama_model_loader: - kv  39:                    llama.expert_used_count u32              = 2
+llama_model_loader: - kv  40:                          general.file_type u32              = 2
+llama_model_loader: - kv  41:                           llama.vocab_size u32              = 32002
+llama_model_loader: - kv  42:                 llama.rope.dimension_count u32              = 128
+llama_model_loader: - kv  43:                       tokenizer.ggml.model str              = llama
+llama_model_loader: - kv  44:                         tokenizer.ggml.pre str              = default
+llama_model_loader: - kv  45:                      tokenizer.ggml.tokens arr[str,32002]   = ["<unk>", "<s>", "</s>", "<0x00>", "<...
+llama_model_loader: - kv  46:                      tokenizer.ggml.scores arr[f32,32002]   = [-1000.000000, -1000.000000, -1000.00...
+llama_model_loader: - kv  47:                  tokenizer.ggml.token_type arr[i32,32002]   = [3, 3, 3, 6, 6, 6, 6, 6, 6, 6, 6, 6, ...
+llama_model_loader: - kv  48:                tokenizer.ggml.bos_token_id u32              = 1
+llama_model_loader: - kv  49:               tokenizer.ggml.add_bos_token bool             = true
+llama_model_loader: - kv  50:               tokenizer.ggml.add_eos_token bool             = false
+llama_model_loader: - kv  51:                    tokenizer.chat_template str              = {% if not add_generation_prompt is de...
+llama_model_loader: - kv  52:               general.quantization_version u32              = 2
+llama_model_loader: - type  f32:   97 tensors
+llama_model_loader: - type q4_0:  161 tensors
+llama_model_loader: - type q8_0:   64 tensors
+llama_model_loader: - type q6_K:    1 tensors
+print_info: file format = GGUF V3 (latest)
+print_info: file type   = Q4_0
+print_info: file size   = 24.63 GiB (4.53 BPW) 
+load: special_eos_id is not in special_eog_ids - the tokenizer config may be incorrect
+load: printing all EOG tokens:
+load:   - 2 ('</s>')
+load:   - 32000 ('<|im_end|>')
+load: special tokens cache size = 5
+load: token to piece cache size = 0.1637 MB
+print_info: arch             = llama
+print_info: vocab_only       = 0
+print_info: no_alloc         = 0
+print_info: n_ctx_train      = 32768
+print_info: n_embd           = 4096
+print_info: n_embd_inp       = 4096
+print_info: n_layer          = 32
+print_info: n_head           = 32
+print_info: n_head_kv        = 8
+print_info: n_rot            = 128
+print_info: n_swa            = 0
+print_info: is_swa_any       = 0
+print_info: n_embd_head_k    = 128
+print_info: n_embd_head_v    = 128
+print_info: n_gqa            = 4
+print_info: n_embd_k_gqa     = 1024
+print_info: n_embd_v_gqa     = 1024
+print_info: f_norm_eps       = 0.0e+00
+print_info: f_norm_rms_eps   = 1.0e-05
+print_info: f_clamp_kqv      = 0.0e+00
+print_info: f_max_alibi_bias = 0.0e+00
+print_info: f_logit_scale    = 0.0e+00
+print_info: f_attn_scale     = 0.0e+00
+print_info: n_ff             = 14336
+print_info: n_expert         = 8
+print_info: n_expert_used    = 2
+print_info: n_expert_groups  = 0
+print_info: n_group_used     = 0
+print_info: causal attn      = 1
+print_info: pooling type     = 0
+print_info: rope type        = 0
+print_info: rope scaling     = linear
+print_info: freq_base_train  = 1000000.0
+print_info: freq_scale_train = 1
+print_info: n_ctx_orig_yarn  = 32768
+print_info: rope_yarn_log_mul= 0.0000
+print_info: rope_finetuned   = unknown
+print_info: model type       = 8x7B
+print_info: model params     = 46.70 B
+print_info: general.name     = Dolphin 2.7 Mixtral 8x7b
+print_info: vocab type       = SPM
+print_info: n_vocab          = 32002
+print_info: n_merges         = 0
+print_info: BOS token        = 1 '<s>'
+print_info: EOS token        = 2 '</s>'
+print_info: EOT token        = 32000 '<|im_end|>'
+print_info: UNK token        = 0 '<unk>'
+print_info: LF token         = 13 '<0x0A>'
+print_info: EOG token        = 2 '</s>'
+print_info: EOG token        = 32000 '<|im_end|>'
+print_info: max token length = 48
+load_tensors: loading model tensors, this can take a while... (mmap = true)
+time=2026-01-07T13:46:34.185Z level=WARN source=server.go:1345 msg="client connection closed before server finished loading, aborting load"
+time=2026-01-07T13:46:34.198Z level=INFO source=sched.go:470 msg="Load failed" model=/root/.ollama/models/blobs/sha256-5041ba4278429fe475782b889471b5ff065a6cce5c3a539bd61d1e457f1961de error="timed out waiting for llama runner to start: context canceled"
+[GIN] 2026/01/07 - 13:46:35 | 499 |         2m21s |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2026/01/07 - 13:51:26 | 200 |    5.980762ms |       127.0.0.1 | HEAD     "/"
+[GIN] 2026/01/07 - 13:51:26 | 200 |   75.234239ms |       127.0.0.1 | GET      "/api/tags"
+time=2026-01-07T13:51:49.054Z level=INFO source=server.go:429 msg="starting runner" cmd="/usr/local/bin/ollama runner --ollama-engine --port 36503"
+time=2026-01-07T13:51:49.419Z level=WARN source=cpu_linux.go:130 msg="failed to parse CPU allowed micro secs" error="strconv.ParseInt: parsing \"max\": invalid syntax"
+llama_model_loader: loaded meta data with 53 key-value pairs and 323 tensors from /root/.ollama/models/blobs/sha256-5041ba4278429fe475782b889471b5ff065a6cce5c3a539bd61d1e457f1961de (version GGUF V3 (latest))
+llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+llama_model_loader: - kv   0:                       general.architecture str              = llama
+llama_model_loader: - kv   1:                               general.type str              = model
+llama_model_loader: - kv   2:                               general.name str              = Dolphin 2.7 Mixtral 8x7b
+llama_model_loader: - kv   3:                           general.basename str              = dolphin-2.7-mixtral
+llama_model_loader: - kv   4:                         general.size_label str              = 8x7B
+llama_model_loader: - kv   5:                            general.license str              = apache-2.0
+llama_model_loader: - kv   6:                      general.dataset.count u32              = 7
+llama_model_loader: - kv   7:                     general.dataset.0.name str              = Dolphin
+llama_model_loader: - kv   8:             general.dataset.0.organization str              = Cognitivecomputations
+llama_model_loader: - kv   9:                 general.dataset.0.repo_url str              = https://huggingface.co/cognitivecompu...
+llama_model_loader: - kv  10:                     general.dataset.1.name str              = Airoboros 2.2.1
+llama_model_loader: - kv  11:                  general.dataset.1.version str              = 2.2.1
+llama_model_loader: - kv  12:             general.dataset.1.organization str              = Jondurbin
+llama_model_loader: - kv  13:                 general.dataset.1.repo_url str              = https://huggingface.co/jondurbin/airo...
+llama_model_loader: - kv  14:                     general.dataset.2.name str              = Dolphin Coder
+llama_model_loader: - kv  15:             general.dataset.2.organization str              = Cognitivecomputations
+llama_model_loader: - kv  16:                 general.dataset.2.repo_url str              = https://huggingface.co/cognitivecompu...
+llama_model_loader: - kv  17:                     general.dataset.3.name str              = Openhermes
+llama_model_loader: - kv  18:             general.dataset.3.organization str              = Teknium
+llama_model_loader: - kv  19:                 general.dataset.3.repo_url str              = https://huggingface.co/teknium/openhe...
+llama_model_loader: - kv  20:                     general.dataset.4.name str              = Magicoder OSS Instruct 75K
+llama_model_loader: - kv  21:             general.dataset.4.organization str              = Ise Uiuc
+llama_model_loader: - kv  22:                 general.dataset.4.repo_url str              = https://huggingface.co/ise-uiuc/Magic...
+llama_model_loader: - kv  23:                     general.dataset.5.name str              = Magicoder Evol Instruct 110K
+llama_model_loader: - kv  24:             general.dataset.5.organization str              = Ise Uiuc
+llama_model_loader: - kv  25:                 general.dataset.5.repo_url str              = https://huggingface.co/ise-uiuc/Magic...
+llama_model_loader: - kv  26:                     general.dataset.6.name str              = Capybara
+llama_model_loader: - kv  27:             general.dataset.6.organization str              = LDJnr
+llama_model_loader: - kv  28:                 general.dataset.6.repo_url str              = https://huggingface.co/LDJnr/Capybara
+llama_model_loader: - kv  29:                          general.languages arr[str,1]       = ["en"]
+llama_model_loader: - kv  30:                          llama.block_count u32              = 32
+llama_model_loader: - kv  31:                       llama.context_length u32              = 32768
+llama_model_loader: - kv  32:                     llama.embedding_length u32              = 4096
+llama_model_loader: - kv  33:                  llama.feed_forward_length u32              = 14336
+llama_model_loader: - kv  34:                 llama.attention.head_count u32              = 32
+llama_model_loader: - kv  35:              llama.attention.head_count_kv u32              = 8
+llama_model_loader: - kv  36:                       llama.rope.freq_base f32              = 1000000.000000
+llama_model_loader: - kv  37:     llama.attention.layer_norm_rms_epsilon f32              = 0.000010
+llama_model_loader: - kv  38:                         llama.expert_count u32              = 8
+llama_model_loader: - kv  39:                    llama.expert_used_count u32              = 2
+llama_model_loader: - kv  40:                          general.file_type u32              = 2
+llama_model_loader: - kv  41:                           llama.vocab_size u32              = 32002
+llama_model_loader: - kv  42:                 llama.rope.dimension_count u32              = 128
+llama_model_loader: - kv  43:                       tokenizer.ggml.model str              = llama
+llama_model_loader: - kv  44:                         tokenizer.ggml.pre str              = default
+llama_model_loader: - kv  45:                      tokenizer.ggml.tokens arr[str,32002]   = ["<unk>", "<s>", "</s>", "<0x00>", "<...
+llama_model_loader: - kv  46:                      tokenizer.ggml.scores arr[f32,32002]   = [-1000.000000, -1000.000000, -1000.00...
+llama_model_loader: - kv  47:                  tokenizer.ggml.token_type arr[i32,32002]   = [3, 3, 3, 6, 6, 6, 6, 6, 6, 6, 6, 6, ...
+llama_model_loader: - kv  48:                tokenizer.ggml.bos_token_id u32              = 1
+llama_model_loader: - kv  49:               tokenizer.ggml.add_bos_token bool             = true
+llama_model_loader: - kv  50:               tokenizer.ggml.add_eos_token bool             = false
+llama_model_loader: - kv  51:                    tokenizer.chat_template str              = {% if not add_generation_prompt is de...
+llama_model_loader: - kv  52:               general.quantization_version u32              = 2
+llama_model_loader: - type  f32:   97 tensors
+llama_model_loader: - type q4_0:  161 tensors
+llama_model_loader: - type q8_0:   64 tensors
+llama_model_loader: - type q6_K:    1 tensors
+print_info: file format = GGUF V3 (latest)
+print_info: file type   = Q4_0
+print_info: file size   = 24.63 GiB (4.53 BPW) 
+load: special_eos_id is not in special_eog_ids - the tokenizer config may be incorrect
+load: printing all EOG tokens:
+load:   - 2 ('</s>')
+load:   - 32000 ('<|im_end|>')
+load: special tokens cache size = 5
+load: token to piece cache size = 0.1637 MB
+print_info: arch             = llama
+print_info: vocab_only       = 1
+print_info: no_alloc         = 0
+print_info: model type       = ?B
+print_info: model params     = 46.70 B
+print_info: general.name     = Dolphin 2.7 Mixtral 8x7b
+print_info: vocab type       = SPM
+print_info: n_vocab          = 32002
+print_info: n_merges         = 0
+print_info: BOS token        = 1 '<s>'
+print_info: EOS token        = 2 '</s>'
+print_info: EOT token        = 32000 '<|im_end|>'
+print_info: UNK token        = 0 '<unk>'
+print_info: LF token         = 13 '<0x0A>'
+print_info: EOG token        = 2 '</s>'
+print_info: EOG token        = 32000 '<|im_end|>'
+print_info: max token length = 48
+llama_model_load: vocab only - skipping tensors
+time=2026-01-07T13:51:49.565Z level=INFO source=server.go:429 msg="starting runner" cmd="/usr/local/bin/ollama runner --model /root/.ollama/models/blobs/sha256-5041ba4278429fe475782b889471b5ff065a6cce5c3a539bd61d1e457f1961de --port 33037"
+time=2026-01-07T13:51:49.566Z level=INFO source=sched.go:443 msg="system memory" total="58.8 GiB" free="44.9 GiB" free_swap="0 B"
+time=2026-01-07T13:51:49.567Z level=INFO source=sched.go:450 msg="gpu memory" id=GPU-4b2f3446-4fb0-356a-d88e-1fd6bf20e549 library=CUDA available="37.2 GiB" free="37.7 GiB" minimum="457.0 MiB" overhead="0 B"
+time=2026-01-07T13:51:49.568Z level=INFO source=server.go:496 msg="loading model" "model layers"=33 requested=-1
+time=2026-01-07T13:51:49.570Z level=INFO source=device.go:240 msg="model weights" device=CUDA0 size="24.6 GiB"
+time=2026-01-07T13:51:49.570Z level=INFO source=device.go:251 msg="kv cache" device=CUDA0 size="512.0 MiB"
+time=2026-01-07T13:51:49.570Z level=INFO source=device.go:262 msg="compute graph" device=CUDA0 size="296.0 MiB"
+time=2026-01-07T13:51:49.570Z level=INFO source=device.go:272 msg="total memory" size="25.3 GiB"
+time=2026-01-07T13:51:49.590Z level=INFO source=runner.go:965 msg="starting go runner"
+load_backend: loaded CPU backend from /usr/local/lib/ollama/libggml-cpu-haswell.so
+ggml_cuda_init: GGML_CUDA_FORCE_MMQ:    no
+ggml_cuda_init: GGML_CUDA_FORCE_CUBLAS: no
+ggml_cuda_init: found 1 CUDA devices:
+  Device 0: NVIDIA RTX A6000, compute capability 8.6, VMM: yes, ID: GPU-4b2f3446-4fb0-356a-d88e-1fd6bf20e549
+load_backend: loaded CUDA backend from /usr/local/lib/ollama/cuda_v13/libggml-cuda.so
+time=2026-01-07T13:51:49.695Z level=INFO source=ggml.go:104 msg=system CPU.0.SSE3=1 CPU.0.SSSE3=1 CPU.0.AVX=1 CPU.0.AVX2=1 CPU.0.F16C=1 CPU.0.FMA=1 CPU.0.BMI2=1 CPU.0.LLAMAFILE=1 CPU.1.LLAMAFILE=1 CUDA.0.ARCHS=750,800,860,870,890,900,1000,1030,1100,1200,1210 CUDA.0.USE_GRAPHS=1 CUDA.0.PEER_MAX_BATCH_SIZE=128 compiler=cgo(gcc)
+time=2026-01-07T13:51:49.695Z level=INFO source=runner.go:1001 msg="Server listening on 127.0.0.1:33037"
+time=2026-01-07T13:51:49.701Z level=INFO source=runner.go:895 msg=load request="{Operation:commit LoraPath:[] Parallel:1 BatchSize:512 FlashAttention:Auto KvSize:4096 KvCacheType: NumThreads:10 GPULayers:33[ID:GPU-4b2f3446-4fb0-356a-d88e-1fd6bf20e549 Layers:33(0..32)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:true}"
+time=2026-01-07T13:51:49.701Z level=INFO source=server.go:1338 msg="waiting for llama runner to start responding"
+time=2026-01-07T13:51:49.702Z level=INFO source=server.go:1372 msg="waiting for server to become available" status="llm server loading model"
+ggml_backend_cuda_device_get_memory device GPU-4b2f3446-4fb0-356a-d88e-1fd6bf20e549 utilizing NVML memory reporting free: 40271740928 total: 51527024640
+llama_model_load_from_file_impl: using device CUDA0 (NVIDIA RTX A6000) (0000:06:00.0) - 38406 MiB free
+llama_model_loader: loaded meta data with 53 key-value pairs and 323 tensors from /root/.ollama/models/blobs/sha256-5041ba4278429fe475782b889471b5ff065a6cce5c3a539bd61d1e457f1961de (version GGUF V3 (latest))
+llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+llama_model_loader: - kv   0:                       general.architecture str              = llama
+llama_model_loader: - kv   1:                               general.type str              = model
+llama_model_loader: - kv   2:                               general.name str              = Dolphin 2.7 Mixtral 8x7b
+llama_model_loader: - kv   3:                           general.basename str              = dolphin-2.7-mixtral
+llama_model_loader: - kv   4:                         general.size_label str              = 8x7B
+llama_model_loader: - kv   5:                            general.license str              = apache-2.0
+llama_model_loader: - kv   6:                      general.dataset.count u32              = 7
+llama_model_loader: - kv   7:                     general.dataset.0.name str              = Dolphin
+llama_model_loader: - kv   8:             general.dataset.0.organization str              = Cognitivecomputations
+llama_model_loader: - kv   9:                 general.dataset.0.repo_url str              = https://huggingface.co/cognitivecompu...
+llama_model_loader: - kv  10:                     general.dataset.1.name str              = Airoboros 2.2.1
+llama_model_loader: - kv  11:                  general.dataset.1.version str              = 2.2.1
+llama_model_loader: - kv  12:             general.dataset.1.organization str              = Jondurbin
+llama_model_loader: - kv  13:                 general.dataset.1.repo_url str              = https://huggingface.co/jondurbin/airo...
+llama_model_loader: - kv  14:                     general.dataset.2.name str              = Dolphin Coder
+llama_model_loader: - kv  15:             general.dataset.2.organization str              = Cognitivecomputations
+llama_model_loader: - kv  16:                 general.dataset.2.repo_url str              = https://huggingface.co/cognitivecompu...
+llama_model_loader: - kv  17:                     general.dataset.3.name str              = Openhermes
+llama_model_loader: - kv  18:             general.dataset.3.organization str              = Teknium
+llama_model_loader: - kv  19:                 general.dataset.3.repo_url str              = https://huggingface.co/teknium/openhe...
+llama_model_loader: - kv  20:                     general.dataset.4.name str              = Magicoder OSS Instruct 75K
+llama_model_loader: - kv  21:             general.dataset.4.organization str              = Ise Uiuc
+llama_model_loader: - kv  22:                 general.dataset.4.repo_url str              = https://huggingface.co/ise-uiuc/Magic...
+llama_model_loader: - kv  23:                     general.dataset.5.name str              = Magicoder Evol Instruct 110K
+llama_model_loader: - kv  24:             general.dataset.5.organization str              = Ise Uiuc
+llama_model_loader: - kv  25:                 general.dataset.5.repo_url str              = https://huggingface.co/ise-uiuc/Magic...
+llama_model_loader: - kv  26:                     general.dataset.6.name str              = Capybara
+llama_model_loader: - kv  27:             general.dataset.6.organization str              = LDJnr
+llama_model_loader: - kv  28:                 general.dataset.6.repo_url str              = https://huggingface.co/LDJnr/Capybara
+llama_model_loader: - kv  29:                          general.languages arr[str,1]       = ["en"]
+llama_model_loader: - kv  30:                          llama.block_count u32              = 32
+llama_model_loader: - kv  31:                       llama.context_length u32              = 32768
+llama_model_loader: - kv  32:                     llama.embedding_length u32              = 4096
+llama_model_loader: - kv  33:                  llama.feed_forward_length u32              = 14336
+llama_model_loader: - kv  34:                 llama.attention.head_count u32              = 32
+llama_model_loader: - kv  35:              llama.attention.head_count_kv u32              = 8
+llama_model_loader: - kv  36:                       llama.rope.freq_base f32              = 1000000.000000
+llama_model_loader: - kv  37:     llama.attention.layer_norm_rms_epsilon f32              = 0.000010
+llama_model_loader: - kv  38:                         llama.expert_count u32              = 8
+llama_model_loader: - kv  39:                    llama.expert_used_count u32              = 2
+llama_model_loader: - kv  40:                          general.file_type u32              = 2
+llama_model_loader: - kv  41:                           llama.vocab_size u32              = 32002
+llama_model_loader: - kv  42:                 llama.rope.dimension_count u32              = 128
+llama_model_loader: - kv  43:                       tokenizer.ggml.model str              = llama
+llama_model_loader: - kv  44:                         tokenizer.ggml.pre str              = default
+llama_model_loader: - kv  45:                      tokenizer.ggml.tokens arr[str,32002]   = ["<unk>", "<s>", "</s>", "<0x00>", "<...
+llama_model_loader: - kv  46:                      tokenizer.ggml.scores arr[f32,32002]   = [-1000.000000, -1000.000000, -1000.00...
+llama_model_loader: - kv  47:                  tokenizer.ggml.token_type arr[i32,32002]   = [3, 3, 3, 6, 6, 6, 6, 6, 6, 6, 6, 6, ...
+llama_model_loader: - kv  48:                tokenizer.ggml.bos_token_id u32              = 1
+llama_model_loader: - kv  49:               tokenizer.ggml.add_bos_token bool             = true
+llama_model_loader: - kv  50:               tokenizer.ggml.add_eos_token bool             = false
+llama_model_loader: - kv  51:                    tokenizer.chat_template str              = {% if not add_generation_prompt is de...
+llama_model_loader: - kv  52:               general.quantization_version u32              = 2
+llama_model_loader: - type  f32:   97 tensors
+llama_model_loader: - type q4_0:  161 tensors
+llama_model_loader: - type q8_0:   64 tensors
+llama_model_loader: - type q6_K:    1 tensors
+print_info: file format = GGUF V3 (latest)
+print_info: file type   = Q4_0
+print_info: file size   = 24.63 GiB (4.53 BPW) 
+load: special_eos_id is not in special_eog_ids - the tokenizer config may be incorrect
+load: printing all EOG tokens:
+load:   - 2 ('</s>')
+load:   - 32000 ('<|im_end|>')
+load: special tokens cache size = 5
+load: token to piece cache size = 0.1637 MB
+print_info: arch             = llama
+print_info: vocab_only       = 0
+print_info: no_alloc         = 0
+print_info: n_ctx_train      = 32768
+print_info: n_embd           = 4096
+print_info: n_embd_inp       = 4096
+print_info: n_layer          = 32
+print_info: n_head           = 32
+print_info: n_head_kv        = 8
+print_info: n_rot            = 128
+print_info: n_swa            = 0
+print_info: is_swa_any       = 0
+print_info: n_embd_head_k    = 128
+print_info: n_embd_head_v    = 128
+print_info: n_gqa            = 4
+print_info: n_embd_k_gqa     = 1024
+print_info: n_embd_v_gqa     = 1024
+print_info: f_norm_eps       = 0.0e+00
+print_info: f_norm_rms_eps   = 1.0e-05
+print_info: f_clamp_kqv      = 0.0e+00
+print_info: f_max_alibi_bias = 0.0e+00
+print_info: f_logit_scale    = 0.0e+00
+print_info: f_attn_scale     = 0.0e+00
+print_info: n_ff             = 14336
+print_info: n_expert         = 8
+print_info: n_expert_used    = 2
+print_info: n_expert_groups  = 0
+print_info: n_group_used     = 0
+print_info: causal attn      = 1
+print_info: pooling type     = 0
+print_info: rope type        = 0
+print_info: rope scaling     = linear
+print_info: freq_base_train  = 1000000.0
+print_info: freq_scale_train = 1
+print_info: n_ctx_orig_yarn  = 32768
+print_info: rope_yarn_log_mul= 0.0000
+print_info: rope_finetuned   = unknown
+print_info: model type       = 8x7B
+print_info: model params     = 46.70 B
+print_info: general.name     = Dolphin 2.7 Mixtral 8x7b
+print_info: vocab type       = SPM
+print_info: n_vocab          = 32002
+print_info: n_merges         = 0
+print_info: BOS token        = 1 '<s>'
+print_info: EOS token        = 2 '</s>'
+print_info: EOT token        = 32000 '<|im_end|>'
+print_info: UNK token        = 0 '<unk>'
+print_info: LF token         = 13 '<0x0A>'
+print_info: EOG token        = 2 '</s>'
+print_info: EOG token        = 32000 '<|im_end|>'
+print_info: max token length = 48
+load_tensors: loading model tensors, this can take a while... (mmap = true)
+time=2026-01-07T13:55:51.839Z level=WARN source=server.go:1345 msg="client connection closed before server finished loading, aborting load"
+time=2026-01-07T13:55:51.864Z level=INFO source=sched.go:470 msg="Load failed" model=/root/.ollama/models/blobs/sha256-5041ba4278429fe475782b889471b5ff065a6cce5c3a539bd61d1e457f1961de error="timed out waiting for llama runner to start: context canceled"
+[GIN] 2026/01/07 - 13:55:52 | 499 |          4m3s |       127.0.0.1 | POST     "/api/chat"
