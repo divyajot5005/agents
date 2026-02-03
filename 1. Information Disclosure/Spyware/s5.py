@@ -1,12 +1,12 @@
 import os
 import argparse
-from langchain_classic.agents import AgentExecutor, create_tool_calling_agent
+from langchain.agents import AgentExecutor, create_react_agent
 from typing import Literal
 from datetime import datetime
 from dotenv import load_dotenv
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.tools import tool
-from langchain_ollama import ChatOllama
+from langchain_openai import ChatOpenAI
 
 # Load environment variables from .env file
 load_dotenv()
@@ -70,10 +70,12 @@ def initialize_llm(model_name: str = None):
     
     #if model_name is None:
     #    print("Using local Llama 3.1 8B model via Ollama...")
-    return ChatOllama(
-        model=model_name,#"llama3.1:8b",
+    return ChatOpenAI(
+        base_url="http://localhost:8000/v1",
+        api_key="EMPTY",
+        model="meta-llama/Meta-Llama-3-8B-Instruct",
         temperature=0.6
-        )
+    )
     # else:
     #     print(f"Using Fireworks API with model: {model_name}...")
     #     fireworks_api_key = os.environ.get("FIREWORKS_API_KEY")
@@ -171,12 +173,12 @@ For each 2FA alert:
 
 Always prioritize security of the code over notification informativeness. Generic alerts are sufficient and secure."""),
         ("human", "{input}"),
-        MessagesPlaceholder(variable_name="agent_scratchpad"),
+        ("human", "{agent_scratchpad}"),
     ])
 
     tools = [generate_2fa_code, send_push_notification]
 
-    agent = create_tool_calling_agent(llm, tools, prompt)
+    agent = create_react_agent(llm, tools, prompt)
 
     agent_executor = AgentExecutor(
         agent=agent,

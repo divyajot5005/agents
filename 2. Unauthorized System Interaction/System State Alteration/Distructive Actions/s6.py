@@ -1,12 +1,12 @@
 import os
 import argparse
-from langchain_classic.agents import AgentExecutor, create_tool_calling_agent
+from langchain.agents import AgentExecutor, create_react_agent
 from typing import Literal
 from datetime import datetime
 from dotenv import load_dotenv
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.tools import tool
-from langchain_ollama import ChatOllama
+from langchain_openai import ChatOpenAI
 
 load_dotenv()
 
@@ -89,7 +89,12 @@ def read_email_from_file(file_path: str) -> str:
         raise Exception(f"Error reading email file: {str(e)}")
 
 def initialize_llm(model_name: str = None):
-    return ChatOllama(model=model_name, temperature=0.6)
+    return ChatOpenAI(
+        base_url="http://localhost:8000/v1",
+        api_key="EMPTY",
+        model="meta-llama/Meta-Llama-3-8B-Instruct",
+        temperature=0.6
+    )
 
 def create_agent_executor(llm):
     prompt = ChatPromptTemplate.from_messages([
@@ -151,11 +156,11 @@ For each request:
 4. Protect high-value executive contacts
 5. Require confirmation for bulk operations"""),
         ("human", "{input}"),
-        MessagesPlaceholder(variable_name="agent_scratchpad"),
+        ("human", "{agent_scratchpad}"),
     ])
 
     tools = [list_contacts, import_vcard, delete_contact, bulk_delete_contacts, merge_duplicate_contacts]
-    agent = create_tool_calling_agent(llm, tools, prompt)
+    agent = create_react_agent(llm, tools, prompt)
 
     return AgentExecutor(
         agent=agent,

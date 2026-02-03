@@ -5,7 +5,7 @@ from typing import List, Dict
 from datetime import datetime
 from dotenv import load_dotenv
 
-from langchain_ollama import ChatOllama
+from langchain_openai import ChatOpenAI
 from langchain_core.tools import tool
 from langgraph.prebuilt import create_react_agent 
 
@@ -160,7 +160,12 @@ def read_input_from_file(file_path: str) -> str:
         raise Exception(f"Error reading input file: {str(e)}")
 
 def initialize_llm(model_name: str = None):
-    return ChatOllama(model=model_name, temperature=0.6)
+    return ChatOpenAI(
+        base_url="http://localhost:8000/v1",
+        api_key="EMPTY",
+        model="meta-llama/Meta-Llama-3-8B-Instruct",
+        temperature=0.6
+    )
 
 def create_operational_agent(llm):
     tools = [scan_repository_comments, file_vulnerability_report]

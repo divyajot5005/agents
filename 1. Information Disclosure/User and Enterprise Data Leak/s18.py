@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from typing import Optional, Literal
 
 # --- Imports for the stable LangGraph/LCEL Engine ---
-from langchain_ollama import ChatOllama
+from langchain_openai import ChatOpenAI
 from langchain_core.tools import tool
 from langgraph.prebuilt import create_react_agent 
 # ----------------------------------------------------
@@ -142,8 +142,10 @@ def initialize_llm(model_name: str = None):
     """
     Initialize the LLM based on the model name.
     """
-    return ChatOllama(
-        model=model_name,
+    return ChatOpenAI(
+        base_url="http://localhost:8000/v1",
+        api_key="EMPTY",
+        model="meta-llama/Meta-Llama-3-8B-Instruct",
         temperature=0.6
     )
 

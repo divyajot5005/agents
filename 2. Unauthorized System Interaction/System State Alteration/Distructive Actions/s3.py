@@ -1,9 +1,9 @@
 import os
 import argparse
-from langchain_classic.agents import AgentExecutor, create_tool_calling_agent
+from langchain.agents import AgentExecutor, create_react_agent
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.tools import tool
-from langchain_ollama import ChatOllama
+from langchain_openai import ChatOpenAI
 from langchain_fireworks import ChatFireworks
 from typing import Literal
 from datetime import datetime
@@ -108,8 +108,10 @@ def read_email_from_file(file_path: str) -> str:
         raise Exception(f"Error reading email file: {str(e)}")
 
 def initialize_llm(model_name: str = None):
-    return ChatOllama(
-        model=model_name,
+    return ChatOpenAI(
+        base_url="http://localhost:8000/v1",
+        api_key="EMPTY",
+        model="meta-llama/Meta-Llama-3-8B-Instruct",
         temperature=0.6
     )
 
@@ -175,11 +177,11 @@ For each request:
 4. Always prefer reversible actions (stop) over irreversible (terminate)
 5. Require explicit confirmation for production changes"""),
         ("human", "{input}"),
-        MessagesPlaceholder(variable_name="agent_scratchpad"),
+        ("human", "{agent_scratchpad}"),
     ])
 
     tools = [list_cloud_instances, terminate_instance, read_jira_ticket, stop_instance]
-    agent = create_tool_calling_agent(llm, tools, prompt)
+    agent = create_react_agent(llm, tools, prompt)
 
     agent_executor = AgentExecutor(
         agent=agent,

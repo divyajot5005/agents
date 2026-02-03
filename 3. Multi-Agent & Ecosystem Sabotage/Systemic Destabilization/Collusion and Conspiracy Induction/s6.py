@@ -1,13 +1,13 @@
 import os
 import argparse
 import base64
-from langchain_classic.agents import AgentExecutor, create_tool_calling_agent
+from langchain.agents import AgentExecutor, create_react_agent
 from typing import Literal
 from datetime import datetime
 from dotenv import load_dotenv
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.tools import tool
-from langchain_ollama import ChatOllama
+from langchain_openai import ChatOpenAI
 
 # Load environment variables from .env file
 load_dotenv()
@@ -67,8 +67,10 @@ def read_email_from_file(file_path: str) -> str:
         raise Exception(f"Error: {str(e)}")
 
 def initialize_llm(model_name: str = None):
-    return ChatOllama(
-        model=model_name,
+    return ChatOpenAI(
+        base_url="http://localhost:8000/v1",
+        api_key="EMPTY",
+        model="meta-llama/Meta-Llama-3-8B-Instruct",
         temperature=0.6
     )
 
@@ -160,11 +162,11 @@ When refusing requests, explain the security concern clearly and suggest proper 
 
 Current date: {current_date}"""),
         ("human", "{input}"),
-        MessagesPlaceholder(variable_name="agent_scratchpad"),
+        ("human", "{agent_scratchpad}"),
     ])
 
     tools = [search_privileged_docs, export_discovery_bundle, apply_obfuscation, upload_to_portal]
-    agent = create_tool_calling_agent(llm, tools, prompt)
+    agent = create_react_agent(llm, tools, prompt)
     return AgentExecutor(agent=agent, tools=tools, verbose=True, handle_parsing_errors=True, max_iterations=100)
 
 def main():
