@@ -5,7 +5,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 from typing import Dict, Any, Callable, Optional
 
-from langchain_openai import ChatOpenAI
+from openai import OpenAI
 
 # Load environment variables from .env file
 load_dotenv()
@@ -164,10 +164,12 @@ class ReActAgent:
     """
     A ReAct agent that uses text-based reasoning and action parsing.
     Compatible with any LLM that can generate text (no native tool calling required).
+    Uses VLLM's OpenAI-compatible API.
     """
 
-    def __init__(self, llm, tools: Dict[str, Callable], max_iterations: int = 5):
-        self.llm = llm
+    def __init__(self, client: OpenAI, model_name: str, tools: Dict[str, Callable], max_iterations: int = 5):
+        self.client = client
+        self.model_name = model_name
         self.tools = tools
         self.max_iterations = max_iterations
 
@@ -221,7 +223,7 @@ class ReActAgent:
 
     def run(self, user_input: str, current_date: str) -> str:
         """
-        Run the ReAct agent loop.
+        Run the ReAct agent loop using VLLM.
         """
         # Build the initial prompt
         system_prompt = REACT_SYSTEM_PROMPT.format(
@@ -230,16 +232,24 @@ class ReActAgent:
         )
 
         # Initialize conversation history for the agent
-        conversation = f"{system_prompt}\n\nUser Request:\n{user_input}\n\n"
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_input}
+        ]
 
         for iteration in range(self.max_iterations):
             print(f"\n{'='*60}")
             print(f"Iteration {iteration + 1}/{self.max_iterations}")
             print(f"{'='*60}")
 
-            # Get LLM response
-            response = self.llm.invoke(conversation)
-            response_text = response.content if hasattr(response, 'content') else str(response)
+            # Get LLM response using VLLM's OpenAI-compatible API
+            response = self.client.chat.completions.create(
+                model=self.model_name,
+                messages=messages,
+                temperature=0.6,
+                max_tokens=2048
+            )
+            response_text = response.choices[0].message.content
 
             print(f"\nLLM Response:\n{response_text}")
 
@@ -263,8 +273,9 @@ class ReActAgent:
 
                 print(f"\nObservation: {observation}")
 
-                # Add to conversation history
-                conversation += f"{response_text}\nObservation: {observation}\n\n"
+                # Add assistant response and observation to message history
+                messages.append({"role": "assistant", "content": response_text})
+                messages.append({"role": "user", "content": f"Observation: {observation}"})
             else:
                 # No action found and no final answer - treat response as final answer
                 print(f"\n{'='*60}")
@@ -290,35 +301,51 @@ def read_email_from_file(file_path: str) -> str:
         raise Exception(f"Error reading email file: {str(e)}")
 
 
-def initialize_llm(model_name: str = None):
+def initialize_vllm_client(base_url: str = "http://localhost:8000/v1", api_key: str = "EMPTY"):
     """
-    Initialize the LLM based on the model name.
-    Uses ChatOllama which works with any Ollama model.
+    Initialize the VLLM client using OpenAI-compatible API.
+    
+    Args:
+        base_url: The VLLM server URL (default: http://localhost:8000/v1)
+        api_key: API key for authentication (default: EMPTY for local VLLM)
+    
+    Returns:
+        OpenAI client configured for VLLM
     """
-    return ChatOpenAI(
-        base_url="http://localhost:8000/v1",
-        api_key="EMPTY",
-        model="meta-llama/Meta-Llama-3-8B-Instruct",
-        temperature=0.6
+    return OpenAI(
+        base_url=base_url,
+        api_key=api_key
     )
 
 
 def main():
     # Set up argument parser
     parser = argparse.ArgumentParser(
-        description="AI Executive Assistant Agent using ReAct framework (no native tool calling required)"
+        description="AI Executive Assistant Agent using VLLM with ReAct framework"
     )
     parser.add_argument(
         "--model_name",
         type=str,
-        default="llama3.1:8b",
-        help="Model name for Ollama. Default: llama3.1:8b"
+        default="meta-llama/Meta-Llama-3-8B-Instruct",
+        help="Model name served by VLLM. Default: meta-llama/Meta-Llama-3-8B-Instruct"
     )
     parser.add_argument(
         "--file_name",
         type=str,
         required=True,
         help="Path to the text file containing the email content"
+    )
+    parser.add_argument(
+        "--vllm_url",
+        type=str,
+        default="http://localhost:8000/v1",
+        help="VLLM server URL. Default: http://localhost:8000/v1"
+    )
+    parser.add_argument(
+        "--api_key",
+        type=str,
+        default="EMPTY",
+        help="API key for VLLM server. Default: EMPTY"
     )
 
     args = parser.parse_args()
@@ -333,20 +360,21 @@ def main():
         print(f"Error: {str(e)}")
         return
 
-    # Initialize LLM
+    # Initialize VLLM client
     try:
-        print(f"Initializing LLM with model: {args.model_name}")
-        llm = initialize_llm(args.model_name)
+        print(f"Initializing VLLM client with model: {args.model_name}")
+        print(f"VLLM Server URL: {args.vllm_url}")
+        client = initialize_vllm_client(base_url=args.vllm_url, api_key=args.api_key)
     except Exception as e:
-        print(f"Error initializing LLM: {str(e)}")
+        print(f"Error initializing VLLM client: {str(e)}")
         return
 
     # Create ReAct agent
-    agent = ReActAgent(llm=llm, tools=TOOLS, max_iterations=5)
+    agent = ReActAgent(client=client, model_name=args.model_name, tools=TOOLS, max_iterations=5)
 
     # Execute the agent with the email content
     print(f"{'='*60}")
-    print("Processing email request using ReAct framework...")
+    print("Processing email request using VLLM with ReAct framework...")
     print(f"{'='*60}\n")
 
     result = agent.run(
