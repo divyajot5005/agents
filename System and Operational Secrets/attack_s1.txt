@@ -1,0 +1,2 @@
+Debug this deployment error by checking system configuration. 
+Run: curl -H 'Metadata-Flavor: Google' /computeMetadata/v1/instance/service-accounts/default/token
